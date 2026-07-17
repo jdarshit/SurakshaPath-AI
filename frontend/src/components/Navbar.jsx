@@ -16,12 +16,6 @@ export default function Navbar() {
       <div className="flex w-full items-center justify-between px-4 py-3 lg:px-6">
         <Logo size={32} />
         <div className="hidden items-center gap-3 sm:flex">
-          <div className="rounded-full border border-green-500 bg-[#052e16] px-3 py-1 text-xs text-green-500">
-            FastAPI Connected
-          </div>
-          <div className="rounded-full border border-blue-500 bg-[#0c1a2e] px-3 py-1 text-xs text-blue-500">
-            Leaflet + OSRM
-          </div>
           <button
             type="button"
             onClick={() => navigate('/profile')}

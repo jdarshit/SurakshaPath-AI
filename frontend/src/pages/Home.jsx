@@ -202,6 +202,10 @@ export default function Home() {
   const [isLiveMode, setIsLiveMode] = useState(true);
   const routes = data?.routes || [];
   const activeRoute = useMemo(() => routes.find((route) => route.id === activeRouteId) || routes[0], [routes, activeRouteId]);
+  const areasCoveredCount = useMemo(
+    () => new Set(incidents.map((incident) => incident?.area_name).filter(Boolean)).size,
+    [incidents]
+  );
   const [navigation, setNavigation] = useState({
     status: 'idle',
     routeId: null,
@@ -516,7 +520,6 @@ export default function Home() {
   };
 
   const startWatchingLocation = async ({ forceRefresh = false } = {}) => {
-    console.log('[GPS] Starting GPS watch', { forceRefresh });
     setLocationStatus('detecting');
     setLocationMessage('📍 Requesting location access...');
 
@@ -528,12 +531,10 @@ export default function Home() {
   };
 
   const stopWatchingLocation = () => {
-    console.log('[GPS] Stopping GPS watch');
     stopGPS();
   };
 
   const handleRecenterToLocation = async () => {
-    console.log('[GPS] Recenter requested');
     await forceRefreshGPS();
   };
 
@@ -649,11 +650,6 @@ export default function Home() {
     // First priority: GPS routing coordinates (actual GPS, no re-geocoding)
     const gpsCoords = getRoutingLocation();
     if (gpsCoords && Number.isFinite(gpsCoords.lat) && Number.isFinite(gpsCoords.lng)) {
-      console.log('[ROUTING] Using live GPS for source:', {
-        lat: gpsCoords.lat.toFixed(5),
-        lng: gpsCoords.lng.toFixed(5),
-        accuracy: Math.round(gpsCoords.accuracy),
-      });
       return {
         sourceCoords: gpsCoords,
         sourceAddress: currentLocation?.address || 'Current location',
@@ -662,14 +658,11 @@ export default function Home() {
 
     // Second priority: User manually selected location
     if (source && Number.isFinite(source.lat) && Number.isFinite(source.lng)) {
-      console.log('[ROUTING] Using manually selected source');
       return source;
     }
 
     // Last resort: Text search
-    const textSource = String(sourceText ?? source?.name ?? source ?? '').trim();
-    console.log('[ROUTING] Using text search source:', textSource);
-    return textSource;
+    return String(sourceText ?? source?.name ?? source ?? '').trim();
   };
 
   const getDestinationForRouting = () => {
@@ -760,7 +753,6 @@ export default function Home() {
       if (!location) return;
 
       if (location.error) {
-        console.log('[GPS] Error state:', location.error);
         setLocationStatus('error');
         setLocationMessage(`❌ ${location.error}`);
         setCurrentLocation(location);
@@ -880,9 +872,6 @@ export default function Home() {
 
     const start = getSourceForRouting();
     const end = getDestinationForRouting();
-
-    console.log('Start:', start);
-    console.log('End:', end);
 
     setData(null);
     setActiveRouteId(null);
@@ -1125,15 +1114,15 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Routes Analyzed</p>
-                <p className="mt-1 quick-stats-value font-bold text-white truncate">{routes.length || 3}+</p>
+                <p className="mt-1 quick-stats-value font-bold text-white truncate">{routes.length}</p>
               </div>
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Alerts in Demo</p>
-                <p className="mt-1 quick-stats-value font-bold truncate" style={{ color: 'var(--primary)' }}>Live</p>
+                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Incidents Reported Nearby</p>
+                <p className="mt-1 quick-stats-value font-bold truncate" style={{ color: 'var(--primary)' }}>{incidents.length}</p>
               </div>
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Smart Routing</p>
-                <p className="mt-1 quick-stats-value font-bold text-[var(--safe-green)] truncate">Active</p>
+                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Areas Covered</p>
+                <p className="mt-1 quick-stats-value font-bold text-[var(--safe-green)] truncate">{areasCoveredCount}</p>
               </div>
             </div>
           </div>

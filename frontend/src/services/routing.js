@@ -116,7 +116,6 @@ export async function geocodePlace(query) {
   const safeQuery = typeof query === 'string' ? query.trim() : '';
 
   if (!safeQuery) {
-    console.warn('Empty search query');
     return INDORE_FALLBACK;
   }
 
@@ -245,12 +244,9 @@ export async function calculateRoutePrediction(coordinates, meta = {}) {
       high_severity_count: Math.round(incident_count * 0.2),
     };
 
-    console.debug('Route prediction payload:', payload);
-
     try {
       const res = await api.post('/predict', payload);
       if (res?.data?.prediction) {
-        console.debug('Prediction response:', res.data.prediction);
         predictions.push(res.data.prediction);
       }
     } catch (err) {
@@ -320,7 +316,6 @@ export async function fetchSafeRoute(source, destination) {
   let start;
   if (source && typeof source === 'object' && source.sourceCoords && Number.isFinite(source.sourceCoords.lat) && Number.isFinite(source.sourceCoords.lng)) {
     start = { lat: Number(source.sourceCoords.lat), lng: Number(source.sourceCoords.lng) };
-    console.log('[ROUTING] raw GPS coords:', start, 'reverseAddress:', source.sourceAddress || null);
   } else {
     start = await geocodePlace(source);
   }
@@ -329,16 +324,13 @@ export async function fetchSafeRoute(source, destination) {
   let end;
   if (destination && typeof destination === 'object' && destination.destCoords && Number.isFinite(destination.destCoords.lat) && Number.isFinite(destination.destCoords.lng)) {
     end = { lat: Number(destination.destCoords.lat), lng: Number(destination.destCoords.lng) };
-    console.log('[ROUTING] destination object coords:', end);
   } else if (destination && typeof destination === 'object' && Number.isFinite(destination.lat) && Number.isFinite(destination.lng)) {
     // Handle autocomplete location object format {lat, lng, name, address}
     end = { lat: Number(destination.lat), lng: Number(destination.lng) };
-    console.log('[ROUTING] autocomplete destination coords:', end);
   } else {
     end = await geocodePlace(destination);
   }
 
-  console.log('[ROUTING] actual coordinates used for routing start:', start, 'end:', end);
   const osrmUrl = `${OSRM_BASE}/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson&alternatives=true&steps=false`;
   const response = await fetch(osrmUrl);
 
@@ -399,13 +391,6 @@ export async function fetchSafeRoute(source, destination) {
   const safestRoute = [...routesWithScores].sort((a, b) => b.safetyScore - a.safetyScore)[0];
   const fastestRoute = [...routesWithScores].sort((a, b) => Number.parseFloat(a.estimatedTime) - Number.parseFloat(b.estimatedTime))[0];
 
-  console.log('[ROUTES] Safety analysis complete:', {
-    totalRoutes: routesWithScores.length,
-    safestRouteId: safestRoute?.id,
-    safestScore: safestRoute?.safetyScore,
-    fastestRouteId: fastestRoute?.id,
-  });
-
   // Sort by safety score descending FIRST
   const sortedByScore = [...routesWithScores].sort((a, b) => b.safetyScore - a.safetyScore);
 
@@ -430,14 +415,6 @@ export async function fetchSafeRoute(source, destination) {
               : '❌ High Risk Route',
     };
   });
-
-  console.log('[ROUTES] Final routes with badges:', finalRoutes.map(r => ({
-    id: r.id,
-    name: r.name,
-    score: r.safetyScore,
-    isSafest: r.isSafestRoute,
-    type: r.routeType,
-  })));
 
   return {
     source: start,

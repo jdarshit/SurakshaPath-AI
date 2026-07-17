@@ -24,17 +24,14 @@ export function AuthProvider({ children }) {
       }
 
       if (!storedToken) {
-        console.log('[Auth] No stored token found. Proceeding as guest.');
         if (mounted) setLoading(false);
         return;
       }
 
       try {
-        console.log('[Auth] Verifying stored token with backend...');
         const response = await getCurrentUser();
         if (mounted) {
           if (response?.user) {
-            console.log('[Auth] Token verified successfully.');
             setUser(response.user);
             setToken(storedToken);
             saveUser(response.user);

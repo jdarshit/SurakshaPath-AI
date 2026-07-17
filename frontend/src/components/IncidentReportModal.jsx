@@ -169,7 +169,6 @@ export default function IncidentReportModal({ isOpen, onClose, location, onSucce
 
       if (response.data) {
         setCnnAnalysis(response.data);
-        console.debug('Image analysis result:', response.data);
       }
     } catch (err) {
       console.error('Image analysis error:', err);
@@ -218,11 +217,7 @@ export default function IncidentReportModal({ isOpen, onClose, location, onSucce
       }
 
       const payload = { ...formData, severity: finalSeverity };
-      console.debug('Submitting incident report:', payload);
-
       const response = await api.post('/incidents/report', payload);
-
-      console.debug('Incident reported successfully:', response.data);
 
       // Show success toast with NLP severity if available
       const severityMsg = finalNlpAnalysis
@@ -388,7 +383,7 @@ export default function IncidentReportModal({ isOpen, onClose, location, onSucce
                       : 'border-green-500/50 bg-green-500/10'
                   }`}>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold">📸 CNN Analysis</span>
+                      <span className="text-xs font-bold">📸 Photo Analysis</span>
                       <span className="text-xs px-2 py-1 rounded-lg bg-slate-700/50 text-slate-200 font-semibold">
                         {Math.round(cnnAnalysis.confidence * 100)}% confident
                       </span>

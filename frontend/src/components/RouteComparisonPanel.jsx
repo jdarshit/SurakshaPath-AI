@@ -64,13 +64,6 @@ export default function RouteComparisonPanel({ routes = [], activeRouteId = null
   const safestRoute = routes.find(r => r.isSafestRoute) || routes[0];
   const fastestRoute = routes.find(r => r.isFastestRoute) || routes[0];
   const activeRoute = routes.find((route) => route.id === activeRouteId) || safestRoute;
-  
-  console.log('[RouteComparison] Panel state:', {
-    totalRoutes: routes.length,
-    activeRouteId,
-    safestRouteName: safestRoute?.name,
-    safestScore: safestRoute?.safetyScore,
-  });
 
   const isActive = activeRoute;
   const riskLevel = activeRoute.prediction?.risk_level || 'moderate';

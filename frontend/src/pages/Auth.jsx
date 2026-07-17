@@ -336,18 +336,18 @@ export default function AuthPage() {
           </div>
 
           <h1 className="mt-8 max-w-2xl text-5xl font-semibold tracking-tight text-white xl:text-7xl">
-            Sign in to the AI safety control room.
+            Welcome to SurakshaPath
           </h1>
           <p className="mt-6 max-w-xl text-base leading-8 text-slate-300 xl:text-lg">
-            A futuristic authentication experience for SurakshaPath AI, with secure OTP verification, encrypted sessions, and a clean startup-grade interface.
+            Surakshit Raasta, Smart Faisla — safer routes, real incident reports, and one-press emergency help, built for Indore.
           </p>
 
           <div className="mt-10 grid max-w-xl gap-4 sm:grid-cols-2">
             {[
-              ['OTP Delivery', '5-minute verification with Gmail SMTP'],
-              ['JWT Sessions', '24-hour secure access tokens'],
-              ['Glassmorphism UI', 'Neon-lit dark interface with motion'],
-              ['Protected Access', 'Routes locked behind auth state'],
+              ['Safe Route Suggestions', 'AI checks lighting, crowd & crime data for every route'],
+              ['Instant SOS', 'One press alerts your guardian with your live location'],
+              ['Community Reports', 'Real incident data from real people nearby'],
+              ['Private & Secure', 'Your location is never shared without your consent'],
             ].map(([title, text]) => (
               <div key={title} className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-[0_0_35px_rgba(255,45,120,0.08)] backdrop-blur-xl">
                 <div className="text-sm font-semibold text-white">{title}</div>

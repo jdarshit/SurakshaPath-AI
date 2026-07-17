@@ -18,10 +18,9 @@ export async function reverseGeocodeWithCache(lat, lng) {
   const cached = geocodeCache.get(key);
   
   if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    console.log('[GEOCODE] Cache hit for:', key);
     return cached.result;
   }
-  
+
   try {
     const url = `${NOMINATIM_REVERSE_API}?format=jsonv2&lat=${lat}&lon=${lng}`;
     const response = await fetch(url);
@@ -29,7 +28,6 @@ export async function reverseGeocodeWithCache(lat, lng) {
       const data = await response.json();
       const result = data?.address?.city || data?.address?.town || data?.address?.village || data?.display_name?.split(',')[0] || 'Location';
       geocodeCache.set(key, { result, timestamp: Date.now() });
-      console.log('[GEOCODE] Reverse geocoded:', key, '→', result);
       return result;
     }
   } catch (err) {
@@ -61,7 +59,6 @@ export const searchLocations = async (query, limit = 6, externalSignal) => {
 
   try {
     // Try Photon API first (better for autocomplete)
-    console.log('[LOCATION] Searching Photon for:', safeQuery);
     const photonUrl = `${PHOTON_API}?q=${encodeURIComponent(safeQuery)}&limit=${limit}&lang=en`;
     const photonResponse = await fetch(photonUrl, { signal });
 
@@ -86,13 +83,11 @@ export const searchLocations = async (query, limit = 6, externalSignal) => {
       }).filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng));
 
       if (results.length > 0) {
-        console.log('[LOCATION] Photon found', results.length, 'results');
         return results;
       }
     }
 
     // Fallback to Nominatim
-    console.log('[LOCATION] Photon failed or empty, trying Nominatim');
     const nominatimUrl = `${NOMINATIM_API}?q=${encodeURIComponent(safeQuery)}&format=jsonv2&limit=${limit}&countrycodes=in&addressdetails=1`;
     const nominatimResponse = await fetch(nominatimUrl, { signal });
 
@@ -115,7 +110,6 @@ export const searchLocations = async (query, limit = 6, externalSignal) => {
       }).filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng));
 
       if (results.length > 0) {
-        console.log('[LOCATION] Nominatim found', results.length, 'results');
         return results;
       }
     }

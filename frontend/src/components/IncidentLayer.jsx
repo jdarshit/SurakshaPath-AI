@@ -2,6 +2,21 @@ import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { normalizeSeverityKey } from '../utils/severity';
+import { getFriendlyIncidentType, getFriendlyDescription, getLocationLabel } from '../utils/incidentDisplay';
+
+// Popup content is built as a raw HTML string (Leaflet bindPopup), so any
+// user-submitted text (description, area_name) must be escaped - otherwise
+// a report description like `<img src=x onerror=...>` would execute for
+// anyone whose map renders that marker's popup.
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[ch]));
+}
 
 const SEVERITY_COLORS = {
   HIGH: '#ef4444', // red
@@ -49,19 +64,22 @@ export default function IncidentLayer({ incidents = [], visible = true }) {
       const popupContent = `
         <div style="padding: 8px; font-size: 12px;">
           <div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;">
-            ${SEVERITY_ICONS[severityKey]} ${incident.incident_type}
+            ${SEVERITY_ICONS[severityKey]} ${escapeHtml(getFriendlyIncidentType(incident.incident_type))}
           </div>
           <div style="color: #475569; margin-bottom: 4px;">
-            <strong>Area:</strong> ${incident.area_name}
+            <strong>Area:</strong> ${escapeHtml(incident.area_name || 'Unknown area')}
           </div>
           <div style="color: #475569; margin-bottom: 4px;">
             <strong>Severity:</strong> <span style="color: ${color}; font-weight: 600;">${severityKey}</span>
           </div>
           <div style="color: #475569; margin-bottom: 4px;">
-            <strong>Description:</strong> ${incident.description}
+            <strong>Description:</strong> ${escapeHtml(getFriendlyDescription(incident.description))}
+          </div>
+          <div style="color: #475569; margin-bottom: 4px;">
+            <strong>Location:</strong> ${escapeHtml(getLocationLabel(incident))}
           </div>
           <div style="color: #64748b; font-size: 11px; margin-top: 4px;">
-            ${new Date(incident.created_at).toLocaleString()}
+            ${escapeHtml(new Date(incident.created_at).toLocaleString())}
           </div>
         </div>
       `;

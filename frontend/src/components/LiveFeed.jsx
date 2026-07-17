@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { normalizeSeverityKey } from '../utils/severity';
+import { getFriendlyIncidentType, getFriendlyDescription } from '../utils/incidentDisplay';
 
 const SEVERITY_CONFIG = {
   HIGH: { badge: '🔴', color: 'text-red-300', bg: 'bg-red-500/10' },
@@ -54,14 +55,14 @@ export default function LiveFeed({ incidents = [], refreshInterval = 10000 }) {
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-semibold text-white">{incident.incident_type}</p>
+                      <p className="text-sm font-semibold text-white">{getFriendlyIncidentType(incident.incident_type)}</p>
                       <div className={`rounded-full px-2 py-0.5 text-xs font-bold ${config.bg} ${config.color}`}>
                         {config.badge}
                       </div>
                     </div>
-                    <p className="mt-1 text-xs text-slate-400">{incident.area_name}</p>
+                    <p className="mt-1 text-xs text-slate-400">{incident.area_name || 'Unknown area'}</p>
                     {incident.description && (
-                      <p className="mt-1 text-xs text-slate-300 line-clamp-1">{incident.description}</p>
+                      <p className="mt-1 text-xs text-slate-300 line-clamp-1">{getFriendlyDescription(incident.description)}</p>
                     )}
                   </div>
                   <div className="text-right">

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { normalizeSeverityKey } from '../utils/severity';
+import { getFriendlyIncidentType, getFriendlyDescription, getLocationLabel } from '../utils/incidentDisplay';
 
 const SEVERITY_CONFIG = {
   HIGH: { badge: '🔴', color: 'text-[var(--unsafe-red)]', bg: 'bg-[#EF444415]' },
@@ -73,7 +74,7 @@ export default function IncidentPanel({ incidents = [], isLoading = false }) {
                 {/* Header */}
                 <div className="flex items-start justify-between gap-2 mb-1.5">
                   <div className="flex flex-col">
-                    <p className="text-[11px] font-semibold text-white">{incident?.incident_type || 'Incident'}</p>
+                    <p className="text-[11px] font-semibold text-white">{getFriendlyIncidentType(incident?.incident_type)}</p>
                     <p className="text-[9px] text-[var(--text-secondary)]">{incident?.area_name || 'Unknown area'}</p>
                   </div>
                   <div className={`rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider whitespace-nowrap ${config.bg} ${config.color}`}>
@@ -83,14 +84,12 @@ export default function IncidentPanel({ incidents = [], isLoading = false }) {
 
                 {/* Description */}
                 {incident.description && (
-                  <p className="text-[10px] leading-relaxed text-[#D1D5DB] mb-1.5 line-clamp-2">{incident.description}</p>
+                  <p className="text-[10px] leading-relaxed text-[#D1D5DB] mb-1.5 line-clamp-2">{getFriendlyDescription(incident.description)}</p>
                 )}
 
                 {/* Footer */}
                 <div className="flex items-center justify-between text-[9px] text-[var(--text-secondary)]">
-                  <span className="opacity-70">
-                    📍 {Number.isFinite(Number(incident?.lat)) ? Number(incident.lat).toFixed(3) : '—'}, {Number.isFinite(Number(incident?.lng)) ? Number(incident.lng).toFixed(3) : '—'}
-                  </span>
+                  <span className="opacity-70">📍 {getLocationLabel(incident)}</span>
                   <span>{timeAgo(incident?.created_at)}</span>
                 </div>
               </div>

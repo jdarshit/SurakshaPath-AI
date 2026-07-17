@@ -77,6 +77,10 @@ class GPSService {
   }
 
   log(level, message, data = {}) {
+    // GPS updates can fire continuously - only real errors are worth
+    // surfacing in production. Everything else requires debugMode.
+    if (level !== 'error' && !this.debugMode) return;
+
     const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
     const prefix = `[GPS ${timestamp}]`;
     const logData = Object.keys(data).length > 0 ? data : '';

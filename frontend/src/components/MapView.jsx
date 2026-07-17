@@ -223,9 +223,6 @@ export default function MapView({
   const [showRoutes, setShowRoutes] = useState(true);
   const [showSafetyZones, setShowSafetyZones] = useState(true);
 
-  console.log('[MapView] Received routes:', routes);
-  console.log('[MapView] showRoutes:', showRoutes);
-
   const currentLocationLatLng = toLatLng(currentLocation);
   const sourceLatLng = toLatLng(source);
   const destinationLatLng = toLatLng(destination);

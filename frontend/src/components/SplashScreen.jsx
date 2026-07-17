@@ -78,7 +78,7 @@ export default function SplashScreen() {
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-slate-400">
                 <span>Loading</span>
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
-                <span>Preparing demo environment</span>
+                <span>Loading your safe map…</span>
               </div>
               <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                 <motion.div

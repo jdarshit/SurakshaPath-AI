@@ -54,11 +54,9 @@ export default function App() {
 
   // Initialize GPS service when app mounts
   useEffect(() => {
-    console.log('[App] Initializing GPS service');
     startGPS();
-    
+
     return () => {
-      console.log('[App] Cleaning up GPS service');
       stopGPS();
     };
   }, []);
@@ -115,11 +113,8 @@ export default function App() {
       let lat = locationCoords?.lat;
       let lng = locationCoords?.lng;
 
-      console.log('[SOS] Cached GPS reading:', { lat, lng, error: locationCoords?.error, source: locationCoords?.source });
-
       // If there is no current cached location yet, use browser geolocation fallback
       if (!Number.isFinite(lat) || !Number.isFinite(lng) || locationCoords?.error) {
-        console.log('[SOS] No valid cached GPS, attempting browser geolocation fallback');
         try {
           const position = await new Promise((resolve, reject) => {
             const timeoutId = setTimeout(() => {
@@ -134,7 +129,6 @@ export default function App() {
 
             const onSuccess = (pos) => {
               clearTimeout(timeoutId);
-              console.log('[SOS] Browser geolocation success:', { lat: pos.coords.latitude, lng: pos.coords.longitude });
               resolve(pos);
             };
 
@@ -153,7 +147,6 @@ export default function App() {
           });
           lat = Number(position.coords.latitude);
           lng = Number(position.coords.longitude);
-          console.log('[SOS] Using browser geolocation:', { lat, lng });
         } catch (geoError) {
           setSosStatus('error');
           setSosMessage('❌ Unable to get current location');
@@ -185,8 +178,6 @@ export default function App() {
       // builds the wa.me message, so we only send the plain alert text here.
       const messageText = '🚨 EMERGENCY SOS 🚨\nPlease help immediately!';
 
-      console.log('[SOS] Triggering SOS:', { lat, lng, guardian: user.guardian_phone });
-
       // Save the alert + broadcast over WebSocket. A wa.me link CANNOT be
       // sent silently by a server — it can only open WhatsApp with a
       // pre-filled message. The backend attempts silent delivery via the
@@ -198,8 +189,6 @@ export default function App() {
         source: 'app',
         message: messageText,
       });
-
-      console.log('[SOS] Backend response:', response);
 
       if (response?.whatsapp_url) {
         window.open(response.whatsapp_url, '_blank', 'noopener,noreferrer');

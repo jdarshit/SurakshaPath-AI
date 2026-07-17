@@ -12,6 +12,15 @@ export default function Profile() {
   });
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState('');
+  const [connectionOk, setConnectionOk] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    api.get('/health')
+      .then(() => { if (mounted) setConnectionOk(true); })
+      .catch(() => { if (mounted) setConnectionOk(false); });
+    return () => { mounted = false; };
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -67,7 +76,6 @@ export default function Profile() {
       });
 
       const result = response.data;
-      console.log('[Profile] Guardian update response:', result);
       if (result?.success) {
         const updatedUser = {
           guardian_name: result.guardian_name,
@@ -79,7 +87,6 @@ export default function Profile() {
           ...updatedUser,
         }));
         setStatus('✅ Guardian contact updated successfully. SOS alerts will now send to this number.');
-        console.log('[Profile] Updated user guardian details:', updatedUser);
       } else {
         setStatus('Updated successfully.');
       }
@@ -104,6 +111,12 @@ export default function Profile() {
               Keep your emergency contact details up to date so SOS alerts can reach your guardian immediately.
             </p>
           </div>
+          {connectionOk !== null && (
+            <div className="flex items-center gap-2 text-xs text-slate-500" title={connectionOk ? 'Connected' : 'Connection issue'}>
+              <span className={`h-2 w-2 rounded-full ${connectionOk ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+              {connectionOk ? 'Connected' : 'Connection issue'}
+            </div>
+          )}
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
