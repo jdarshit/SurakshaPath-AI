@@ -1,0 +1,1401 @@
+area_name,incident_type,time_of_day,severity,source,women_involved,incident_date,lat,lng
+Annapurna Road,bike_theft,22,medium,FreePressJournal 2024,0,2024-01-01,22.696747240713087,75.87620225144741
+Sudama Nagar,bike_theft,20,medium,FreePressJournal Aug 2024,0,2024-01-01,22.691804285838458,75.87110571529773
+Chandan Nagar,chain_snatching,7,high,FreePressJournal Aug 2024,1,2024-01-01,22.746991963650867,75.8884200285616
+Juni Indore,theft,23,medium,FreePressJournal Nov 2024,0,2024-01-01,22.71289195090518,75.8526184120904
+Juni Indore,house_theft,14,medium,FreePressJournal Nov 2024,0,2024-01-01,22.710236111842654,75.85218282716573
+Khajrana,stabbing,21,high,FreePressJournal Nov 2024,0,2024-01-01,22.737435967122018,75.91054778525451
+Khajrana,mobile_snatching,22,medium,FreePressJournal Mar 2024,0,2024-01-01,22.73684850167301,75.91276502269382
+Kanadiya Road,assault_robbery,20,high,FreePressJournal Mar 2024,0,2024-01-01,22.78449705687465,75.8474340209177
+Juni Indore,assault,19,high,FreePressJournal Apr 2024,0,2024-01-01,22.712906690070458,75.85171212618638
+Bhawarkuan,chain_snatching,16,high,FreePressJournal Feb 2024,1,2024-01-01,22.682448435466778,75.8667096276831
+Bapat Square,theft,18,medium,FreePressJournal Feb 2024,0,2024-01-01,22.720523506965776,75.88493504726023
+Sadar Bazar,mobile_snatching,21,medium,FreePressJournal Mar 2024,0,2024-01-01,22.72261945911297,75.85107151771638
+Rajwada,molestation,20,high,NCRB 2023,1,2024-01-01,22.719994655844804,75.8559184976691
+Siyaganj,theft,15,medium,NCRB 2023,0,2024-01-01,22.71947403466407,75.85964252113654
+Loha Mandi,assault,22,high,NCRB 2023,0,2024-01-01,22.70699094980324,75.85138701716801
+Old Railway Lanes,robbery,23,high,NCRB 2023,1,2024-01-01,22.71150042705912,75.84491963415377
+Malwa Mill,assault,21,high,NCRB 2023,0,2024-01-01,22.72222545345776,75.83173606124402
+Nemawar Road,robbery,22,high,NCRB 2023,1,2024-01-01,22.654448538589794,75.82113265948406
+Murai Mohalla,theft,2,medium,NCRB 2023,0,2024-01-01,22.714091670111852,75.84751319416971
+Bhagirathpura,chain_snatching,9,high,NCRB 2023,1,2024-01-01,22.719947374841187,75.85150325010517
+Pardeshipura,mobile_snatching,20,medium,NCRB 2023,0,2024-01-01,22.729571117368334,75.85229693662986
+Banganga,assault,22,high,NCRB 2023,0,2024-01-01,22.691236963163913,75.86564340885214
+Limbodi,robbery,21,high,NCRB 2023,0,2024-01-01,22.811052867891213,75.84284943715431
+Bypass Roads,robbery,23,high,NCRB 2023,1,2024-01-01,22.781498171059763,75.87679005920577
+Rau Bypass,assault,1,high,NCRB 2023,0,2024-01-01,22.662036419905302,75.80631978073775
+Betma Road,robbery,22,high,NCRB 2023,1,2024-01-01,22.714011055768356,75.77509071217862
+Hatod Road,assault,23,high,NCRB 2023,0,2024-01-01,22.78049804269295,75.79042963988562
+Sanwer Road Indl,theft,3,high,Local Reports 2024,0,2024-01-01,22.745685406630482,75.81501087071253
+Tejaji Nagar,chain_snatching,8,high,Local Reports 2024,1,2024-01-01,22.693954487413173,75.8353347196269
+Musakhedi,mobile_snatching,21,medium,Local Reports 2024,0,2024-01-01,22.71067870247632,75.87560750976712
+Vijay Nagar,pickpocket,17,low,Local Reports 2024,0,2024-01-01,22.73494526911141,75.88642843913381
+MG Road,pickpocket,19,low,Local Reports 2024,0,2024-01-01,22.717623144742124,75.87999357617149
+Palasia,bike_theft,14,low,Local Reports 2024,0,2024-01-01,22.71709030955791,75.87713307948154
+Scheme 54,pickpocket,11,low,Local Reports 2024,0,2024-01-01,22.74379331322352,75.86830118554528
+Sapna Sangeeta,pickpocket,18,low,Local Reports 2024,0,2024-01-01,22.730093792198446,75.87783790752853
+Loha Mandi,chain_snatching,1,high,Synthetic_RealPattern,1,2023-04-25,22.710750384088698,75.84837984153924
+Loha Mandi,robbery,1,high,Synthetic_RealPattern,0,2023-10-09,22.70772768261504,75.85004757964956
+Loha Mandi,abduction,21,high,Synthetic_RealPattern,1,2023-04-15,22.706486032684037,75.85242808457643
+Loha Mandi,chain_snatching,1,high,Synthetic_RealPattern,1,2024-07-12,22.710005398159073,75.84941112071274
+Loha Mandi,chain_snatching,0,high,Synthetic_RealPattern,1,2024-03-08,22.708540914962438,75.85224059459996
+Loha Mandi,robbery,20,high,Synthetic_RealPattern,0,2023-04-06,22.706632229409067,75.85401947227665
+Loha Mandi,chain_snatching,0,high,Synthetic_RealPattern,1,2024-09-08,22.708871061460666,75.84876340429474
+Loha Mandi,abduction,0,high,Synthetic_RealPattern,1,2023-07-23,22.70610633112669,75.85223561270935
+Loha Mandi,molestation,1,high,Synthetic_RealPattern,1,2024-12-19,22.711355922412473,75.85086250131583
+Loha Mandi,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-08-14,22.7074526798896,75.85340885352628
+Loha Mandi,robbery,22,high,Synthetic_RealPattern,1,2023-01-07,22.709875133706124,75.8492628987367
+Loha Mandi,assault,23,high,Synthetic_RealPattern,0,2023-12-15,22.707770266456535,75.85235575571336
+Loha Mandi,chain_snatching,21,high,Synthetic_RealPattern,1,2023-12-11,22.709020408127067,75.8532286917379
+Loha Mandi,chain_snatching,20,high,Synthetic_RealPattern,1,2024-01-25,22.70918026167606,75.85386768531686
+Loha Mandi,molestation,22,high,Synthetic_RealPattern,1,2023-12-19,22.70700912673315,75.85229948816975
+Loha Mandi,abduction,22,high,Synthetic_RealPattern,1,2023-02-14,22.711717507766586,75.85118304858406
+Loha Mandi,chain_snatching,23,high,Synthetic_RealPattern,1,2024-07-03,22.710550796940165,75.85190708344122
+Loha Mandi,molestation,23,high,Synthetic_RealPattern,1,2023-03-22,22.711536993649386,75.85341342990688
+Loha Mandi,molestation,22,high,Synthetic_RealPattern,1,2024-10-05,22.711268964102565,75.85162365847984
+Loha Mandi,robbery,22,high,Synthetic_RealPattern,1,2024-08-14,22.709487399872867,75.84838232235819
+Loha Mandi,abduction,20,high,Synthetic_RealPattern,1,2023-02-16,22.71143124541014,75.85378569217305
+Loha Mandi,chain_snatching,21,high,Synthetic_RealPattern,1,2023-10-24,22.706430955012312,75.8523371605062
+Loha Mandi,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-04-14,22.707075897174516,75.85225908031467
+Loha Mandi,assault,23,high,Synthetic_RealPattern,0,2024-10-12,22.706171363733464,75.84949405091439
+Loha Mandi,robbery,22,high,Synthetic_RealPattern,1,2023-12-30,22.70785198198458,75.8521533128214
+Loha Mandi,abduction,22,high,Synthetic_RealPattern,1,2024-12-19,22.708232063738137,75.85056318643393
+Loha Mandi,molestation,1,high,Synthetic_RealPattern,1,2023-03-15,22.707528094190643,75.85210739786226
+Loha Mandi,molestation,1,high,Synthetic_RealPattern,1,2023-06-25,22.710872425054912,75.84883955818185
+Loha Mandi,robbery,1,high,Synthetic_RealPattern,0,2023-09-08,22.70804051996016,75.85214707182763
+Loha Mandi,abduction,23,high,Synthetic_RealPattern,1,2023-10-04,22.707585607058125,75.85419648235462
+Loha Mandi,robbery,1,high,Synthetic_RealPattern,1,2024-07-24,22.70915617649895,75.84848927223317
+Loha Mandi,robbery,22,high,Synthetic_RealPattern,0,2023-02-27,22.706745545349847,75.85406304510533
+Loha Mandi,assault,22,high,Synthetic_RealPattern,0,2024-02-15,22.710713181884525,75.85064144776435
+Loha Mandi,abduction,21,high,Synthetic_RealPattern,1,2024-08-03,22.706347303862078,75.85342452070203
+Loha Mandi,abduction,22,high,Synthetic_RealPattern,1,2023-08-06,22.711821321619603,75.85289431290435
+Loha Mandi,abduction,23,high,Synthetic_RealPattern,1,2024-02-10,22.71053346861578,75.85160209756593
+Loha Mandi,assault,23,high,Synthetic_RealPattern,0,2023-05-27,22.707092294089204,75.85263069525551
+Loha Mandi,molestation,21,high,Synthetic_RealPattern,1,2024-07-28,22.705933132702743,75.85347109336782
+Loha Mandi,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-08-21,22.71079276857073,75.85062484192991
+Loha Mandi,robbery,23,high,Synthetic_RealPattern,0,2024-01-06,22.710141144063087,75.85016219896939
+Loha Mandi,chain_snatching,0,high,Synthetic_RealPattern,1,2024-05-20,22.710274043008244,75.8522055603134
+Loha Mandi,robbery,20,high,Synthetic_RealPattern,1,2023-04-23,22.710527622080114,75.85304707565166
+Loha Mandi,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-11-27,22.706344267910403,75.85277371080866
+Loha Mandi,mobile_snatching,20,high,Synthetic_RealPattern,1,2024-01-30,22.708050794371264,75.85298688189316
+Loha Mandi,assault,23,high,Synthetic_RealPattern,1,2024-06-25,22.70659521435715,75.85081349988889
+Loha Mandi,abduction,20,high,Synthetic_RealPattern,1,2024-11-27,22.711078620555252,75.85310700529706
+Loha Mandi,molestation,20,high,Synthetic_RealPattern,1,2024-11-29,22.709639788760967,75.84892125433223
+Loha Mandi,assault,22,high,Synthetic_RealPattern,0,2024-10-18,22.707885388149116,75.85146693458778
+Loha Mandi,robbery,22,high,Synthetic_RealPattern,0,2024-03-21,22.706281350101715,75.84823455196299
+Loha Mandi,molestation,20,high,Synthetic_RealPattern,1,2023-09-27,22.707765893930294,75.85014751497941
+Loha Mandi,chain_snatching,21,high,Synthetic_RealPattern,1,2024-06-03,22.70785109993216,75.85039876920924
+Loha Mandi,abduction,1,high,Synthetic_RealPattern,1,2023-11-02,22.71027763707003,75.85057703614966
+Loha Mandi,robbery,0,high,Synthetic_RealPattern,0,2024-09-15,22.709725344828133,75.85237280324014
+Loha Mandi,molestation,22,high,Synthetic_RealPattern,1,2023-06-15,22.711223276455456,75.85053134860763
+Loha Mandi,molestation,0,high,Synthetic_RealPattern,1,2023-01-01,22.70873328955097,75.85089216173574
+Loha Mandi,chain_snatching,22,high,Synthetic_RealPattern,1,2024-05-15,22.70661756547563,75.84962526478525
+Loha Mandi,assault,20,high,Synthetic_RealPattern,0,2024-01-07,22.71017946872334,75.85043951074978
+Loha Mandi,molestation,20,high,Synthetic_RealPattern,1,2023-09-04,22.710464710291703,75.84956361776358
+Loha Mandi,abduction,20,high,Synthetic_RealPattern,1,2023-03-29,22.70926766318542,75.84863917554262
+Loha Mandi,molestation,23,high,Synthetic_RealPattern,1,2023-03-12,22.710525803079726,75.85182069156029
+Old Railway Lanes,abduction,21,high,Synthetic_RealPattern,1,2023-05-12,22.713362773578186,75.84330927679133
+Old Railway Lanes,robbery,2,high,Synthetic_RealPattern,0,2024-07-16,22.71353639697629,75.84301694207605
+Old Railway Lanes,molestation,1,high,Synthetic_RealPattern,1,2023-08-05,22.71296524611015,75.84208096426279
+Old Railway Lanes,assault,22,high,Synthetic_RealPattern,0,2024-12-31,22.710552514760465,75.84157871468106
+Old Railway Lanes,molestation,0,high,Synthetic_RealPattern,1,2024-03-24,22.71104734856196,75.84448000189742
+Old Railway Lanes,robbery,2,high,Synthetic_RealPattern,0,2023-05-04,22.71058857511412,75.84241449071081
+Old Railway Lanes,chain_snatching,20,high,Synthetic_RealPattern,1,2023-12-13,22.71421846246758,75.84217509126577
+Old Railway Lanes,robbery,22,high,Synthetic_RealPattern,0,2024-08-25,22.71228613588646,75.83945385239484
+Old Railway Lanes,abduction,20,high,Synthetic_RealPattern,1,2024-12-25,22.71345142414699,75.84134748696574
+Old Railway Lanes,chain_snatching,19,high,Synthetic_RealPattern,1,2023-08-23,22.715845398843555,75.84158117371271
+Old Railway Lanes,chain_snatching,19,high,Synthetic_RealPattern,1,2023-12-05,22.711895753374893,75.84169293668538
+Old Railway Lanes,abduction,22,high,Synthetic_RealPattern,1,2023-10-13,22.712862297538212,75.84278103421536
+Old Railway Lanes,molestation,2,high,Synthetic_RealPattern,1,2023-08-08,22.71493330683126,75.84250161528036
+Old Railway Lanes,molestation,21,high,Synthetic_RealPattern,1,2024-08-07,22.71177278899295,75.84294743055675
+Old Railway Lanes,mobile_snatching,2,high,Synthetic_RealPattern,0,2023-09-06,22.710861879458974,75.84388929956924
+Old Railway Lanes,chain_snatching,22,high,Synthetic_RealPattern,1,2023-04-07,22.712138508717484,75.8441779144323
+Old Railway Lanes,mobile_snatching,1,high,Synthetic_RealPattern,0,2023-12-29,22.711367327723526,75.84360873845735
+Old Railway Lanes,abduction,2,high,Synthetic_RealPattern,1,2023-02-25,22.715978185914054,75.84503314217572
+Old Railway Lanes,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-03-04,22.715248722277387,75.83940939549605
+Old Railway Lanes,robbery,0,high,Synthetic_RealPattern,0,2023-04-22,22.71420042253906,75.8404746679141
+Old Railway Lanes,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-07-03,22.715628763541126,75.83934537724987
+Old Railway Lanes,assault,1,high,Synthetic_RealPattern,0,2023-07-07,22.715222032461394,75.84318484828492
+Old Railway Lanes,mobile_snatching,22,high,Synthetic_RealPattern,1,2023-03-19,22.711519420353316,75.8446881832937
+Old Railway Lanes,abduction,20,high,Synthetic_RealPattern,1,2023-02-21,22.71575535399094,75.84076089377945
+Old Railway Lanes,robbery,19,high,Synthetic_RealPattern,0,2023-04-06,22.713636053451495,75.84486220726878
+Old Railway Lanes,mobile_snatching,1,high,Synthetic_RealPattern,0,2024-05-12,22.715244640930983,75.83966160434173
+Old Railway Lanes,robbery,1,high,Synthetic_RealPattern,0,2023-03-02,22.715776547799543,75.84490661616083
+Old Railway Lanes,assault,19,high,Synthetic_RealPattern,0,2024-02-04,22.712308020849832,75.84140973612344
+Old Railway Lanes,abduction,23,high,Synthetic_RealPattern,1,2024-03-09,22.711060311547165,75.8399085249707
+Old Railway Lanes,robbery,2,high,Synthetic_RealPattern,0,2023-06-08,22.71176761097525,75.84221523055511
+Old Railway Lanes,molestation,22,high,Synthetic_RealPattern,1,2023-03-01,22.712962646731757,75.84084065940631
+Old Railway Lanes,chain_snatching,19,high,Synthetic_RealPattern,1,2023-11-18,22.715308088595535,75.84100923741177
+Old Railway Lanes,mobile_snatching,19,high,Synthetic_RealPattern,1,2024-08-21,22.715564383499537,75.84114373978956
+Old Railway Lanes,molestation,21,high,Synthetic_RealPattern,1,2023-02-28,22.710441712783187,75.844118155387
+Old Railway Lanes,chain_snatching,20,high,Synthetic_RealPattern,1,2023-07-10,22.713464483815464,75.84253496766004
+Old Railway Lanes,robbery,20,high,Synthetic_RealPattern,0,2024-11-22,22.71290446601889,75.84116784619494
+Old Railway Lanes,robbery,20,high,Synthetic_RealPattern,1,2024-08-06,22.711732646862824,75.84296200269986
+Old Railway Lanes,chain_snatching,19,high,Synthetic_RealPattern,1,2024-09-26,22.711119192204002,75.84359690404533
+Old Railway Lanes,molestation,1,high,Synthetic_RealPattern,1,2024-11-04,22.71242569102842,75.8409357440044
+Old Railway Lanes,robbery,0,high,Synthetic_RealPattern,1,2023-09-25,22.716057458223474,75.84178129460915
+Old Railway Lanes,assault,0,high,Synthetic_RealPattern,0,2023-09-02,22.712339217592124,75.84003131656002
+Old Railway Lanes,abduction,21,high,Synthetic_RealPattern,1,2024-11-18,22.713512743730462,75.8403868960972
+Old Railway Lanes,assault,23,high,Synthetic_RealPattern,0,2024-04-13,22.71461811375337,75.84338670712378
+Old Railway Lanes,molestation,19,high,Synthetic_RealPattern,1,2024-04-14,22.712581777614275,75.84038863008617
+Old Railway Lanes,molestation,20,high,Synthetic_RealPattern,1,2023-03-17,22.716230692496325,75.84245098030199
+Old Railway Lanes,assault,22,high,Synthetic_RealPattern,0,2024-06-02,22.71617468376965,75.84355427757033
+Old Railway Lanes,robbery,0,high,Synthetic_RealPattern,0,2023-03-12,22.711910693774954,75.83994126153857
+Old Railway Lanes,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-06-11,22.713383491035355,75.84270387331777
+Old Railway Lanes,abduction,23,high,Synthetic_RealPattern,1,2024-09-18,22.712205269858902,75.8408393767022
+Old Railway Lanes,molestation,19,high,Synthetic_RealPattern,1,2024-11-14,22.712109042966265,75.84507756125141
+Old Railway Lanes,chain_snatching,23,high,Synthetic_RealPattern,1,2024-11-10,22.710621321684126,75.84220127388032
+Old Railway Lanes,chain_snatching,21,high,Synthetic_RealPattern,1,2023-09-28,22.71405738600388,75.84413595529864
+Old Railway Lanes,robbery,20,high,Synthetic_RealPattern,0,2024-07-20,22.713416074139374,75.84260135925294
+Old Railway Lanes,robbery,23,high,Synthetic_RealPattern,1,2024-09-11,22.7107088725075,75.83956047519712
+Old Railway Lanes,abduction,0,high,Synthetic_RealPattern,1,2023-07-28,22.71207187878542,75.84309890825355
+Old Railway Lanes,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-06-01,22.7158495953158,75.84500842005323
+Old Railway Lanes,abduction,19,high,Synthetic_RealPattern,1,2023-04-05,22.711837371344004,75.84290967092087
+Old Railway Lanes,chain_snatching,1,high,Synthetic_RealPattern,1,2023-10-11,22.711269369232546,75.84421513315655
+Old Railway Lanes,robbery,19,high,Synthetic_RealPattern,1,2023-12-08,22.713336716561667,75.84460523878009
+Old Railway Lanes,abduction,23,high,Synthetic_RealPattern,1,2023-06-15,22.716313902724664,75.84066847863168
+Malwa Mill,abduction,23,high,Synthetic_RealPattern,1,2024-07-18,22.72185233162907,75.83277226903945
+Malwa Mill,chain_snatching,23,high,Synthetic_RealPattern,1,2024-07-28,22.724432813284437,75.83516588593311
+Malwa Mill,abduction,20,high,Synthetic_RealPattern,1,2023-03-19,22.724969717691973,75.83396617081884
+Malwa Mill,chain_snatching,21,high,Synthetic_RealPattern,1,2024-07-12,22.721825825263956,75.83653916781721
+Malwa Mill,molestation,22,high,Synthetic_RealPattern,1,2024-08-19,22.724769298091672,75.83690013874039
+Malwa Mill,robbery,21,high,Synthetic_RealPattern,0,2024-03-16,22.722606698796316,75.83362052827582
+Malwa Mill,chain_snatching,22,high,Synthetic_RealPattern,1,2024-01-09,22.724193834983563,75.83292122335385
+Malwa Mill,abduction,22,high,Synthetic_RealPattern,1,2023-08-04,22.72420117826457,75.83618315309147
+Malwa Mill,chain_snatching,21,high,Synthetic_RealPattern,1,2024-11-13,22.72361464810445,75.8331488362133
+Malwa Mill,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-07-27,22.72094173862033,75.83643568591108
+Malwa Mill,robbery,21,high,Synthetic_RealPattern,0,2023-08-31,22.725411814973537,75.8340424295219
+Malwa Mill,robbery,23,high,Synthetic_RealPattern,1,2023-01-26,22.722324680389832,75.83550529939575
+Malwa Mill,abduction,22,high,Synthetic_RealPattern,1,2024-02-26,22.7215191110624,75.83207321188301
+Malwa Mill,robbery,21,high,Synthetic_RealPattern,1,2023-10-01,22.72064465084933,75.83524315594806
+Malwa Mill,chain_snatching,20,high,Synthetic_RealPattern,1,2024-01-27,22.72394535765913,75.83421060607243
+Malwa Mill,robbery,23,high,Synthetic_RealPattern,0,2023-08-16,22.724465386171055,75.83501965077906
+Malwa Mill,robbery,22,high,Synthetic_RealPattern,0,2023-11-09,22.72049952697357,75.83250808524647
+Malwa Mill,robbery,20,high,Synthetic_RealPattern,0,2024-11-06,22.723472558349798,75.83592124246967
+Malwa Mill,chain_snatching,22,high,Synthetic_RealPattern,1,2023-10-13,22.721758974651188,75.83667678246526
+Malwa Mill,abduction,22,high,Synthetic_RealPattern,1,2023-12-26,22.724271036742458,75.83280043880055
+Malwa Mill,abduction,0,high,Synthetic_RealPattern,1,2024-02-14,22.721446198574032,75.83207428733313
+Malwa Mill,chain_snatching,0,high,Synthetic_RealPattern,1,2023-12-06,22.724545626428615,75.83164183151628
+Malwa Mill,robbery,20,high,Synthetic_RealPattern,1,2023-09-25,22.722720412077805,75.83535182900266
+Malwa Mill,chain_snatching,22,high,Synthetic_RealPattern,1,2023-02-09,22.72602037993242,75.83514256421654
+Malwa Mill,assault,0,high,Synthetic_RealPattern,1,2024-03-20,22.721225125664876,75.83478018447629
+Malwa Mill,molestation,22,high,Synthetic_RealPattern,1,2024-03-22,22.722446398106303,75.8328916825767
+Malwa Mill,mobile_snatching,0,high,Synthetic_RealPattern,1,2023-04-29,22.721080841127446,75.83384543597543
+Malwa Mill,chain_snatching,21,high,Synthetic_RealPattern,1,2023-09-18,22.725948161709674,75.83506685801112
+Malwa Mill,molestation,23,high,Synthetic_RealPattern,1,2023-01-02,22.72566403612029,75.83448060115316
+Malwa Mill,abduction,0,high,Synthetic_RealPattern,1,2024-12-04,22.721947649766292,75.83742671312129
+Malwa Mill,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-01-08,22.724359904276206,75.83231863851535
+Malwa Mill,assault,22,high,Synthetic_RealPattern,1,2024-09-30,22.725303333201207,75.8356708673243
+Malwa Mill,molestation,20,high,Synthetic_RealPattern,1,2023-11-04,22.723731204869598,75.83392591260863
+Malwa Mill,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-11-13,22.723577903470137,75.83406919768956
+Malwa Mill,assault,23,high,Synthetic_RealPattern,1,2024-12-14,22.721851113745405,75.83580558659395
+Malwa Mill,mobile_snatching,21,high,Synthetic_RealPattern,1,2023-07-16,22.720958616606836,75.83565461690795
+Malwa Mill,abduction,23,high,Synthetic_RealPattern,1,2024-11-24,22.72578329454772,75.83744753596221
+Malwa Mill,molestation,21,high,Synthetic_RealPattern,1,2024-09-22,22.72580250834298,75.83227036573673
+Malwa Mill,molestation,22,high,Synthetic_RealPattern,1,2024-02-20,22.72419860874364,75.83212465789632
+Malwa Mill,assault,20,high,Synthetic_RealPattern,0,2023-11-08,22.722434178746294,75.83584603290278
+Malwa Mill,molestation,23,high,Synthetic_RealPattern,1,2024-08-16,22.722495257447676,75.83497032150204
+Malwa Mill,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-04-21,22.724755734073224,75.83314496399936
+Malwa Mill,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-06-07,22.725782661559716,75.83197651621394
+Malwa Mill,chain_snatching,21,high,Synthetic_RealPattern,1,2024-11-05,22.72572251854559,75.83201394949758
+Malwa Mill,abduction,22,high,Synthetic_RealPattern,1,2024-06-11,22.725079253275148,75.83686514524798
+Malwa Mill,chain_snatching,0,high,Synthetic_RealPattern,1,2023-12-10,22.72425218987693,75.83265120394832
+Malwa Mill,assault,21,high,Synthetic_RealPattern,0,2024-11-19,22.720904839789974,75.8334402293727
+Malwa Mill,chain_snatching,21,high,Synthetic_RealPattern,1,2023-05-31,22.721369772284568,75.83285993841336
+Malwa Mill,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-09-08,22.725791325131166,75.833629977835
+Malwa Mill,mobile_snatching,20,high,Synthetic_RealPattern,1,2024-04-11,22.72403857435796,75.83191654305648
+Malwa Mill,abduction,0,high,Synthetic_RealPattern,1,2023-07-19,22.720455182309703,75.83461435874545
+Malwa Mill,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-05-21,22.721008829257197,75.83190567538156
+Malwa Mill,abduction,21,high,Synthetic_RealPattern,1,2024-11-02,22.72438101061465,75.83630213904694
+Malwa Mill,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-04-20,22.720430369503077,75.83290227249147
+Malwa Mill,molestation,21,high,Synthetic_RealPattern,1,2024-12-13,22.721364848308507,75.83474007148763
+Malwa Mill,molestation,23,high,Synthetic_RealPattern,1,2023-02-21,22.7236924027362,75.83678047452537
+Malwa Mill,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-05-05,22.72455137118616,75.83540526421429
+Malwa Mill,molestation,23,high,Synthetic_RealPattern,1,2024-11-14,22.724311767557015,75.83469774671931
+Malwa Mill,assault,0,high,Synthetic_RealPattern,0,2024-09-01,22.721745615856765,75.8334460025187
+Malwa Mill,mobile_snatching,0,high,Synthetic_RealPattern,1,2024-05-31,22.724673075328088,75.83349801147835
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2023-06-12,22.65272349452498,75.8244169217312
+Nemawar Road,assault,23,high,Synthetic_RealPattern,0,2024-04-05,22.653252398188954,75.82636483616733
+Nemawar Road,molestation,1,high,Synthetic_RealPattern,1,2023-10-11,22.655778948430708,75.82437103513911
+Nemawar Road,robbery,23,high,Synthetic_RealPattern,0,2024-10-03,22.655197797394283,75.82374670050423
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2023-03-21,22.656395340462964,75.82478390306144
+Nemawar Road,assault,22,high,Synthetic_RealPattern,0,2023-08-29,22.6552456773538,75.82319123367371
+Nemawar Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-07-07,22.654709851620012,75.8207608540556
+Nemawar Road,robbery,21,high,Synthetic_RealPattern,0,2023-06-04,22.65186204860697,75.82377378089528
+Nemawar Road,abduction,1,high,Synthetic_RealPattern,1,2023-06-06,22.653506294818357,75.82614575170705
+Nemawar Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-03-07,22.65289121420609,75.82145181765415
+Nemawar Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-07-09,22.652763937860275,75.82454002934493
+Nemawar Road,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-07-31,22.657138063328514,75.82160560213197
+Nemawar Road,chain_snatching,0,high,Synthetic_RealPattern,1,2024-12-13,22.653658586348,75.82361496610685
+Nemawar Road,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-01-25,22.656652279331063,75.82098005869788
+Nemawar Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2023-11-02,22.655086831755984,75.82310222561756
+Nemawar Road,molestation,0,high,Synthetic_RealPattern,1,2024-07-13,22.65606886782125,75.82493697997337
+Nemawar Road,robbery,21,high,Synthetic_RealPattern,0,2024-05-14,22.65431582255863,75.82248542914544
+Nemawar Road,chain_snatching,23,high,Synthetic_RealPattern,1,2024-05-12,22.654761423307757,75.82438947034693
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2023-12-11,22.654255106162914,75.82517269976475
+Nemawar Road,abduction,1,high,Synthetic_RealPattern,1,2024-02-19,22.652471457926787,75.82596306691688
+Nemawar Road,robbery,21,high,Synthetic_RealPattern,1,2024-04-23,22.65563471269157,75.82180785249113
+Nemawar Road,mobile_snatching,0,high,Synthetic_RealPattern,1,2023-01-28,22.652984634174643,75.82279589549486
+Nemawar Road,chain_snatching,0,high,Synthetic_RealPattern,1,2024-11-09,22.651445895798588,75.82131449607999
+Nemawar Road,mobile_snatching,20,high,Synthetic_RealPattern,0,2024-10-20,22.655172833775442,75.82635490101296
+Nemawar Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-07-06,22.652362664076442,75.82596200580755
+Nemawar Road,assault,22,high,Synthetic_RealPattern,0,2024-01-24,22.656942751506115,75.8236397427817
+Nemawar Road,assault,23,high,Synthetic_RealPattern,0,2023-12-01,22.657023571462016,75.82545219976626
+Nemawar Road,assault,22,high,Synthetic_RealPattern,0,2024-03-07,22.65678918634132,75.82352574786364
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2023-01-20,22.653520952201532,75.82414151412803
+Nemawar Road,assault,0,high,Synthetic_RealPattern,0,2023-02-23,22.651392739699173,75.8209347465927
+Nemawar Road,abduction,1,high,Synthetic_RealPattern,1,2023-03-12,22.656869911375527,75.82493162252298
+Nemawar Road,robbery,20,high,Synthetic_RealPattern,0,2023-02-01,22.653869104889903,75.82116628090182
+Nemawar Road,robbery,20,high,Synthetic_RealPattern,0,2024-09-28,22.65709992891426,75.82535640578152
+Nemawar Road,abduction,21,high,Synthetic_RealPattern,1,2024-04-29,22.657081719862536,75.82509216852603
+Nemawar Road,robbery,20,high,Synthetic_RealPattern,0,2024-07-31,22.656418056732804,75.82465246818647
+Nemawar Road,assault,1,high,Synthetic_RealPattern,0,2023-09-20,22.653066693352418,75.82061696228315
+Nemawar Road,abduction,0,high,Synthetic_RealPattern,1,2024-09-13,22.65361058637161,75.82221877013568
+Nemawar Road,robbery,1,high,Synthetic_RealPattern,0,2023-04-28,22.6564068200291,75.82197867541947
+Nemawar Road,chain_snatching,20,high,Synthetic_RealPattern,1,2024-08-15,22.653201532030938,75.82256081844484
+Nemawar Road,abduction,22,high,Synthetic_RealPattern,1,2024-08-12,22.652316956480117,75.82092585648059
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2024-02-11,22.65464080757475,75.8260217469382
+Nemawar Road,molestation,21,high,Synthetic_RealPattern,1,2023-03-19,22.656916928644964,75.82372281344428
+Nemawar Road,robbery,1,high,Synthetic_RealPattern,0,2024-10-04,22.65547617878005,75.82223314586396
+Nemawar Road,abduction,1,high,Synthetic_RealPattern,1,2023-11-05,22.654720367020534,75.82278188910246
+Nemawar Road,molestation,0,high,Synthetic_RealPattern,1,2023-05-04,22.651883058962625,75.82308321524303
+Nemawar Road,molestation,20,high,Synthetic_RealPattern,1,2023-12-22,22.654990043360193,75.82400356600017
+Nemawar Road,assault,23,high,Synthetic_RealPattern,0,2024-11-08,22.657240323100623,75.82349407656619
+Nemawar Road,assault,0,high,Synthetic_RealPattern,0,2024-10-25,22.652140504091417,75.8259163518393
+Nemawar Road,chain_snatching,23,high,Synthetic_RealPattern,1,2024-05-16,22.65440997791418,75.82338178089744
+Nemawar Road,abduction,23,high,Synthetic_RealPattern,1,2024-01-06,22.656564238431567,75.82635294808895
+Nemawar Road,robbery,23,high,Synthetic_RealPattern,0,2024-12-25,22.655744611706524,75.82550854974647
+Nemawar Road,abduction,21,high,Synthetic_RealPattern,1,2024-06-18,22.655482094445972,75.82165106308615
+Nemawar Road,molestation,22,high,Synthetic_RealPattern,1,2024-09-22,22.65551490450392,75.82598357128786
+Nemawar Road,mobile_snatching,23,high,Synthetic_RealPattern,1,2024-04-21,22.65345694690732,75.82109819838732
+Nemawar Road,assault,0,high,Synthetic_RealPattern,0,2023-10-02,22.653061551065587,75.82530469825096
+Nemawar Road,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-10-13,22.65615616693287,75.82268373976086
+Nemawar Road,molestation,23,high,Synthetic_RealPattern,1,2024-08-06,22.656160680368075,75.82566784592268
+Nemawar Road,assault,1,high,Synthetic_RealPattern,0,2024-01-24,22.65650243391148,75.82560834014065
+Nemawar Road,robbery,23,high,Synthetic_RealPattern,0,2023-11-29,22.656779443315337,75.82523555240071
+Nemawar Road,assault,21,high,Synthetic_RealPattern,0,2023-12-30,22.654368054393164,75.82514018261784
+Bypass Roads,abduction,23,high,Synthetic_RealPattern,1,2024-09-02,22.782309097768124,75.8777280748346
+Bypass Roads,chain_snatching,23,high,Synthetic_RealPattern,1,2024-07-23,22.7840897710738,75.8763855156983
+Bypass Roads,chain_snatching,1,high,Synthetic_RealPattern,1,2023-07-15,22.783199783584667,75.87831788107259
+Bypass Roads,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-02-21,22.783511801263547,75.87694114708992
+Bypass Roads,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-12-08,22.784074756016615,75.88006970653342
+Bypass Roads,chain_snatching,0,high,Synthetic_RealPattern,1,2024-04-03,22.784640032050905,75.87797659835923
+Bypass Roads,robbery,21,high,Synthetic_RealPattern,0,2023-10-29,22.78132797094111,75.88175366120517
+Bypass Roads,abduction,22,high,Synthetic_RealPattern,1,2023-11-10,22.78155349771584,75.87974583246407
+Bypass Roads,mobile_snatching,1,high,Synthetic_RealPattern,1,2024-01-13,22.779863891639046,75.88083488338181
+Bypass Roads,mobile_snatching,1,high,Synthetic_RealPattern,1,2023-12-19,22.782769680845977,75.87669514803645
+Bypass Roads,assault,1,high,Synthetic_RealPattern,1,2023-12-05,22.77951565364278,75.88107208689364
+Bypass Roads,assault,0,high,Synthetic_RealPattern,0,2023-10-05,22.782093588108793,75.88143654314308
+Bypass Roads,abduction,22,high,Synthetic_RealPattern,1,2023-05-04,22.782555867808245,75.87882237151291
+Bypass Roads,chain_snatching,22,high,Synthetic_RealPattern,1,2023-11-20,22.78101924751277,75.8795375176265
+Bypass Roads,robbery,1,high,Synthetic_RealPattern,0,2024-12-07,22.782844999563412,75.88048885880542
+Bypass Roads,assault,22,high,Synthetic_RealPattern,1,2024-05-10,22.779483001499635,75.87694903176356
+Bypass Roads,molestation,1,high,Synthetic_RealPattern,1,2024-06-21,22.779524089132494,75.87891539645878
+Bypass Roads,robbery,23,high,Synthetic_RealPattern,0,2023-04-13,22.784235603363957,75.87829197816663
+Bypass Roads,robbery,22,high,Synthetic_RealPattern,0,2024-01-05,22.781461143848468,75.87677824395297
+Bypass Roads,molestation,21,high,Synthetic_RealPattern,1,2024-12-26,22.78006236307591,75.87810520653375
+Bypass Roads,chain_snatching,22,high,Synthetic_RealPattern,1,2023-10-08,22.782433459560327,75.87630903385632
+Bypass Roads,assault,21,high,Synthetic_RealPattern,1,2024-07-20,22.783919961318592,75.8760548714417
+Bypass Roads,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-10-15,22.78059492616498,75.87671099773493
+Bypass Roads,assault,21,high,Synthetic_RealPattern,0,2024-08-10,22.783037342854914,75.88167869066953
+Bypass Roads,assault,0,high,Synthetic_RealPattern,0,2024-03-27,22.779812084789963,75.87919717721537
+Bypass Roads,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-09-16,22.77961009032701,75.88169493296692
+Bypass Roads,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-02-15,22.782488127789406,75.87849498726999
+Bypass Roads,abduction,1,high,Synthetic_RealPattern,1,2024-10-06,22.78254381072966,75.87777089679851
+Bypass Roads,robbery,21,high,Synthetic_RealPattern,1,2023-06-05,22.783124579408987,75.87893685117704
+Bypass Roads,robbery,23,high,Synthetic_RealPattern,0,2023-03-29,22.783656548002334,75.8785370701318
+Bypass Roads,molestation,1,high,Synthetic_RealPattern,1,2024-03-02,22.785155112476776,75.87653398810558
+Bypass Roads,robbery,1,high,Synthetic_RealPattern,1,2024-09-25,22.782397802089807,75.87974495788815
+Bypass Roads,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-04-06,22.781237738837646,75.87719622909506
+Bypass Roads,assault,1,high,Synthetic_RealPattern,1,2024-03-15,22.78407111716861,75.8796175277294
+Bypass Roads,molestation,1,high,Synthetic_RealPattern,1,2023-03-03,22.780924993507572,75.87980120655439
+Bypass Roads,abduction,21,high,Synthetic_RealPattern,1,2023-08-01,22.781933828524235,75.87681214911878
+Bypass Roads,abduction,22,high,Synthetic_RealPattern,1,2023-09-28,22.779770738288054,75.87626809776266
+Bypass Roads,robbery,21,high,Synthetic_RealPattern,0,2023-06-10,22.779452104460493,75.88058456951642
+Bypass Roads,robbery,1,high,Synthetic_RealPattern,0,2023-03-18,22.785075890488066,75.87865880254262
+Bypass Roads,abduction,0,high,Synthetic_RealPattern,1,2024-04-06,22.78431588072307,75.87624898277303
+Bypass Roads,assault,1,high,Synthetic_RealPattern,0,2024-04-26,22.783475845236563,75.88186919790301
+Bypass Roads,abduction,22,high,Synthetic_RealPattern,1,2023-10-23,22.781753717666486,75.87624668336598
+Bypass Roads,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-12-20,22.780339765920424,75.88007021137315
+Bypass Roads,abduction,22,high,Synthetic_RealPattern,1,2023-09-28,22.780238622256025,75.88180207355158
+Bypass Roads,robbery,1,high,Synthetic_RealPattern,0,2024-11-08,22.780801457388986,75.8773350806253
+Bypass Roads,robbery,21,high,Synthetic_RealPattern,1,2024-07-11,22.782595359988235,75.87675349621213
+Bypass Roads,robbery,22,high,Synthetic_RealPattern,0,2023-09-30,22.7835875755362,75.87662830963653
+Bypass Roads,assault,21,high,Synthetic_RealPattern,1,2023-06-19,22.783261184260304,75.87771965088541
+Bypass Roads,mobile_snatching,1,high,Synthetic_RealPattern,0,2023-10-23,22.780979603381674,75.87650627486606
+Bypass Roads,assault,0,high,Synthetic_RealPattern,1,2024-12-06,22.78502919168398,75.88005296805017
+Bypass Roads,molestation,0,high,Synthetic_RealPattern,1,2023-10-06,22.783727381500174,75.87627375078878
+Bypass Roads,mobile_snatching,1,high,Synthetic_RealPattern,0,2024-05-20,22.78262612431507,75.8789565327689
+Bypass Roads,mobile_snatching,1,high,Synthetic_RealPattern,1,2023-02-10,22.782970324477404,75.88188018112312
+Bypass Roads,assault,23,high,Synthetic_RealPattern,0,2024-09-10,22.781817600374566,75.88078382161704
+Bypass Roads,abduction,21,high,Synthetic_RealPattern,1,2023-08-23,22.780786385937006,75.87959131662939
+Bypass Roads,chain_snatching,1,high,Synthetic_RealPattern,1,2024-08-24,22.781435836071907,75.87773752172473
+Bypass Roads,chain_snatching,23,high,Synthetic_RealPattern,1,2024-08-13,22.783847076662784,75.87964337501775
+Bypass Roads,molestation,22,high,Synthetic_RealPattern,1,2024-04-26,22.779386360931777,75.87906224878347
+Bypass Roads,robbery,0,high,Synthetic_RealPattern,1,2023-10-12,22.779996435843042,75.87845650030334
+Bypass Roads,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-10-12,22.77957601585213,75.87668426226044
+Rau Bypass,mobile_snatching,1,high,Synthetic_RealPattern,0,2023-12-23,22.65954437281391,75.80571962529145
+Rau Bypass,chain_snatching,0,high,Synthetic_RealPattern,1,2024-11-17,22.664432763504063,75.80309870789293
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-12-04,22.66352194715628,75.80156773507092
+Rau Bypass,abduction,1,high,Synthetic_RealPattern,1,2023-10-23,22.662145042974522,75.80260655610526
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2024-07-17,22.659887004963906,75.80288477851516
+Rau Bypass,assault,1,high,Synthetic_RealPattern,0,2023-04-01,22.6622496952507,75.8053652273734
+Rau Bypass,mobile_snatching,0,high,Synthetic_RealPattern,1,2023-04-29,22.662140830624683,75.80480168628337
+Rau Bypass,molestation,22,high,Synthetic_RealPattern,1,2024-11-04,22.66033921121946,75.80501582936185
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2024-02-28,22.661903109895427,75.80046618758657
+Rau Bypass,assault,23,high,Synthetic_RealPattern,1,2024-06-14,22.661691028406384,75.80289692398908
+Rau Bypass,mobile_snatching,1,high,Synthetic_RealPattern,0,2024-10-02,22.66299510058831,75.80328806490981
+Rau Bypass,molestation,23,high,Synthetic_RealPattern,1,2023-10-01,22.663110561905203,75.80051515366094
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-10-22,22.65957182405863,75.80195887925247
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2023-05-05,22.661547675687757,75.80496173893873
+Rau Bypass,robbery,23,high,Synthetic_RealPattern,0,2024-12-27,22.663055159494284,75.80122265823437
+Rau Bypass,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-07-19,22.66231881755148,75.8036118607887
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-04-27,22.664438939047127,75.8016912112321
+Rau Bypass,abduction,23,high,Synthetic_RealPattern,1,2024-05-25,22.66325216178971,75.80047272464786
+Rau Bypass,abduction,0,high,Synthetic_RealPattern,1,2024-06-05,22.660277606562488,75.8018472087456
+Rau Bypass,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-03-01,22.6597234124844,75.80625524252946
+Rau Bypass,molestation,23,high,Synthetic_RealPattern,1,2024-04-12,22.663154515669238,75.8052092226713
+Rau Bypass,robbery,23,high,Synthetic_RealPattern,1,2024-01-28,22.65945906786325,75.80615745986593
+Rau Bypass,assault,23,high,Synthetic_RealPattern,0,2023-03-13,22.66281465348764,75.80332712426356
+Rau Bypass,assault,0,high,Synthetic_RealPattern,0,2024-06-03,22.664941381448546,75.80105841719207
+Rau Bypass,molestation,0,high,Synthetic_RealPattern,1,2023-11-02,22.662752845067253,75.80368775693384
+Rau Bypass,mobile_snatching,1,high,Synthetic_RealPattern,1,2023-06-02,22.66162901955724,75.80312626400736
+Rau Bypass,assault,1,high,Synthetic_RealPattern,1,2023-12-20,22.663159729310653,75.80546614249643
+Rau Bypass,assault,1,high,Synthetic_RealPattern,0,2024-04-11,22.662049517342947,75.8009884954847
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-08-08,22.662573700735894,75.80332944682213
+Rau Bypass,assault,1,high,Synthetic_RealPattern,1,2023-02-14,22.66494878885266,75.80130029198816
+Rau Bypass,mobile_snatching,1,high,Synthetic_RealPattern,0,2024-12-23,22.6616166158268,75.80234805556134
+Rau Bypass,chain_snatching,23,high,Synthetic_RealPattern,1,2024-05-22,22.66506714338294,75.80482414246433
+Rau Bypass,molestation,23,high,Synthetic_RealPattern,1,2024-05-29,22.664732103851733,75.80325610877621
+Rau Bypass,mobile_snatching,0,high,Synthetic_RealPattern,0,2023-04-13,22.660474746808735,75.80265532971087
+Rau Bypass,abduction,1,high,Synthetic_RealPattern,1,2023-01-16,22.65971616780525,75.80276685767141
+Rau Bypass,abduction,23,high,Synthetic_RealPattern,1,2024-02-24,22.659904668008263,75.80315668061043
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-03-18,22.659409330953906,75.80511009926302
+Rau Bypass,abduction,0,high,Synthetic_RealPattern,1,2024-09-30,22.659866657764535,75.80575250813364
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2024-10-27,22.663398040640498,75.80613200811902
+Rau Bypass,molestation,0,high,Synthetic_RealPattern,1,2024-11-21,22.659727131890758,75.80512142031753
+Rau Bypass,abduction,1,high,Synthetic_RealPattern,1,2023-11-21,22.66121385378176,75.80229244137449
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2024-07-08,22.664369251865814,75.80452880823651
+Rau Bypass,abduction,22,high,Synthetic_RealPattern,1,2023-08-29,22.659439631614415,75.80302561874433
+Rau Bypass,abduction,0,high,Synthetic_RealPattern,1,2023-08-21,22.664186810895533,75.80192802373227
+Rau Bypass,chain_snatching,22,high,Synthetic_RealPattern,1,2024-03-20,22.66099112864864,75.80544522947655
+Rau Bypass,robbery,22,high,Synthetic_RealPattern,1,2024-03-30,22.66000898896573,75.80063055809377
+Rau Bypass,chain_snatching,0,high,Synthetic_RealPattern,1,2023-01-30,22.663480422992183,75.8058105719528
+Rau Bypass,assault,0,high,Synthetic_RealPattern,0,2023-02-27,22.663073657080677,75.80316886478775
+Rau Bypass,robbery,0,high,Synthetic_RealPattern,0,2024-03-17,22.66456483208116,75.80422320886085
+Rau Bypass,abduction,1,high,Synthetic_RealPattern,1,2024-08-02,22.66371042626282,75.80435612353322
+Rau Bypass,robbery,23,high,Synthetic_RealPattern,0,2023-06-24,22.664120885582307,75.80577070644424
+Rau Bypass,abduction,1,high,Synthetic_RealPattern,1,2024-09-26,22.660992207435427,75.804220018093
+Rau Bypass,molestation,23,high,Synthetic_RealPattern,1,2024-05-24,22.660364637262678,75.80408360150855
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-08-26,22.663803688509844,75.80079991224336
+Rau Bypass,assault,0,high,Synthetic_RealPattern,1,2024-04-15,22.664141008435603,75.80351044813166
+Rau Bypass,assault,22,high,Synthetic_RealPattern,1,2024-04-21,22.665243030852004,75.80130101400489
+Rau Bypass,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-03-17,22.661775706061466,75.80482460261233
+Rau Bypass,mobile_snatching,0,high,Synthetic_RealPattern,1,2024-10-16,22.661532108514756,75.80347333152487
+Rau Bypass,assault,0,high,Synthetic_RealPattern,0,2024-04-12,22.66395847776445,75.80448136667525
+Rau Bypass,chain_snatching,1,high,Synthetic_RealPattern,1,2024-05-09,22.661344821241517,75.80065003740361
+Betma Road,molestation,22,high,Synthetic_RealPattern,1,2024-01-26,22.71488454395362,75.76980875209628
+Betma Road,assault,23,high,Synthetic_RealPattern,1,2024-08-11,22.714450476511058,75.77359794032837
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2023-01-23,22.711873964164248,75.769732506016
+Betma Road,chain_snatching,0,high,Synthetic_RealPattern,1,2023-10-09,22.71380522640675,75.76972754036659
+Betma Road,abduction,21,high,Synthetic_RealPattern,1,2024-09-12,22.713827257244507,75.76937265085141
+Betma Road,robbery,0,high,Synthetic_RealPattern,1,2023-10-21,22.709918743213013,75.7750390083898
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2023-08-13,22.714715317440078,75.77372505015676
+Betma Road,assault,22,high,Synthetic_RealPattern,1,2024-09-27,22.712331514234688,75.77141950845102
+Betma Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-10-05,22.714258744796645,75.77107921348772
+Betma Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-11-13,22.711220297606182,75.77139821937848
+Betma Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-05-15,22.714673139370976,75.77394792118709
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2023-12-01,22.711635210072405,75.77326822366642
+Betma Road,robbery,0,high,Synthetic_RealPattern,0,2023-06-29,22.70936502590888,75.77041117340721
+Betma Road,molestation,23,high,Synthetic_RealPattern,1,2024-06-27,22.714732291858514,75.770344656012
+Betma Road,assault,23,high,Synthetic_RealPattern,0,2023-06-18,22.709847720060715,75.76989037389828
+Betma Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-12-13,22.71121588182554,75.77326181631821
+Betma Road,robbery,0,high,Synthetic_RealPattern,0,2023-03-19,22.715000371802304,75.77388623597334
+Betma Road,assault,0,high,Synthetic_RealPattern,0,2024-07-24,22.715003642881623,75.77089027856995
+Betma Road,assault,0,high,Synthetic_RealPattern,1,2023-01-15,22.71274062732874,75.76942566976619
+Betma Road,assault,21,high,Synthetic_RealPattern,1,2024-04-10,22.71309102327302,75.76979303000486
+Betma Road,mobile_snatching,23,high,Synthetic_RealPattern,1,2024-08-21,22.71199067313187,75.77510716020907
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2023-04-21,22.711059264630187,75.77107266866487
+Betma Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-04-27,22.71127198727222,75.77391533888704
+Betma Road,robbery,23,high,Synthetic_RealPattern,1,2024-09-16,22.713335110736462,75.77304798141313
+Betma Road,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-10-12,22.713814247176625,75.77159163783791
+Betma Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-10-26,22.714049474262353,75.77053412357317
+Betma Road,chain_snatching,22,high,Synthetic_RealPattern,1,2023-02-16,22.714037708856765,75.77002831850896
+Betma Road,chain_snatching,23,high,Synthetic_RealPattern,1,2024-05-19,22.70984723661829,75.77299007780823
+Betma Road,molestation,21,high,Synthetic_RealPattern,1,2023-08-29,22.712266521828216,75.77394780268382
+Betma Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-02-02,22.7096453525601,75.77316342552125
+Betma Road,abduction,0,high,Synthetic_RealPattern,1,2024-08-24,22.71259717329394,75.7724818127995
+Betma Road,abduction,22,high,Synthetic_RealPattern,1,2024-02-29,22.71194918300824,75.7695517073406
+Betma Road,molestation,21,high,Synthetic_RealPattern,1,2024-05-16,22.71462622509655,75.77511093266557
+Betma Road,chain_snatching,0,high,Synthetic_RealPattern,1,2023-10-14,22.71140549007531,75.77409228514993
+Betma Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-08-11,22.710002402098564,75.7710569322202
+Betma Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-01-07,22.710157950092317,75.77517982197615
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2024-07-11,22.713869063790305,75.77291128953782
+Betma Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-03-04,22.713009308379895,75.77279453594925
+Betma Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2023-05-06,22.709906736056737,75.77378843907658
+Betma Road,abduction,22,high,Synthetic_RealPattern,1,2024-10-19,22.70980464083669,75.77417061872855
+Betma Road,assault,21,high,Synthetic_RealPattern,0,2023-02-21,22.713505814788753,75.773238871644
+Betma Road,robbery,22,high,Synthetic_RealPattern,0,2024-08-01,22.709736578038186,75.7700685744782
+Betma Road,robbery,22,high,Synthetic_RealPattern,0,2024-08-23,22.71423116035574,75.77132960503597
+Betma Road,molestation,23,high,Synthetic_RealPattern,1,2023-06-01,22.71353745336294,75.77486850184195
+Betma Road,robbery,21,high,Synthetic_RealPattern,0,2023-10-11,22.70978809268385,75.77064769367107
+Betma Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-06-28,22.70980902628451,75.77153300214303
+Betma Road,chain_snatching,21,high,Synthetic_RealPattern,1,2023-05-15,22.715219837471007,75.77189246129767
+Betma Road,molestation,23,high,Synthetic_RealPattern,1,2023-09-01,22.711545624774537,75.77193642993817
+Betma Road,robbery,23,high,Synthetic_RealPattern,0,2023-01-17,22.7115238528824,75.77297763749498
+Betma Road,abduction,21,high,Synthetic_RealPattern,1,2023-05-10,22.714176797403542,75.77495845502646
+Betma Road,chain_snatching,0,high,Synthetic_RealPattern,1,2024-06-22,22.714983491464302,75.770744156271
+Betma Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-05-02,22.715216006382935,75.77002900825781
+Betma Road,molestation,21,high,Synthetic_RealPattern,1,2024-04-07,22.71382026911155,75.77048482293917
+Betma Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-09-21,22.711557557513185,75.77462154940126
+Betma Road,abduction,23,high,Synthetic_RealPattern,1,2024-04-14,22.709801004300193,75.77317486487593
+Betma Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-03-04,22.713962881495565,75.77101544073544
+Betma Road,chain_snatching,0,high,Synthetic_RealPattern,1,2024-12-03,22.712650425498413,75.77419568163381
+Betma Road,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-12-30,22.711845332055482,75.77446821997817
+Betma Road,molestation,21,high,Synthetic_RealPattern,1,2023-11-26,22.714738126310568,75.77437908603214
+Betma Road,robbery,22,high,Synthetic_RealPattern,0,2023-03-09,22.709967184893834,75.77481355920185
+Hatod Road,molestation,22,high,Synthetic_RealPattern,1,2024-01-26,22.782255750625744,75.79191344612104
+Hatod Road,molestation,22,high,Synthetic_RealPattern,1,2024-04-09,22.779368121868604,75.79493025157248
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2023-04-12,22.782111963851964,75.79316323698364
+Hatod Road,abduction,20,high,Synthetic_RealPattern,1,2024-11-01,22.77963781965409,75.79545199131735
+Hatod Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-03-16,22.780012907497607,75.79477094406298
+Hatod Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-12-14,22.780005157480662,75.795058684679
+Hatod Road,assault,23,high,Synthetic_RealPattern,0,2023-04-08,22.783195261812697,75.7943369710261
+Hatod Road,assault,22,high,Synthetic_RealPattern,0,2024-11-12,22.78377626927559,75.79146457261682
+Hatod Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-12-04,22.782800212590583,75.79367016151339
+Hatod Road,chain_snatching,20,high,Synthetic_RealPattern,1,2023-03-29,22.785073035290846,75.79630801843716
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2023-04-09,22.781549223477143,75.79602432839899
+Hatod Road,molestation,22,high,Synthetic_RealPattern,1,2023-05-14,22.78101427251769,75.79065904241479
+Hatod Road,molestation,20,high,Synthetic_RealPattern,1,2024-08-23,22.784511594769135,75.79138888889439
+Hatod Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-11-17,22.780641575031115,75.79119037264073
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2023-12-29,22.78507933523664,75.79475587945991
+Hatod Road,assault,23,high,Synthetic_RealPattern,1,2023-02-22,22.77937292684814,75.79530671197915
+Hatod Road,chain_snatching,22,high,Synthetic_RealPattern,1,2023-12-27,22.785119272960245,75.79168106819787
+Hatod Road,abduction,21,high,Synthetic_RealPattern,1,2023-06-08,22.779558959471704,75.79343511615771
+Hatod Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-08-18,22.784646858682187,75.79544421816807
+Hatod Road,assault,22,high,Synthetic_RealPattern,0,2024-07-23,22.78246620665452,75.7947968092686
+Hatod Road,robbery,22,high,Synthetic_RealPattern,0,2024-08-10,22.785257788776715,75.79365342323295
+Hatod Road,abduction,20,high,Synthetic_RealPattern,1,2024-09-15,22.77974277938841,75.79394208614276
+Hatod Road,robbery,22,high,Synthetic_RealPattern,0,2023-01-30,22.782623125706408,75.7934501632815
+Hatod Road,assault,22,high,Synthetic_RealPattern,0,2023-12-14,22.785115815213715,75.79218529070792
+Hatod Road,molestation,21,high,Synthetic_RealPattern,1,2023-05-27,22.78243858706502,75.79379013195717
+Hatod Road,robbery,23,high,Synthetic_RealPattern,1,2023-03-13,22.78307639182881,75.7945333118123
+Hatod Road,abduction,20,high,Synthetic_RealPattern,1,2023-04-04,22.78347449213391,75.79563993749517
+Hatod Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-01-21,22.782027246388605,75.79421774812388
+Hatod Road,assault,22,high,Synthetic_RealPattern,0,2023-06-11,22.783065348480505,75.79496672922227
+Hatod Road,molestation,22,high,Synthetic_RealPattern,1,2024-08-04,22.78280588587154,75.79136042980973
+Hatod Road,robbery,20,high,Synthetic_RealPattern,0,2023-02-23,22.784706948062944,75.79316934484652
+Hatod Road,chain_snatching,20,high,Synthetic_RealPattern,1,2024-11-21,22.779572678282047,75.79045598971896
+Hatod Road,abduction,22,high,Synthetic_RealPattern,1,2024-03-29,22.780985779137552,75.79188007318713
+Hatod Road,molestation,23,high,Synthetic_RealPattern,1,2024-05-12,22.78500246890446,75.79475877029068
+Hatod Road,assault,23,high,Synthetic_RealPattern,0,2024-02-29,22.784641582703344,75.7963508597081
+Hatod Road,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-12-20,22.782033940516715,75.79099506859752
+Hatod Road,abduction,22,high,Synthetic_RealPattern,1,2024-11-25,22.783020795586808,75.79280896589518
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2024-06-23,22.780964287097888,75.7952004258122
+Hatod Road,robbery,22,high,Synthetic_RealPattern,0,2023-02-16,22.78042872695834,75.79162421380778
+Hatod Road,robbery,20,high,Synthetic_RealPattern,0,2023-01-08,22.78208219042964,75.79373050969582
+Hatod Road,assault,21,high,Synthetic_RealPattern,0,2023-05-21,22.781420113368156,75.79479842777619
+Hatod Road,chain_snatching,22,high,Synthetic_RealPattern,1,2023-05-03,22.782801936671106,75.79409591270156
+Hatod Road,robbery,23,high,Synthetic_RealPattern,0,2024-03-16,22.77976640782179,75.79152814840769
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2024-06-29,22.785146368845997,75.79253230741212
+Hatod Road,molestation,21,high,Synthetic_RealPattern,1,2024-05-27,22.785217264466876,75.79510275070692
+Hatod Road,mobile_snatching,22,high,Synthetic_RealPattern,1,2023-03-15,22.783488970284118,75.7937253590848
+Hatod Road,chain_snatching,20,high,Synthetic_RealPattern,1,2024-03-22,22.782516578198063,75.79043137768126
+Hatod Road,assault,23,high,Synthetic_RealPattern,1,2023-03-21,22.781157165697717,75.79496594456018
+Hatod Road,mobile_snatching,23,high,Synthetic_RealPattern,1,2024-08-10,22.784182770118242,75.79061186812964
+Hatod Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-10-24,22.783408387035323,75.7948744026964
+Hatod Road,assault,23,high,Synthetic_RealPattern,0,2023-01-22,22.780275701636068,75.79161488336099
+Hatod Road,assault,23,high,Synthetic_RealPattern,0,2024-12-07,22.784765563106962,75.79614844088073
+Hatod Road,robbery,23,high,Synthetic_RealPattern,0,2023-04-19,22.78423522345754,75.79260764450781
+Hatod Road,chain_snatching,23,high,Synthetic_RealPattern,1,2024-06-20,22.78499879947975,75.79236158969803
+Hatod Road,abduction,23,high,Synthetic_RealPattern,1,2023-11-14,22.78365431705033,75.791293328302
+Hatod Road,assault,22,high,Synthetic_RealPattern,0,2023-08-15,22.782980491175614,75.79223362529295
+Hatod Road,abduction,20,high,Synthetic_RealPattern,1,2024-06-06,22.781809458217744,75.79565990457097
+Hatod Road,molestation,20,high,Synthetic_RealPattern,1,2024-06-27,22.784896370900125,75.79637800602576
+Hatod Road,assault,21,high,Synthetic_RealPattern,1,2023-12-24,22.784496383337,75.79260985718305
+Hatod Road,chain_snatching,21,high,Synthetic_RealPattern,1,2023-08-30,22.779571312020636,75.79309166378573
+Sanwer Road Indl,robbery,22,high,Synthetic_RealPattern,0,2023-09-20,22.742758201846982,75.81363242562921
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2024-11-02,22.74485878020127,75.81461717468278
+Sanwer Road Indl,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-10-05,22.74746331998469,75.81285826600511
+Sanwer Road Indl,molestation,3,high,Synthetic_RealPattern,1,2024-11-28,22.748523656775888,75.81164915418906
+Sanwer Road Indl,assault,1,high,Synthetic_RealPattern,0,2024-10-04,22.743502501346622,75.81177573104509
+Sanwer Road Indl,mobile_snatching,3,high,Synthetic_RealPattern,0,2023-03-11,22.746164784292112,75.81347370887897
+Sanwer Road Indl,molestation,0,high,Synthetic_RealPattern,1,2023-10-09,22.744885345139785,75.80931930958162
+Sanwer Road Indl,molestation,20,high,Synthetic_RealPattern,1,2023-12-27,22.748419486386886,75.81301753602476
+Sanwer Road Indl,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-11-14,22.747652713538812,75.81143295806264
+Sanwer Road Indl,assault,20,high,Synthetic_RealPattern,0,2023-02-28,22.747629972228268,75.81406518398765
+Sanwer Road Indl,chain_snatching,21,high,Synthetic_RealPattern,1,2024-10-22,22.745412158958768,75.80985794383894
+Sanwer Road Indl,molestation,2,high,Synthetic_RealPattern,1,2024-04-18,22.745088917014026,75.81282921360169
+Sanwer Road Indl,molestation,20,high,Synthetic_RealPattern,1,2024-04-05,22.744240442431582,75.81218583733931
+Sanwer Road Indl,molestation,23,high,Synthetic_RealPattern,1,2023-11-26,22.742938252979904,75.81315395315542
+Sanwer Road Indl,robbery,3,high,Synthetic_RealPattern,0,2024-05-28,22.747788334257528,75.80968912156689
+Sanwer Road Indl,assault,3,high,Synthetic_RealPattern,1,2023-04-16,22.74747740605478,75.81277990272456
+Sanwer Road Indl,abduction,21,high,Synthetic_RealPattern,1,2024-05-31,22.748598306039717,75.81266890752775
+Sanwer Road Indl,robbery,22,high,Synthetic_RealPattern,1,2023-02-10,22.748579821022442,75.8126639605665
+Sanwer Road Indl,molestation,3,high,Synthetic_RealPattern,1,2024-03-25,22.745932590233615,75.81292092599958
+Sanwer Road Indl,assault,22,high,Synthetic_RealPattern,0,2024-01-08,22.74721392449108,75.81335880762335
+Sanwer Road Indl,assault,2,high,Synthetic_RealPattern,1,2024-02-23,22.748268594379294,75.81412993399807
+Sanwer Road Indl,abduction,20,high,Synthetic_RealPattern,1,2024-10-08,22.747697884344063,75.81091892432076
+Sanwer Road Indl,assault,1,high,Synthetic_RealPattern,0,2023-03-09,22.74408408861046,75.81425029646107
+Sanwer Road Indl,assault,2,high,Synthetic_RealPattern,1,2023-10-18,22.74530326481186,75.81228953409358
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2023-12-08,22.743374956490907,75.8097623496748
+Sanwer Road Indl,assault,22,high,Synthetic_RealPattern,1,2023-12-25,22.748324306163553,75.80965130557546
+Sanwer Road Indl,molestation,2,high,Synthetic_RealPattern,1,2023-05-13,22.746237047806705,75.81130542991217
+Sanwer Road Indl,molestation,21,high,Synthetic_RealPattern,1,2023-11-14,22.74397185683302,75.81400938186266
+Sanwer Road Indl,assault,2,high,Synthetic_RealPattern,0,2024-10-20,22.746630204106435,75.81354608560844
+Sanwer Road Indl,abduction,21,high,Synthetic_RealPattern,1,2024-10-23,22.74630876944275,75.81403168978802
+Sanwer Road Indl,assault,2,high,Synthetic_RealPattern,0,2024-06-04,22.7447489763082,75.81240361433865
+Sanwer Road Indl,robbery,1,high,Synthetic_RealPattern,0,2023-11-13,22.743281345553196,75.81194119398772
+Sanwer Road Indl,robbery,1,high,Synthetic_RealPattern,0,2024-05-12,22.746629439173557,75.81018471516023
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2023-06-08,22.745721846205424,75.81126915652165
+Sanwer Road Indl,molestation,0,high,Synthetic_RealPattern,1,2023-04-14,22.747233910350413,75.81190411619704
+Sanwer Road Indl,assault,20,high,Synthetic_RealPattern,1,2024-11-08,22.74572098100667,75.80983160257807
+Sanwer Road Indl,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-09-03,22.747713089001913,75.81062367171626
+Sanwer Road Indl,abduction,22,high,Synthetic_RealPattern,1,2023-07-05,22.745911441032646,75.81288935176437
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2024-03-24,22.74596562782921,75.81371397868543
+Sanwer Road Indl,abduction,2,high,Synthetic_RealPattern,1,2024-01-09,22.747859921615948,75.81529008506836
+Sanwer Road Indl,molestation,23,high,Synthetic_RealPattern,1,2024-03-30,22.745020897197275,75.81489867998806
+Sanwer Road Indl,robbery,0,high,Synthetic_RealPattern,1,2024-04-04,22.743404091370703,75.8131553911972
+Sanwer Road Indl,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-11-13,22.74277269605788,75.81182748831976
+Sanwer Road Indl,molestation,1,high,Synthetic_RealPattern,1,2024-11-25,22.747130823534043,75.81311706418825
+Sanwer Road Indl,assault,3,high,Synthetic_RealPattern,0,2024-04-17,22.74632185730812,75.81401390970848
+Sanwer Road Indl,robbery,2,high,Synthetic_RealPattern,1,2023-06-15,22.746824478608595,75.81001001714553
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2023-09-14,22.743877784969055,75.81175942933817
+Sanwer Road Indl,molestation,3,high,Synthetic_RealPattern,1,2024-01-16,22.74341822885352,75.8143388137138
+Sanwer Road Indl,molestation,21,high,Synthetic_RealPattern,1,2024-12-29,22.742687267994008,75.81160299771159
+Sanwer Road Indl,chain_snatching,21,high,Synthetic_RealPattern,1,2023-10-19,22.74470352535284,75.81273123362736
+Sanwer Road Indl,mobile_snatching,22,high,Synthetic_RealPattern,1,2023-10-07,22.74613950612113,75.81282661616517
+Sanwer Road Indl,chain_snatching,22,high,Synthetic_RealPattern,1,2024-03-23,22.744953464270598,75.8104068575188
+Sanwer Road Indl,assault,23,high,Synthetic_RealPattern,0,2024-04-06,22.745224849532143,75.8114734126499
+Sanwer Road Indl,mobile_snatching,2,high,Synthetic_RealPattern,1,2023-02-24,22.74802495216696,75.81130706773244
+Sanwer Road Indl,mobile_snatching,1,high,Synthetic_RealPattern,0,2023-08-30,22.744689532802138,75.80945718025119
+Sanwer Road Indl,chain_snatching,1,high,Synthetic_RealPattern,1,2023-08-18,22.74568393693496,75.80944515058334
+Sanwer Road Indl,abduction,1,high,Synthetic_RealPattern,1,2023-04-12,22.747301918076445,75.81429018226204
+Sanwer Road Indl,robbery,1,high,Synthetic_RealPattern,0,2023-05-30,22.744979256693927,75.81093842485983
+Sanwer Road Indl,abduction,0,high,Synthetic_RealPattern,1,2024-04-28,22.746332520201367,75.81240847259743
+Sanwer Road Indl,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-12-23,22.74777418225248,75.81109235344152
+Limbodi,chain_snatching,0,high,Synthetic_RealPattern,1,2023-01-06,22.814997123741946,75.8482440754707
+Limbodi,robbery,20,high,Synthetic_RealPattern,0,2023-09-20,22.810182440885576,75.8441557805532
+Limbodi,molestation,0,high,Synthetic_RealPattern,1,2024-09-15,22.81485952575097,75.84517794087644
+Limbodi,assault,23,high,Synthetic_RealPattern,0,2023-04-24,22.812252697758478,75.84783638150292
+Limbodi,chain_snatching,22,high,Synthetic_RealPattern,1,2023-05-05,22.810849466329795,75.84765160140076
+Limbodi,abduction,21,high,Synthetic_RealPattern,1,2024-03-05,22.81205481453743,75.84371660850708
+Limbodi,chain_snatching,0,high,Synthetic_RealPattern,1,2024-04-13,22.815180195451713,75.84741585985878
+Limbodi,molestation,20,high,Synthetic_RealPattern,1,2024-05-26,22.812255708563956,75.84534912132044
+Limbodi,abduction,0,high,Synthetic_RealPattern,1,2023-01-17,22.811272509661727,75.84549781323251
+Limbodi,robbery,0,high,Synthetic_RealPattern,1,2024-08-11,22.8131004051259,75.8434008798345
+Limbodi,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-10-26,22.81074087371267,75.84308360908254
+Limbodi,robbery,0,high,Synthetic_RealPattern,1,2023-12-28,22.809755179968654,75.84696763584185
+Limbodi,abduction,23,high,Synthetic_RealPattern,1,2023-07-11,22.810073278331465,75.84557876691413
+Limbodi,assault,20,high,Synthetic_RealPattern,0,2024-06-20,22.810068275033746,75.8452211042157
+Limbodi,molestation,0,high,Synthetic_RealPattern,1,2024-07-11,22.810211416161074,75.84697704937192
+Limbodi,chain_snatching,0,high,Synthetic_RealPattern,1,2024-07-21,22.810132963035898,75.84719307739395
+Limbodi,chain_snatching,23,high,Synthetic_RealPattern,1,2024-04-26,22.81314524846882,75.84355344900602
+Limbodi,assault,23,high,Synthetic_RealPattern,1,2024-01-18,22.810391280506394,75.84626135089687
+Limbodi,chain_snatching,20,high,Synthetic_RealPattern,1,2024-01-01,22.811374003699942,75.84341212449367
+Limbodi,abduction,22,high,Synthetic_RealPattern,1,2023-09-04,22.814680730459436,75.84710825051617
+Limbodi,abduction,20,high,Synthetic_RealPattern,1,2024-08-18,22.812143769841576,75.8465417309376
+Limbodi,chain_snatching,22,high,Synthetic_RealPattern,1,2023-05-17,22.813305346431125,75.84833968772651
+Limbodi,assault,22,high,Synthetic_RealPattern,1,2024-07-13,22.81033391922721,75.84301374809814
+Limbodi,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-12-02,22.81045373411285,75.84294232832691
+Limbodi,robbery,23,high,Synthetic_RealPattern,0,2024-10-08,22.8095452116976,75.84429312244816
+Limbodi,chain_snatching,20,high,Synthetic_RealPattern,1,2024-04-13,22.810313610378433,75.84417023410242
+Limbodi,chain_snatching,22,high,Synthetic_RealPattern,1,2023-07-26,22.810971542034192,75.84408187279443
+Limbodi,assault,21,high,Synthetic_RealPattern,0,2023-02-12,22.81036206290566,75.84803752748313
+Limbodi,molestation,0,high,Synthetic_RealPattern,1,2024-02-12,22.809832215202544,75.8440972771991
+Limbodi,chain_snatching,23,high,Synthetic_RealPattern,1,2023-09-17,22.810023815226604,75.84423169835678
+Limbodi,assault,21,high,Synthetic_RealPattern,0,2023-10-20,22.812064672608198,75.84715638957451
+Limbodi,chain_snatching,22,high,Synthetic_RealPattern,1,2023-10-07,22.810538002310434,75.8452984390547
+Limbodi,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-03-23,22.811485619166287,75.84726026334174
+Limbodi,assault,23,high,Synthetic_RealPattern,0,2024-01-31,22.81232050362513,75.84299219694539
+Limbodi,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-12-09,22.813442368971778,75.84552542716204
+Limbodi,chain_snatching,0,high,Synthetic_RealPattern,1,2023-10-01,22.809535872839046,75.8428016816011
+Limbodi,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-03-22,22.814096462393454,75.84297591922073
+Limbodi,assault,21,high,Synthetic_RealPattern,0,2024-07-12,22.813067402336944,75.84803862472008
+Limbodi,assault,20,high,Synthetic_RealPattern,1,2023-03-23,22.809790554191693,75.84343547222672
+Limbodi,mobile_snatching,22,high,Synthetic_RealPattern,1,2023-11-10,22.81454147174464,75.84579452409366
+Limbodi,abduction,23,high,Synthetic_RealPattern,1,2023-06-20,22.81482523440319,75.84506657361561
+Limbodi,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-12-26,22.80966646775913,75.84468405995756
+Limbodi,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-09-21,22.810961265888885,75.84799900007413
+Limbodi,abduction,20,high,Synthetic_RealPattern,1,2023-03-18,22.81413720767876,75.84273094038066
+Limbodi,molestation,23,high,Synthetic_RealPattern,1,2024-01-08,22.813789558142304,75.84658273811706
+Limbodi,robbery,21,high,Synthetic_RealPattern,1,2023-02-01,22.81040712611614,75.84838036660528
+Limbodi,robbery,23,high,Synthetic_RealPattern,0,2023-02-05,22.810556095940022,75.84596100910078
+Limbodi,assault,21,high,Synthetic_RealPattern,0,2024-10-22,22.81152283261675,75.8482209347722
+Limbodi,chain_snatching,23,high,Synthetic_RealPattern,1,2024-08-03,22.812207137911148,75.84291354727571
+Limbodi,abduction,0,high,Synthetic_RealPattern,1,2023-06-07,22.81300952862918,75.84511275991444
+Limbodi,assault,23,high,Synthetic_RealPattern,0,2024-01-15,22.81151348183742,75.84416094674577
+Limbodi,robbery,20,high,Synthetic_RealPattern,1,2024-08-10,22.8120752082968,75.84698492578988
+Limbodi,assault,22,high,Synthetic_RealPattern,1,2024-02-12,22.813784825628804,75.84848778254299
+Limbodi,chain_snatching,22,high,Synthetic_RealPattern,1,2023-09-13,22.809520099217345,75.84413918037467
+Limbodi,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-07-10,22.810814621666065,75.84652504760885
+Limbodi,chain_snatching,23,high,Synthetic_RealPattern,1,2024-07-29,22.813580097515306,75.84378858579656
+Limbodi,abduction,22,high,Synthetic_RealPattern,1,2023-09-24,22.814671241026122,75.84599198152743
+Limbodi,molestation,23,high,Synthetic_RealPattern,1,2023-08-08,22.812370064652693,75.84538359492014
+Limbodi,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-12-11,22.812492680911593,75.8484320319778
+Limbodi,chain_snatching,20,high,Synthetic_RealPattern,1,2023-05-19,22.809943032068038,75.84625116363618
+Bambori,abduction,23,high,Synthetic_RealPattern,1,2023-06-26,22.82308447420094,75.86139703823252
+Bambori,abduction,23,high,Synthetic_RealPattern,1,2023-03-31,22.82359570359873,75.85998457470933
+Bambori,assault,22,high,Synthetic_RealPattern,1,2024-11-14,22.82185482302181,75.86020748097242
+Bambori,molestation,20,high,Synthetic_RealPattern,1,2024-07-17,22.822015459385696,75.86065190157971
+Bambori,robbery,22,high,Synthetic_RealPattern,1,2023-11-04,22.822663704978627,75.86080579996805
+Bambori,molestation,21,high,Synthetic_RealPattern,1,2024-01-06,22.820520427186665,75.86440369634705
+Bambori,robbery,21,high,Synthetic_RealPattern,0,2023-05-05,22.822332474993498,75.8626673367297
+Bambori,chain_snatching,21,high,Synthetic_RealPattern,1,2024-05-20,22.821668688041978,75.86244034546826
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-07-21,22.82236498411307,75.85998861323122
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-04-23,22.821118572790915,75.8644608381601
+Bambori,chain_snatching,21,high,Synthetic_RealPattern,1,2024-09-18,22.82574316368444,75.86363688581926
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-11-13,22.823961554721325,75.85970601017141
+Bambori,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-06-22,22.824474613914866,75.86354701058339
+Bambori,assault,20,high,Synthetic_RealPattern,1,2023-05-09,22.825135027431642,75.86256122930406
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,1,2024-04-05,22.823390653193574,75.85979035207448
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2023-05-12,22.820921521728526,75.86204980384917
+Bambori,mobile_snatching,21,high,Synthetic_RealPattern,1,2023-05-13,22.82362263925091,75.86220817772279
+Bambori,molestation,20,high,Synthetic_RealPattern,1,2023-05-08,22.823921046708126,75.86029464724099
+Bambori,robbery,21,high,Synthetic_RealPattern,0,2023-11-08,22.824872636845104,75.864974188882
+Bambori,robbery,22,high,Synthetic_RealPattern,0,2024-12-27,22.82298995727738,75.86439985222889
+Bambori,assault,22,high,Synthetic_RealPattern,0,2023-03-22,22.821165481816774,75.86331413402398
+Bambori,abduction,22,high,Synthetic_RealPattern,1,2023-05-09,22.82210265543479,75.862073773366
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-09-21,22.82257849377839,75.86177059324952
+Bambori,abduction,20,high,Synthetic_RealPattern,1,2024-05-29,22.82427550344799,75.8632058408029
+Bambori,molestation,21,high,Synthetic_RealPattern,1,2024-08-29,22.823824669828014,75.86257259121645
+Bambori,abduction,21,high,Synthetic_RealPattern,1,2023-06-25,22.822536580355386,75.8596736386353
+Bambori,chain_snatching,22,high,Synthetic_RealPattern,1,2024-07-31,22.826319091492756,75.86237501589262
+Bambori,chain_snatching,20,high,Synthetic_RealPattern,1,2023-03-25,22.82403464891614,75.8641384217034
+Bambori,robbery,22,high,Synthetic_RealPattern,1,2024-10-28,22.821823360750415,75.86205543926559
+Bambori,abduction,23,high,Synthetic_RealPattern,1,2024-09-24,22.82101069483572,75.85961173946534
+Bambori,abduction,20,high,Synthetic_RealPattern,1,2024-05-24,22.821317154835107,75.86401766919631
+Bambori,assault,22,high,Synthetic_RealPattern,0,2024-10-19,22.821875746370306,75.86050818269283
+Bambori,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-12-02,22.821364088239555,75.86085172500934
+Bambori,abduction,23,high,Synthetic_RealPattern,1,2023-03-16,22.821519402144308,75.8602882381206
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-06-11,22.822110571012164,75.86128129038923
+Bambori,robbery,23,high,Synthetic_RealPattern,0,2024-04-20,22.821440241571768,75.86384050903413
+Bambori,abduction,21,high,Synthetic_RealPattern,1,2023-11-17,22.82578059254776,75.86241631515703
+Bambori,mobile_snatching,22,high,Synthetic_RealPattern,0,2023-12-20,22.82088140247397,75.86052928764491
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-06-11,22.823547068337422,75.86456698046892
+Bambori,robbery,20,high,Synthetic_RealPattern,0,2023-11-23,22.822862380961936,75.86457749112971
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-10-01,22.82629427170145,75.86452347055028
+Bambori,chain_snatching,21,high,Synthetic_RealPattern,1,2023-04-10,22.82107223341301,75.8607327772683
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-01-29,22.822787133594275,75.86200743606508
+Bambori,robbery,23,high,Synthetic_RealPattern,0,2023-09-12,22.82621682259965,75.86520993793685
+Bambori,robbery,22,high,Synthetic_RealPattern,0,2023-07-14,22.825593042755365,75.86393207485787
+Bambori,assault,23,high,Synthetic_RealPattern,0,2024-05-25,22.825302432425694,75.85946300452736
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-04-03,22.82194741696227,75.85969122754757
+Bambori,robbery,23,high,Synthetic_RealPattern,1,2023-09-04,22.82142532552434,75.86208358826087
+Bambori,chain_snatching,22,high,Synthetic_RealPattern,1,2023-02-19,22.824411859319547,75.86475532123518
+Bambori,molestation,22,high,Synthetic_RealPattern,1,2024-05-21,22.825976255934766,75.86253221078772
+Bambori,molestation,23,high,Synthetic_RealPattern,1,2023-10-20,22.823740577358084,75.86228687504821
+Bambori,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-04-21,22.823829676136818,75.85993284219974
+Bambori,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-01-10,22.82207987456196,75.86324068062835
+Bambori,chain_snatching,20,high,Synthetic_RealPattern,1,2024-02-15,22.82501695759915,75.86423261896361
+Bambori,molestation,21,high,Synthetic_RealPattern,1,2024-01-07,22.821522262491346,75.86158252004505
+Bambori,mobile_snatching,22,high,Synthetic_RealPattern,1,2023-03-17,22.822342075418426,75.86395367110556
+Bambori,assault,23,high,Synthetic_RealPattern,1,2024-07-17,22.8229526186317,75.86508685992341
+Bambori,chain_snatching,20,high,Synthetic_RealPattern,1,2023-05-12,22.823445662272107,75.86052259875477
+Bambori,assault,23,high,Synthetic_RealPattern,1,2024-01-18,22.82185445839449,75.86243997778718
+Bambori,robbery,22,high,Synthetic_RealPattern,1,2023-05-28,22.821089020948435,75.86102282774851
+Murai Mohalla,molestation,1,high,Synthetic_RealPattern,1,2024-02-16,22.71516372025465,75.84955712651421
+Murai Mohalla,chain_snatching,21,high,Synthetic_RealPattern,1,2023-02-16,22.713231783319443,75.84826556019529
+Murai Mohalla,assault,22,high,Synthetic_RealPattern,0,2024-12-31,22.714987429328538,75.8486074945053
+Murai Mohalla,robbery,1,high,Synthetic_RealPattern,1,2024-04-12,22.712426176291647,75.8495874849577
+Murai Mohalla,assault,1,high,Synthetic_RealPattern,1,2023-05-24,22.71438684061113,75.84717582283598
+Murai Mohalla,mobile_snatching,23,high,Synthetic_RealPattern,1,2023-06-16,22.71469553659531,75.85029054041046
+Murai Mohalla,assault,23,high,Synthetic_RealPattern,1,2024-08-30,22.711810941220936,75.84799817320348
+Murai Mohalla,mobile_snatching,1,high,Synthetic_RealPattern,1,2024-06-29,22.713519625669164,75.84574772893701
+Murai Mohalla,mobile_snatching,1,high,Synthetic_RealPattern,0,2023-11-03,22.712306488061635,75.84897539470902
+Murai Mohalla,abduction,23,high,Synthetic_RealPattern,1,2023-12-06,22.711880249822837,75.84955956810263
+Murai Mohalla,molestation,21,high,Synthetic_RealPattern,1,2024-03-02,22.717439761394342,75.84670057006241
+Murai Mohalla,abduction,23,high,Synthetic_RealPattern,1,2024-12-05,22.71343412306985,75.849943075542
+Murai Mohalla,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-09-03,22.71635924667513,75.85023685952861
+Murai Mohalla,robbery,1,high,Synthetic_RealPattern,1,2024-08-14,22.713027843928582,75.84646142692428
+Murai Mohalla,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-08-20,22.715589016333343,75.85070112883629
+Murai Mohalla,abduction,1,high,Synthetic_RealPattern,1,2024-10-06,22.716061367159337,75.8456442691683
+Murai Mohalla,robbery,1,high,Synthetic_RealPattern,1,2024-01-25,22.715073832443647,75.84601209401042
+Murai Mohalla,molestation,22,high,Synthetic_RealPattern,1,2023-02-02,22.714329457131303,75.84590534903543
+Murai Mohalla,chain_snatching,21,high,Synthetic_RealPattern,1,2023-07-15,22.713971045484886,75.85016393826005
+Murai Mohalla,mobile_snatching,0,high,Synthetic_RealPattern,0,2023-11-18,22.71359320959926,75.84872575531395
+Murai Mohalla,robbery,0,high,Synthetic_RealPattern,0,2024-12-08,22.717077174865487,75.84571262569933
+Murai Mohalla,mobile_snatching,1,high,Synthetic_RealPattern,1,2024-09-18,22.716483716446728,75.84744194051022
+Murai Mohalla,robbery,21,high,Synthetic_RealPattern,1,2024-12-23,22.717290161464,75.84849178815043
+Murai Mohalla,assault,22,high,Synthetic_RealPattern,1,2024-07-28,22.712245783340915,75.84530078450994
+Murai Mohalla,mobile_snatching,0,high,Synthetic_RealPattern,0,2024-06-22,22.715885204851222,75.85009449821045
+Murai Mohalla,molestation,22,high,Synthetic_RealPattern,1,2024-04-15,22.717130042740926,75.84962162121266
+Murai Mohalla,assault,23,high,Synthetic_RealPattern,1,2024-07-13,22.712587398396995,75.84783124064147
+Murai Mohalla,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-09-16,22.7118989776042,75.85060275969157
+Murai Mohalla,molestation,22,high,Synthetic_RealPattern,1,2023-10-13,22.71594672389574,75.84730656587566
+Murai Mohalla,assault,23,high,Synthetic_RealPattern,0,2023-08-19,22.71494683867908,75.85070466191422
+Murai Mohalla,abduction,22,high,Synthetic_RealPattern,1,2024-12-07,22.71655097266055,75.84880751999283
+Murai Mohalla,mobile_snatching,0,high,Synthetic_RealPattern,0,2023-11-21,22.71233863425976,75.84860802763953
+Murai Mohalla,assault,1,high,Synthetic_RealPattern,0,2023-10-08,22.71627160387116,75.84579572937179
+Murai Mohalla,molestation,1,high,Synthetic_RealPattern,1,2024-11-23,22.712709763920287,75.85009156654984
+Murai Mohalla,assault,0,high,Synthetic_RealPattern,0,2024-02-09,22.712481935657195,75.84736493812753
+Murai Mohalla,assault,23,high,Synthetic_RealPattern,1,2023-02-13,22.712485594787587,75.8457734004347
+Murai Mohalla,mobile_snatching,21,high,Synthetic_RealPattern,1,2023-12-21,22.716387448321388,75.84487564511986
+Murai Mohalla,robbery,23,high,Synthetic_RealPattern,0,2024-05-05,22.71549118332418,75.84815853410184
+Murai Mohalla,molestation,1,high,Synthetic_RealPattern,1,2023-10-05,22.714638392548615,75.84796439773274
+Murai Mohalla,chain_snatching,23,high,Synthetic_RealPattern,1,2023-05-21,22.71365298290474,75.84911612173423
+Murai Mohalla,robbery,1,high,Synthetic_RealPattern,0,2024-08-23,22.71676320324488,75.8501415483181
+Murai Mohalla,molestation,21,high,Synthetic_RealPattern,1,2024-11-16,22.713854670644537,75.84527643950787
+Murai Mohalla,robbery,22,high,Synthetic_RealPattern,0,2024-10-15,22.71639959663683,75.84918897894205
+Murai Mohalla,assault,21,high,Synthetic_RealPattern,1,2024-02-28,22.714134809451423,75.84592447166459
+Murai Mohalla,abduction,0,high,Synthetic_RealPattern,1,2023-04-13,22.713761666576552,75.84994906231896
+Murai Mohalla,molestation,22,high,Synthetic_RealPattern,1,2023-01-06,22.71427607871402,75.84971438108317
+Murai Mohalla,abduction,22,high,Synthetic_RealPattern,1,2024-02-21,22.713308267244987,75.84804476252992
+Murai Mohalla,abduction,0,high,Synthetic_RealPattern,1,2024-05-03,22.71598565628106,75.84906145679174
+Murai Mohalla,assault,22,high,Synthetic_RealPattern,0,2023-10-22,22.714516322340558,75.84668610067911
+Murai Mohalla,abduction,21,high,Synthetic_RealPattern,1,2023-04-02,22.71289327617088,75.8476270073936
+Murai Mohalla,molestation,1,high,Synthetic_RealPattern,1,2023-08-26,22.71689744743965,75.84972982138628
+Murai Mohalla,mobile_snatching,21,high,Synthetic_RealPattern,0,2023-06-29,22.71380334732824,75.84755559118305
+Murai Mohalla,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-02-11,22.714761317166683,75.84694678959195
+Murai Mohalla,chain_snatching,23,high,Synthetic_RealPattern,1,2023-02-08,22.71693883266579,75.84776527468351
+Murai Mohalla,molestation,23,high,Synthetic_RealPattern,1,2024-08-04,22.715245427975486,75.84976949551464
+Murai Mohalla,assault,21,high,Synthetic_RealPattern,0,2023-12-10,22.71220138824425,75.84681124828423
+Murai Mohalla,mobile_snatching,1,high,Synthetic_RealPattern,0,2024-06-20,22.71713899274168,75.84584256955883
+Murai Mohalla,assault,1,high,Synthetic_RealPattern,0,2024-04-24,22.71526624831843,75.84907208412199
+Murai Mohalla,robbery,21,high,Synthetic_RealPattern,1,2023-12-05,22.713509433687943,75.84975586927625
+Murai Mohalla,assault,0,high,Synthetic_RealPattern,1,2024-10-25,22.71233563243598,75.84540382487114
+Bhagirathpura,abduction,9,high,Synthetic_RealPattern,1,2023-01-15,22.72296415113562,75.84733924467653
+Bhagirathpura,molestation,20,high,Synthetic_RealPattern,1,2023-10-30,22.72192043653557,75.84675183193856
+Bhagirathpura,molestation,9,high,Synthetic_RealPattern,1,2023-06-29,22.721400766551856,75.8479876484695
+Bhagirathpura,molestation,21,high,Synthetic_RealPattern,1,2024-03-13,22.723563355498307,75.84860210587344
+Bhagirathpura,mobile_snatching,20,high,Synthetic_RealPattern,1,2023-03-30,22.722931583267346,75.85039295802179
+Bhagirathpura,robbery,8,high,Synthetic_RealPattern,0,2023-07-09,22.719110049278395,75.8498068855093
+Bhagirathpura,chain_snatching,20,high,Synthetic_RealPattern,1,2023-09-12,22.720070332406774,75.84962557140487
+Bhagirathpura,robbery,20,high,Synthetic_RealPattern,0,2024-01-28,22.719690934838887,75.84801424967966
+Bhagirathpura,assault,20,high,Synthetic_RealPattern,1,2023-12-04,22.722663677755435,75.85094868531851
+Bhagirathpura,assault,22,high,Synthetic_RealPattern,1,2023-01-12,22.718401194608415,75.84872772300439
+Bhagirathpura,robbery,20,high,Synthetic_RealPattern,0,2024-12-10,22.721619338109228,75.8517746296281
+Bhagirathpura,assault,8,high,Synthetic_RealPattern,0,2024-04-21,22.722774752114443,75.84970485282977
+Bhagirathpura,molestation,21,high,Synthetic_RealPattern,1,2024-12-03,22.72346059382057,75.84665758844939
+Bhagirathpura,chain_snatching,20,high,Synthetic_RealPattern,1,2024-12-07,22.720252490492296,75.84995706537245
+Bhagirathpura,molestation,20,high,Synthetic_RealPattern,1,2024-01-12,22.72312754382803,75.84785062409259
+Bhagirathpura,robbery,9,high,Synthetic_RealPattern,0,2023-08-13,22.718863790421732,75.85001796318012
+Bhagirathpura,abduction,9,high,Synthetic_RealPattern,1,2024-04-10,22.723278713750407,75.84631784688898
+Bhagirathpura,mobile_snatching,22,high,Synthetic_RealPattern,1,2024-01-18,22.718964931973993,75.84694928862305
+Bhagirathpura,molestation,22,high,Synthetic_RealPattern,1,2024-04-27,22.720583723743363,75.85103442355343
+Bhagirathpura,abduction,9,high,Synthetic_RealPattern,1,2023-09-11,22.722983772194677,75.84726307734215
+Bhagirathpura,molestation,22,high,Synthetic_RealPattern,1,2023-03-25,22.71909950456409,75.85092224675145
+Bhagirathpura,abduction,21,high,Synthetic_RealPattern,1,2024-06-24,22.719575508371396,75.84757565653072
+Bhagirathpura,molestation,20,high,Synthetic_RealPattern,1,2023-03-21,22.72253351541036,75.84975729146035
+Bhagirathpura,molestation,8,high,Synthetic_RealPattern,1,2023-03-05,22.722520219219277,75.85006490344107
+Bhagirathpura,molestation,22,high,Synthetic_RealPattern,1,2023-07-27,22.72204688579731,75.84897592851887
+Bhagirathpura,robbery,22,high,Synthetic_RealPattern,0,2023-06-03,22.722363690666803,75.84773186406018
+Bhagirathpura,chain_snatching,22,high,Synthetic_RealPattern,1,2024-03-28,22.721456346660084,75.84717586625823
+Bhagirathpura,mobile_snatching,9,high,Synthetic_RealPattern,0,2024-08-20,22.719710794353443,75.84609913612738
+Bhagirathpura,chain_snatching,22,high,Synthetic_RealPattern,1,2024-04-01,22.720274175961023,75.84772367840745
+Bhagirathpura,molestation,21,high,Synthetic_RealPattern,1,2023-05-16,22.719289586300807,75.8498189767432
+Bhagirathpura,molestation,21,high,Synthetic_RealPattern,1,2024-04-12,22.723650703368,75.85152982891069
+Bhagirathpura,mobile_snatching,8,high,Synthetic_RealPattern,1,2024-07-26,22.721700350768597,75.85112722689358
+Bhagirathpura,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-01-23,22.720605108500582,75.85049638865921
+Bhagirathpura,molestation,8,high,Synthetic_RealPattern,1,2023-08-12,22.720972034821866,75.85063068405952
+Bhagirathpura,mobile_snatching,8,high,Synthetic_RealPattern,0,2023-02-16,22.72388370003767,75.84988990942085
+Bhagirathpura,chain_snatching,8,high,Synthetic_RealPattern,1,2024-07-08,22.719120108418696,75.8474617211454
+Bhagirathpura,chain_snatching,8,high,Synthetic_RealPattern,1,2024-04-28,22.7217173789921,75.85134317018424
+Bhagirathpura,robbery,20,high,Synthetic_RealPattern,0,2024-02-23,22.721235332073306,75.84992439387143
+Bhagirathpura,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-01-19,22.72186872541261,75.84926264378588
+Bhagirathpura,chain_snatching,21,high,Synthetic_RealPattern,1,2024-01-20,22.718308661102924,75.84656593681528
+Bhagirathpura,abduction,22,high,Synthetic_RealPattern,1,2023-05-17,22.723432743453664,75.84858233326284
+Bhagirathpura,robbery,20,high,Synthetic_RealPattern,1,2023-05-02,22.7237927096949,75.84866214962722
+Bhagirathpura,robbery,21,high,Synthetic_RealPattern,1,2024-06-25,22.721590799101534,75.85108738165714
+Bhagirathpura,chain_snatching,9,high,Synthetic_RealPattern,1,2023-01-04,22.72237990494326,75.84917988932112
+Bhagirathpura,abduction,20,high,Synthetic_RealPattern,1,2024-04-19,22.723734996287064,75.84818240329382
+Bhagirathpura,molestation,22,high,Synthetic_RealPattern,1,2024-03-10,22.72244343180588,75.85176080197107
+Bhagirathpura,robbery,21,high,Synthetic_RealPattern,0,2023-08-24,22.719115234257487,75.84656432355996
+Bhagirathpura,assault,20,high,Synthetic_RealPattern,0,2023-06-08,22.721657730161,75.84843529056987
+Bhagirathpura,abduction,8,high,Synthetic_RealPattern,1,2023-02-02,22.721840290278298,75.84615214805103
+Bhagirathpura,chain_snatching,21,high,Synthetic_RealPattern,1,2024-09-21,22.720744784027815,75.8503394247246
+Bhagirathpura,chain_snatching,9,high,Synthetic_RealPattern,1,2023-07-31,22.722618665413748,75.85140845931319
+Bhagirathpura,chain_snatching,8,high,Synthetic_RealPattern,1,2024-08-31,22.723806202088614,75.8475802239773
+Bhagirathpura,abduction,21,high,Synthetic_RealPattern,1,2024-09-04,22.72375341107744,75.85105005006079
+Bhagirathpura,abduction,8,high,Synthetic_RealPattern,1,2023-09-08,22.720905036228423,75.84765330938278
+Bhagirathpura,mobile_snatching,8,high,Synthetic_RealPattern,0,2024-02-16,22.718879428275045,75.85136462096986
+Bhagirathpura,chain_snatching,22,high,Synthetic_RealPattern,1,2023-08-11,22.724109047193775,75.85042377142157
+Bhagirathpura,assault,9,high,Synthetic_RealPattern,0,2024-05-30,22.723233388518675,75.85072944066106
+Bhagirathpura,molestation,22,high,Synthetic_RealPattern,1,2023-11-23,22.718947976087218,75.8460080393336
+Bhagirathpura,assault,22,high,Synthetic_RealPattern,0,2024-11-19,22.723725051295705,75.85167686214244
+Bhagirathpura,abduction,20,high,Synthetic_RealPattern,1,2023-05-27,22.723419378172373,75.85026002595242
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-08-15,22.712413028342755,75.85002850657233
+Juni Indore,molestation,21,high,Synthetic_RealPattern,1,2023-03-04,22.712847652614467,75.85317636798916
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2023-06-29,22.71169401622322,75.8498891271905
+Juni Indore,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-07-23,22.70962856983293,75.8534365230374
+Juni Indore,abduction,21,high,Synthetic_RealPattern,1,2024-10-20,22.711311183449876,75.84887548234248
+Juni Indore,assault,22,high,Synthetic_RealPattern,1,2024-06-21,22.714117120691586,75.85242211586477
+Juni Indore,robbery,22,high,Synthetic_RealPattern,0,2024-02-23,22.709327792138026,75.85144419085988
+Juni Indore,molestation,22,high,Synthetic_RealPattern,1,2023-07-08,22.711300995030147,75.84877920682118
+Juni Indore,robbery,22,high,Synthetic_RealPattern,0,2023-09-04,22.711689012161546,75.84965136296955
+Juni Indore,chain_snatching,20,high,Synthetic_RealPattern,1,2024-04-19,22.712524373617626,75.84827442421766
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,1,2024-02-27,22.714819133698477,75.8510126077928
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-05-18,22.711378075966195,75.85000759156456
+Juni Indore,assault,21,high,Synthetic_RealPattern,1,2023-07-28,22.711381719211378,75.85179014490579
+Juni Indore,assault,19,high,Synthetic_RealPattern,0,2024-04-05,22.71372500748866,75.84998342684625
+Juni Indore,chain_snatching,23,high,Synthetic_RealPattern,1,2023-07-15,22.71201330764534,75.84999951466905
+Juni Indore,abduction,21,high,Synthetic_RealPattern,1,2024-01-22,22.71064762893764,75.8526591591924
+Juni Indore,chain_snatching,23,high,Synthetic_RealPattern,1,2024-09-09,22.712014637096797,75.84848885701588
+Juni Indore,molestation,19,high,Synthetic_RealPattern,1,2023-07-12,22.71014514212228,75.85361736997116
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-08-11,22.710358321919035,75.85331358324635
+Juni Indore,chain_snatching,21,high,Synthetic_RealPattern,1,2023-11-07,22.712290206636435,75.85220682809937
+Juni Indore,abduction,20,high,Synthetic_RealPattern,1,2023-07-14,22.711813552697027,75.85175932942064
+Juni Indore,robbery,19,high,Synthetic_RealPattern,1,2024-05-05,22.714789075406408,75.85355381498884
+Juni Indore,robbery,23,high,Synthetic_RealPattern,0,2024-12-21,22.7114743633947,75.84931198107718
+Juni Indore,assault,20,high,Synthetic_RealPattern,0,2024-07-19,22.712783530101667,75.84867381497315
+Juni Indore,molestation,22,high,Synthetic_RealPattern,1,2024-04-22,22.713093585727517,75.84963706101946
+Juni Indore,assault,21,high,Synthetic_RealPattern,0,2023-11-12,22.709378566739527,75.85296746967221
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-05-24,22.713281224232098,75.84840802160036
+Juni Indore,robbery,22,high,Synthetic_RealPattern,0,2023-11-24,22.710368215801218,75.85169684101051
+Juni Indore,chain_snatching,21,high,Synthetic_RealPattern,1,2024-02-28,22.715066421904815,75.85417262509715
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2023-08-15,22.710191976366517,75.85333417656302
+Juni Indore,assault,20,high,Synthetic_RealPattern,1,2023-01-17,22.71178774474236,75.85132867413427
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2024-08-16,22.70981209800847,75.84858184545573
+Juni Indore,robbery,22,high,Synthetic_RealPattern,0,2023-10-30,22.715281245511076,75.85318824108631
+Juni Indore,mobile_snatching,21,high,Synthetic_RealPattern,1,2023-08-24,22.712313170061986,75.85179387104907
+Juni Indore,molestation,20,high,Synthetic_RealPattern,1,2024-05-26,22.71287231010392,75.84888959798236
+Juni Indore,mobile_snatching,21,high,Synthetic_RealPattern,1,2023-09-21,22.709702458864328,75.84876314370895
+Juni Indore,robbery,22,high,Synthetic_RealPattern,1,2024-04-16,22.713799762822394,75.85365776091662
+Juni Indore,robbery,21,high,Synthetic_RealPattern,1,2023-06-23,22.710559433558572,75.85221520157764
+Juni Indore,robbery,23,high,Synthetic_RealPattern,1,2024-05-15,22.714688325736642,75.8531757207959
+Juni Indore,chain_snatching,19,high,Synthetic_RealPattern,1,2024-06-20,22.710530837842892,75.8534738734017
+Juni Indore,chain_snatching,19,high,Synthetic_RealPattern,1,2024-11-15,22.71044412632398,75.8516306341123
+Juni Indore,robbery,19,high,Synthetic_RealPattern,1,2024-02-27,22.709519298007088,75.85130467811054
+Juni Indore,abduction,20,high,Synthetic_RealPattern,1,2023-03-11,22.712132401670658,75.85078256446194
+Juni Indore,robbery,20,high,Synthetic_RealPattern,1,2023-01-10,22.712689046799575,75.85010167952676
+Juni Indore,chain_snatching,22,high,Synthetic_RealPattern,1,2024-01-18,22.70969425183657,75.85080757576516
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2024-10-15,22.71395316570017,75.85284327793438
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2024-05-09,22.712019733008486,75.8518115405861
+Juni Indore,chain_snatching,22,high,Synthetic_RealPattern,1,2023-01-17,22.712446341615966,75.85355513973974
+Juni Indore,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-07-18,22.711944576481628,75.85086028008628
+Juni Indore,abduction,19,high,Synthetic_RealPattern,1,2024-06-26,22.71170457836525,75.85184253747232
+Juni Indore,assault,21,high,Synthetic_RealPattern,0,2024-07-02,22.71265784198785,75.85198784531856
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2024-12-15,22.71023144147558,75.85175018297384
+Juni Indore,chain_snatching,22,high,Synthetic_RealPattern,1,2023-07-03,22.71039156878297,75.85241580263852
+Juni Indore,robbery,19,high,Synthetic_RealPattern,0,2024-06-20,22.71447071372608,75.84962460081026
+Juni Indore,molestation,20,high,Synthetic_RealPattern,1,2024-09-26,22.7149766927728,75.85127418266528
+Juni Indore,assault,21,high,Synthetic_RealPattern,0,2023-12-29,22.711539855897676,75.84882534881686
+Juni Indore,mobile_snatching,19,high,Synthetic_RealPattern,0,2024-01-18,22.71092446803886,75.85050706796588
+Juni Indore,abduction,23,high,Synthetic_RealPattern,1,2023-09-07,22.713163997259432,75.85112600241173
+Juni Indore,abduction,20,high,Synthetic_RealPattern,1,2023-11-04,22.711752405026587,75.85211334555729
+Juni Indore,abduction,19,high,Synthetic_RealPattern,1,2024-10-31,22.709452318133962,75.85390318631552
+Kanadiya Road,mobile_snatching,20,high,Synthetic_RealPattern,0,2023-04-06,22.780236915584197,75.8462039063993
+Kanadiya Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2024-07-19,22.783595833373084,75.84706156349706
+Kanadiya Road,robbery,20,high,Synthetic_RealPattern,0,2024-12-20,22.783253543651462,75.84563759635698
+Kanadiya Road,abduction,23,high,Synthetic_RealPattern,1,2024-03-20,22.77946257595502,75.84640462418827
+Kanadiya Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-08-02,22.780631832971597,75.8430255932968
+Kanadiya Road,robbery,20,high,Synthetic_RealPattern,1,2023-08-24,22.780686448779527,75.84412634948505
+Kanadiya Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-10-05,22.78333135646159,75.84477111855924
+Kanadiya Road,assault,20,high,Synthetic_RealPattern,1,2024-12-01,22.779418263226525,75.84543496013005
+Kanadiya Road,assault,20,high,Synthetic_RealPattern,0,2023-07-03,22.779924651491907,75.84287389247302
+Kanadiya Road,robbery,21,high,Synthetic_RealPattern,1,2024-08-24,22.784099496512237,75.84344014458533
+Kanadiya Road,assault,23,high,Synthetic_RealPattern,0,2023-03-20,22.780371267972324,75.84426088584675
+Kanadiya Road,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-08-03,22.78321647664711,75.84842919614542
+Kanadiya Road,abduction,22,high,Synthetic_RealPattern,1,2024-01-29,22.78072909668628,75.84458808204262
+Kanadiya Road,abduction,21,high,Synthetic_RealPattern,1,2024-12-06,22.779896648356555,75.84549224634868
+Kanadiya Road,abduction,20,high,Synthetic_RealPattern,1,2024-05-27,22.780759033145998,75.84377658627643
+Kanadiya Road,chain_snatching,22,high,Synthetic_RealPattern,1,2023-02-24,22.783633601591134,75.84626468042646
+Kanadiya Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-08-26,22.784434178808638,75.8442840992931
+Kanadiya Road,molestation,22,high,Synthetic_RealPattern,1,2024-09-11,22.7842813191874,75.84384195547064
+Kanadiya Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-12-01,22.78168310117771,75.84569943577068
+Kanadiya Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-04-06,22.783308510819424,75.84263303479497
+Kanadiya Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-07-20,22.780529905772493,75.8426459841959
+Kanadiya Road,molestation,21,high,Synthetic_RealPattern,1,2024-11-27,22.781058886381565,75.84391441285462
+Kanadiya Road,molestation,23,high,Synthetic_RealPattern,1,2023-03-29,22.784678014911126,75.84282032817501
+Kanadiya Road,abduction,22,high,Synthetic_RealPattern,1,2023-09-10,22.779378011541063,75.84324815452479
+Kanadiya Road,assault,20,high,Synthetic_RealPattern,0,2023-03-26,22.779813051185126,75.84463316389603
+Kanadiya Road,abduction,23,high,Synthetic_RealPattern,1,2024-12-29,22.780547317530875,75.84741551407748
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,0,2024-02-03,22.779459193223243,75.84603229186023
+Kanadiya Road,chain_snatching,20,high,Synthetic_RealPattern,1,2023-04-04,22.780388612610537,75.84567600635575
+Kanadiya Road,assault,22,high,Synthetic_RealPattern,0,2024-03-31,22.78279824936582,75.84436093293925
+Kanadiya Road,chain_snatching,20,high,Synthetic_RealPattern,1,2023-05-16,22.781828547303554,75.8481905223166
+Kanadiya Road,mobile_snatching,21,high,Synthetic_RealPattern,1,2024-03-17,22.78465603026646,75.84498209024743
+Kanadiya Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-04-16,22.78420466137043,75.84312255660078
+Kanadiya Road,molestation,20,high,Synthetic_RealPattern,1,2023-12-29,22.781350904110187,75.84630239909671
+Kanadiya Road,molestation,20,high,Synthetic_RealPattern,1,2024-09-03,22.78085654060059,75.84328303036087
+Kanadiya Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-01-30,22.781578154449004,75.84467133885681
+Kanadiya Road,mobile_snatching,22,high,Synthetic_RealPattern,0,2024-02-28,22.78284176965509,75.84564447163231
+Kanadiya Road,molestation,21,high,Synthetic_RealPattern,1,2024-08-08,22.780908381844938,75.84784533514812
+Kanadiya Road,mobile_snatching,21,high,Synthetic_RealPattern,0,2024-12-02,22.783044893447094,75.84556127948204
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,0,2023-10-03,22.781756469913148,75.84681355259619
+Kanadiya Road,chain_snatching,23,high,Synthetic_RealPattern,1,2023-05-30,22.78261228308511,75.848556901034
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,0,2024-03-21,22.781916759174813,75.84338893471939
+Kanadiya Road,chain_snatching,22,high,Synthetic_RealPattern,1,2024-05-10,22.78106679455725,75.84424838915312
+Kanadiya Road,robbery,22,high,Synthetic_RealPattern,1,2023-09-15,22.784990719841772,75.84496745645359
+Kanadiya Road,molestation,23,high,Synthetic_RealPattern,1,2024-08-31,22.783881634764956,75.84513096907123
+Kanadiya Road,chain_snatching,21,high,Synthetic_RealPattern,1,2024-04-13,22.780140679054597,75.8450661264516
+Kanadiya Road,chain_snatching,21,high,Synthetic_RealPattern,1,2023-11-08,22.784510807855387,75.84804566601534
+Kanadiya Road,molestation,23,high,Synthetic_RealPattern,1,2023-12-07,22.782224587189496,75.8468841958668
+Kanadiya Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-12-04,22.784667313361364,75.84624743128455
+Kanadiya Road,molestation,23,high,Synthetic_RealPattern,1,2024-10-28,22.784099131535683,75.84445623630718
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,1,2023-11-04,22.781851281026814,75.84754274230534
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,0,2024-05-05,22.77943481584992,75.84833036306891
+Kanadiya Road,assault,23,high,Synthetic_RealPattern,1,2023-11-23,22.780912064156308,75.8475271896953
+Kanadiya Road,robbery,23,high,Synthetic_RealPattern,0,2024-08-12,22.782549805287964,75.84260939063115
+Kanadiya Road,mobile_snatching,23,high,Synthetic_RealPattern,0,2023-10-15,22.783100869318957,75.84641840822111
+Kanadiya Road,robbery,20,high,Synthetic_RealPattern,1,2024-07-31,22.7808473261126,75.84290681228866
+Kanadiya Road,molestation,21,high,Synthetic_RealPattern,1,2024-11-29,22.780136136444437,75.84414564332201
+Kanadiya Road,abduction,20,high,Synthetic_RealPattern,1,2024-04-17,22.784309581420796,75.84295714820209
+Kanadiya Road,assault,21,high,Synthetic_RealPattern,1,2024-03-24,22.78520641308422,75.8462227727177
+Kanadiya Road,abduction,20,high,Synthetic_RealPattern,1,2024-02-23,22.782454141093815,75.84671953948096
+Kanadiya Road,abduction,23,high,Synthetic_RealPattern,1,2023-05-23,22.78033007571509,75.8432869258284
+Rajwada,theft,20,medium,Synthetic_RealPattern,1,2023-09-05,22.716633843959116,75.85660303329827
+Rajwada,pickpocket,19,medium,Synthetic_RealPattern,0,2024-03-09,22.715110344059283,75.85703741905373
+Rajwada,pickpocket,21,medium,Synthetic_RealPattern,1,2024-09-04,22.720485792839362,75.85651431813056
+Rajwada,pickpocket,21,medium,Synthetic_RealPattern,1,2024-07-01,22.71570650649734,75.8550261500029
+Rajwada,mobile_snatching,18,medium,Synthetic_RealPattern,0,2024-01-04,22.718459098853085,75.85681368674112
+Rajwada,theft,19,medium,Synthetic_RealPattern,0,2024-11-04,22.716644331324122,75.85880706828685
+Rajwada,pickpocket,22,medium,Synthetic_RealPattern,0,2023-02-15,22.718325068015094,75.85472604598719
+Rajwada,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-04-19,22.71890852233011,75.85478108008449
+Rajwada,bike_theft,20,medium,Synthetic_RealPattern,0,2023-08-16,22.719978450822243,75.85642862775101
+Rajwada,pickpocket,20,medium,Synthetic_RealPattern,1,2024-02-05,22.716238527630562,75.85995035426971
+Rajwada,bike_theft,22,medium,Synthetic_RealPattern,0,2024-12-08,22.71506597497195,75.85831143588034
+Rajwada,mobile_snatching,18,medium,Synthetic_RealPattern,0,2024-05-09,22.715821313780413,75.85837201974003
+Rajwada,mobile_snatching,21,medium,Synthetic_RealPattern,1,2023-03-29,22.720400111851088,75.85647151994502
+Rajwada,theft,19,medium,Synthetic_RealPattern,0,2023-12-23,22.720243340465377,75.85786196474724
+Rajwada,pickpocket,21,medium,Synthetic_RealPattern,0,2023-07-31,22.71858447861302,75.85436078710416
+Rajwada,pickpocket,21,medium,Synthetic_RealPattern,1,2023-04-10,22.718603101162604,75.85811657627845
+Rajwada,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-11-23,22.718990220047278,75.85977972168546
+Rajwada,mobile_snatching,18,medium,Synthetic_RealPattern,0,2024-12-28,22.716052227671742,75.85797544081007
+Rajwada,mobile_snatching,20,medium,Synthetic_RealPattern,1,2024-10-25,22.72048647167555,75.85954219156079
+Rajwada,bike_theft,19,medium,Synthetic_RealPattern,1,2023-09-07,22.717512623149354,75.8586438383328
+Rajwada,pickpocket,19,medium,Synthetic_RealPattern,0,2023-12-05,22.717298831169497,75.85502335049841
+Rajwada,bike_theft,19,medium,Synthetic_RealPattern,0,2024-02-19,22.718113506231695,75.85971471984371
+Rajwada,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-10,22.71528179580065,75.85469866306613
+Rajwada,pickpocket,22,medium,Synthetic_RealPattern,1,2023-07-22,22.715997700212537,75.85750380483528
+Rajwada,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-03,22.71942820169856,75.85515282274275
+Rajwada,theft,19,medium,Synthetic_RealPattern,1,2023-07-30,22.71549679200755,75.85437023966438
+Rajwada,mobile_snatching,18,medium,Synthetic_RealPattern,1,2024-08-14,22.718618912656797,75.85683220556076
+Rajwada,theft,19,medium,Synthetic_RealPattern,0,2024-01-10,22.716472094658087,75.85607024424591
+Rajwada,theft,21,medium,Synthetic_RealPattern,1,2023-04-27,22.71733577368425,75.85721600296279
+Rajwada,theft,21,medium,Synthetic_RealPattern,1,2024-06-24,22.716732162420623,75.8577631993204
+Rajwada,pickpocket,21,medium,Synthetic_RealPattern,1,2024-09-17,22.71713403629879,75.85456243443384
+Rajwada,theft,18,medium,Synthetic_RealPattern,0,2023-12-23,22.719314275431106,75.85503801977073
+Rajwada,theft,22,medium,Synthetic_RealPattern,1,2023-06-26,22.71678273029374,75.8576518543787
+Rajwada,bike_theft,22,medium,Synthetic_RealPattern,0,2023-03-28,22.71839842784178,75.85635900411903
+Rajwada,theft,18,medium,Synthetic_RealPattern,0,2023-09-02,22.717856302413196,75.85867504092529
+Khajrana,bike_theft,20,medium,Synthetic_RealPattern,1,2024-01-18,22.740482026992176,75.91161374989156
+Khajrana,bike_theft,22,medium,Synthetic_RealPattern,1,2024-03-04,22.74212097843595,75.91277362617795
+Khajrana,bike_theft,22,medium,Synthetic_RealPattern,0,2024-03-09,22.74089543258326,75.91185495696003
+Khajrana,bike_theft,20,medium,Synthetic_RealPattern,0,2024-07-22,22.737789642271544,75.91027958646434
+Khajrana,bike_theft,21,medium,Synthetic_RealPattern,0,2023-05-24,22.736687098810368,75.91173779973437
+Khajrana,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-09-26,22.7380735842658,75.90935228704554
+Khajrana,bike_theft,19,medium,Synthetic_RealPattern,0,2024-05-11,22.7400704675842,75.90953788099267
+Khajrana,pickpocket,22,medium,Synthetic_RealPattern,0,2024-07-29,22.736808554880906,75.91243391095954
+Khajrana,pickpocket,22,medium,Synthetic_RealPattern,0,2024-03-01,22.73947819748321,75.91037851709841
+Khajrana,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-03-26,22.7400810570935,75.91249028204311
+Khajrana,theft,21,medium,Synthetic_RealPattern,0,2023-02-03,22.7385054633449,75.91263453424202
+Khajrana,pickpocket,21,medium,Synthetic_RealPattern,1,2023-06-22,22.741125473222475,75.91284537402598
+Khajrana,mobile_snatching,22,medium,Synthetic_RealPattern,1,2024-07-16,22.7371395895188,75.91319981141505
+Khajrana,theft,19,medium,Synthetic_RealPattern,1,2023-10-02,22.736950826690414,75.91028591132309
+Khajrana,bike_theft,19,medium,Synthetic_RealPattern,0,2024-03-27,22.74086913253722,75.90961320090993
+Khajrana,bike_theft,19,medium,Synthetic_RealPattern,0,2024-10-31,22.739472947897237,75.91119319247957
+Khajrana,theft,19,medium,Synthetic_RealPattern,0,2024-04-05,22.740630414378565,75.90992703454063
+Khajrana,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-03-25,22.739108964031622,75.9113064450008
+Khajrana,theft,20,medium,Synthetic_RealPattern,1,2024-08-25,22.737978412199435,75.91193351517587
+Khajrana,bike_theft,22,medium,Synthetic_RealPattern,0,2023-06-19,22.741414613906045,75.91183043011095
+Khajrana,theft,20,medium,Synthetic_RealPattern,1,2023-03-02,22.741296495273815,75.90994731732212
+Khajrana,bike_theft,21,medium,Synthetic_RealPattern,0,2024-09-03,22.740668178825125,75.9087011612102
+Khajrana,theft,21,medium,Synthetic_RealPattern,1,2023-10-24,22.738132870823378,75.91028317603077
+Khajrana,pickpocket,19,medium,Synthetic_RealPattern,0,2023-05-19,22.740041384001213,75.9085555648645
+Khajrana,bike_theft,21,medium,Synthetic_RealPattern,1,2024-11-02,22.73866584338164,75.91304058221111
+Khajrana,bike_theft,20,medium,Synthetic_RealPattern,1,2023-09-13,22.737049492439958,75.90977526476443
+Khajrana,pickpocket,21,medium,Synthetic_RealPattern,0,2023-09-11,22.742003881452774,75.90862675848335
+Khajrana,theft,20,medium,Synthetic_RealPattern,1,2024-08-14,22.737320911785513,75.90785268655944
+Khajrana,pickpocket,22,medium,Synthetic_RealPattern,0,2024-01-20,22.742201424122925,75.91157493431773
+Khajrana,theft,19,medium,Synthetic_RealPattern,1,2024-02-17,22.739176034637747,75.91152141390474
+Khajrana,pickpocket,21,medium,Synthetic_RealPattern,0,2024-04-10,22.73761079757303,75.90974362499949
+Khajrana,pickpocket,19,medium,Synthetic_RealPattern,1,2023-04-06,22.73975140568427,75.90813027133309
+Khajrana,pickpocket,21,medium,Synthetic_RealPattern,0,2023-03-06,22.74173767501526,75.91015777336938
+Khajrana,pickpocket,22,medium,Synthetic_RealPattern,0,2023-08-05,22.74089334931846,75.90956730497038
+Khajrana,theft,21,medium,Synthetic_RealPattern,1,2023-10-18,22.741339366887168,75.91176272383842
+Banganga,pickpocket,21,medium,Synthetic_RealPattern,0,2024-08-02,22.694352700200266,75.86623467549671
+Banganga,mobile_snatching,20,medium,Synthetic_RealPattern,1,2023-02-17,22.694553659387108,75.86478756236919
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,0,2023-01-17,22.695495173909393,75.86390735532554
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,0,2024-04-12,22.691898008053155,75.86852821579693
+Banganga,bike_theft,21,medium,Synthetic_RealPattern,1,2024-12-06,22.693336549781858,75.86532400972717
+Banganga,theft,22,medium,Synthetic_RealPattern,0,2023-06-12,22.691727256650918,75.86672964541468
+Banganga,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-09-14,22.69632600804798,75.86344331780548
+Banganga,pickpocket,21,medium,Synthetic_RealPattern,1,2023-02-23,22.69606435603812,75.86551353819796
+Banganga,bike_theft,22,medium,Synthetic_RealPattern,0,2024-12-17,22.69063656086821,75.86276522031922
+Banganga,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-12-21,22.694633451035095,75.86563273070746
+Banganga,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-05-03,22.695951489904495,75.86838410444271
+Banganga,pickpocket,21,medium,Synthetic_RealPattern,0,2024-06-15,22.691483452070763,75.86490524027792
+Banganga,theft,20,medium,Synthetic_RealPattern,0,2024-12-13,22.693807671383315,75.86283397607545
+Banganga,bike_theft,23,medium,Synthetic_RealPattern,0,2024-12-11,22.69589292978553,75.86278573474551
+Banganga,pickpocket,20,medium,Synthetic_RealPattern,0,2023-08-23,22.690603675871515,75.86492792055968
+Banganga,theft,20,medium,Synthetic_RealPattern,0,2023-04-16,22.69458452160348,75.86356014961878
+Banganga,pickpocket,22,medium,Synthetic_RealPattern,0,2023-05-21,22.692184094044237,75.86274011257797
+Banganga,mobile_snatching,21,medium,Synthetic_RealPattern,1,2023-03-12,22.69594637717226,75.8671372816837
+Banganga,theft,21,medium,Synthetic_RealPattern,1,2024-03-26,22.696226349470994,75.8653511380533
+Banganga,bike_theft,21,medium,Synthetic_RealPattern,0,2024-10-05,22.69606559893468,75.86433546863184
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,0,2023-08-11,22.693245285299945,75.8680004990981
+Banganga,pickpocket,21,medium,Synthetic_RealPattern,0,2023-05-07,22.695572255905937,75.8632968337612
+Banganga,bike_theft,23,medium,Synthetic_RealPattern,0,2023-11-19,22.69546729639121,75.86833551297373
+Banganga,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-10-22,22.69231460283946,75.86448380030427
+Banganga,mobile_snatching,22,medium,Synthetic_RealPattern,1,2024-12-08,22.695373492844904,75.86793042203385
+Banganga,bike_theft,22,medium,Synthetic_RealPattern,1,2023-07-30,22.690622045808293,75.86621765725887
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,0,2023-10-30,22.693977619270893,75.86756024415845
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,0,2024-01-31,22.691780053023727,75.86850407897926
+Banganga,mobile_snatching,23,medium,Synthetic_RealPattern,1,2024-10-15,22.691123401314663,75.86433043262691
+Banganga,theft,20,medium,Synthetic_RealPattern,0,2024-01-05,22.690861719209774,75.86836681291244
+Banganga,pickpocket,23,medium,Synthetic_RealPattern,0,2024-08-05,22.69457773265527,75.86493689136941
+Banganga,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-04-27,22.69243924978261,75.86491307142842
+Banganga,theft,20,medium,Synthetic_RealPattern,0,2023-01-15,22.694748600629172,75.86464232262553
+Banganga,pickpocket,20,medium,Synthetic_RealPattern,1,2023-03-03,22.690792138044795,75.86584844564409
+Banganga,pickpocket,22,medium,Synthetic_RealPattern,0,2024-10-05,22.692291742026985,75.86352487025907
+Pardeshipura,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-16,22.729136947754252,75.85372226891214
+Pardeshipura,bike_theft,21,medium,Synthetic_RealPattern,0,2024-07-04,22.730644338989034,75.85365022887446
+Pardeshipura,mobile_snatching,19,medium,Synthetic_RealPattern,1,2023-11-14,22.727812515017593,75.85497141087562
+Pardeshipura,theft,19,medium,Synthetic_RealPattern,0,2023-06-09,22.72965534825862,75.85540189977162
+Pardeshipura,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-10-11,22.731215866489418,75.85304264810186
+Pardeshipura,bike_theft,21,medium,Synthetic_RealPattern,0,2024-03-23,22.72959517912909,75.8522139994961
+Pardeshipura,pickpocket,19,medium,Synthetic_RealPattern,0,2023-03-30,22.72729775684852,75.8519560093839
+Pardeshipura,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-09-18,22.72604640468934,75.85156774302023
+Pardeshipura,bike_theft,21,medium,Synthetic_RealPattern,0,2024-11-04,22.731120593243404,75.85074588549318
+Pardeshipura,bike_theft,19,medium,Synthetic_RealPattern,1,2024-12-25,22.726027616465103,75.852454687873
+Pardeshipura,pickpocket,19,medium,Synthetic_RealPattern,0,2023-06-17,22.731148210036103,75.85202148615278
+Pardeshipura,theft,21,medium,Synthetic_RealPattern,0,2024-06-13,22.72907362280416,75.85619850431519
+Pardeshipura,theft,20,medium,Synthetic_RealPattern,1,2023-05-10,22.731534406191077,75.85374625295749
+Pardeshipura,theft,19,medium,Synthetic_RealPattern,0,2023-01-31,22.730692699414643,75.85248366223418
+Pardeshipura,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-06-20,22.7318876046632,75.85388280560595
+Pardeshipura,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-08-13,22.72800427089271,75.85123518020806
+Pardeshipura,theft,20,medium,Synthetic_RealPattern,0,2024-06-07,22.730503129733584,75.85306426249521
+Pardeshipura,bike_theft,20,medium,Synthetic_RealPattern,0,2024-08-03,22.728311585481656,75.85415740592852
+Pardeshipura,mobile_snatching,19,medium,Synthetic_RealPattern,1,2023-09-19,22.72877925372182,75.85333338699076
+Pardeshipura,bike_theft,21,medium,Synthetic_RealPattern,1,2023-04-29,22.72966503277931,75.85281067280393
+Pardeshipura,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-01-03,22.731142062685116,75.85636309033339
+Pardeshipura,pickpocket,19,medium,Synthetic_RealPattern,0,2023-02-17,22.731804500815194,75.85568188857289
+Pardeshipura,bike_theft,20,medium,Synthetic_RealPattern,0,2023-06-03,22.730509640483188,75.85414043574895
+Pardeshipura,pickpocket,21,medium,Synthetic_RealPattern,0,2024-11-02,22.728406600693003,75.8538162641671
+Pardeshipura,pickpocket,20,medium,Synthetic_RealPattern,1,2023-09-12,22.728428142013662,75.85412396287894
+Pardeshipura,mobile_snatching,20,medium,Synthetic_RealPattern,1,2023-10-05,22.730325493809534,75.85160787264692
+Pardeshipura,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-05-03,22.72733266287461,75.85277082645958
+Pardeshipura,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-06-12,22.72656284467879,75.85063675719734
+Pardeshipura,theft,19,medium,Synthetic_RealPattern,0,2024-04-21,22.728027732945844,75.85325327622492
+Pardeshipura,pickpocket,20,medium,Synthetic_RealPattern,0,2023-03-30,22.727623433949923,75.85365814750374
+Pardeshipura,theft,20,medium,Synthetic_RealPattern,1,2023-07-25,22.727677848722735,75.85176649841661
+Pardeshipura,bike_theft,20,medium,Synthetic_RealPattern,0,2024-09-29,22.727301646506298,75.85618417308298
+Pardeshipura,pickpocket,20,medium,Synthetic_RealPattern,0,2024-08-28,22.726152559137816,75.85585672766561
+Pardeshipura,bike_theft,21,medium,Synthetic_RealPattern,0,2024-07-13,22.7260072436084,75.85473285941274
+Pardeshipura,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-02-24,22.731826334338415,75.85360031977258
+Musakhedi,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-12-21,22.712966638802417,75.87561981495789
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,1,2024-11-04,22.712705959882957,75.87118391406294
+Musakhedi,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-11-11,22.71447788369616,75.87514305876566
+Musakhedi,pickpocket,22,medium,Synthetic_RealPattern,0,2023-09-01,22.71170952332719,75.8711489248838
+Musakhedi,theft,20,medium,Synthetic_RealPattern,0,2023-05-26,22.716099767103703,75.8751652639753
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,1,2023-08-26,22.715118070086493,75.87205460540952
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-04-14,22.710936466013873,75.87566254348611
+Musakhedi,bike_theft,20,medium,Synthetic_RealPattern,1,2024-06-01,22.71290548465471,75.87606425256295
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-03-18,22.715674709845374,75.87129277581643
+Musakhedi,bike_theft,22,medium,Synthetic_RealPattern,0,2023-05-14,22.71606839213375,75.8731760536304
+Musakhedi,pickpocket,21,medium,Synthetic_RealPattern,1,2023-11-19,22.7132044090675,75.87628592426898
+Musakhedi,theft,22,medium,Synthetic_RealPattern,0,2023-12-01,22.714080468335265,75.87330044461584
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-08-28,22.711402203676553,75.87558128513508
+Musakhedi,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-08-21,22.71634701175682,75.87393238913279
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,0,2023-06-18,22.711790030208302,75.87265197944753
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-21,22.716056390644813,75.87211470133316
+Musakhedi,pickpocket,21,medium,Synthetic_RealPattern,0,2023-08-01,22.714297879893955,75.87161933854652
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-09-29,22.71404642076927,75.87497078914826
+Musakhedi,theft,20,medium,Synthetic_RealPattern,1,2024-12-03,22.7134761310661,75.87271924304095
+Musakhedi,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-09-09,22.711784018870308,75.87346765277321
+Musakhedi,mobile_snatching,21,medium,Synthetic_RealPattern,1,2023-06-01,22.711459168192032,75.87335395288001
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,1,2023-12-31,22.71172291725442,75.8738636741754
+Musakhedi,theft,20,medium,Synthetic_RealPattern,0,2024-11-24,22.711518629572865,75.87559346287375
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,0,2023-02-01,22.7150775068414,75.87628443606151
+Musakhedi,bike_theft,22,medium,Synthetic_RealPattern,0,2024-07-17,22.712500751555,75.87284550525145
+Musakhedi,bike_theft,21,medium,Synthetic_RealPattern,0,2023-04-15,22.71074705605938,75.87536511353264
+Musakhedi,bike_theft,20,medium,Synthetic_RealPattern,0,2023-03-05,22.716214615780846,75.87498716676794
+Musakhedi,theft,20,medium,Synthetic_RealPattern,1,2024-02-15,22.71570271530978,75.87384117370874
+Musakhedi,mobile_snatching,22,medium,Synthetic_RealPattern,1,2024-10-22,22.715966513699172,75.87613628286168
+Musakhedi,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-09-23,22.71636944693588,75.87160284709317
+Musakhedi,pickpocket,20,medium,Synthetic_RealPattern,0,2023-07-22,22.711443371495317,75.87105558526186
+Musakhedi,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-12-06,22.712777452113414,75.87552377180174
+Musakhedi,bike_theft,21,medium,Synthetic_RealPattern,1,2023-02-21,22.714949430854226,75.8730348988998
+Musakhedi,pickpocket,21,medium,Synthetic_RealPattern,0,2024-02-09,22.714576123708323,75.87548181312525
+Musakhedi,pickpocket,21,medium,Synthetic_RealPattern,0,2024-11-30,22.711323375438038,75.87575854123118
+Siyaganj,bike_theft,16,medium,Synthetic_RealPattern,0,2023-08-08,22.723094998749943,75.85967474556172
+Siyaganj,bike_theft,16,medium,Synthetic_RealPattern,0,2024-04-01,22.71954664343102,75.86460078857792
+Siyaganj,bike_theft,21,medium,Synthetic_RealPattern,1,2024-09-26,22.719542905688936,75.86198991433223
+Siyaganj,pickpocket,16,medium,Synthetic_RealPattern,1,2024-05-25,22.72142184653736,75.86236259493403
+Siyaganj,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-03-04,22.72175763960905,75.86305955506657
+Siyaganj,pickpocket,20,medium,Synthetic_RealPattern,0,2023-05-21,22.721680517247027,75.86485829564039
+Siyaganj,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-09-13,22.718748921024385,75.85941469656659
+Siyaganj,pickpocket,16,medium,Synthetic_RealPattern,0,2024-05-06,22.72346476517578,75.86216106080991
+Siyaganj,theft,21,medium,Synthetic_RealPattern,0,2024-05-29,22.71979360025553,75.86342633225459
+Siyaganj,mobile_snatching,16,medium,Synthetic_RealPattern,0,2023-07-04,22.718977089527698,75.86363624174619
+Siyaganj,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-08-13,22.723532488479215,75.86345519458922
+Siyaganj,theft,14,medium,Synthetic_RealPattern,1,2024-04-28,22.723933908989377,75.86010661077646
+Siyaganj,mobile_snatching,15,medium,Synthetic_RealPattern,0,2023-06-13,22.72337276570359,75.86109637353023
+Siyaganj,mobile_snatching,15,medium,Synthetic_RealPattern,0,2023-09-30,22.72305709644835,75.86145229315251
+Siyaganj,theft,21,medium,Synthetic_RealPattern,0,2024-02-02,22.722131451883833,75.86412662324608
+Siyaganj,theft,15,medium,Synthetic_RealPattern,1,2023-08-31,22.721505144223656,75.8609725592345
+Siyaganj,mobile_snatching,16,medium,Synthetic_RealPattern,1,2024-08-28,22.718721920559467,75.86056422978321
+Siyaganj,bike_theft,16,medium,Synthetic_RealPattern,1,2024-08-04,22.720650719278424,75.86504468811424
+Siyaganj,theft,15,medium,Synthetic_RealPattern,0,2024-05-19,22.720436131102073,75.85935317971068
+Siyaganj,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-02-08,22.719758522702563,75.8652869251341
+Siyaganj,bike_theft,15,medium,Synthetic_RealPattern,0,2024-09-08,22.72254052068213,75.86336092779315
+Siyaganj,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-05-04,22.721175254410472,75.8642708157967
+Siyaganj,bike_theft,21,medium,Synthetic_RealPattern,0,2023-07-26,22.718686277295447,75.86106771637809
+Siyaganj,mobile_snatching,15,medium,Synthetic_RealPattern,0,2023-11-28,22.719521099211697,75.85938589166601
+Siyaganj,bike_theft,15,medium,Synthetic_RealPattern,0,2024-08-23,22.72229955258196,75.86372721711138
+Siyaganj,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-01-09,22.71865678515694,75.864304867582
+Siyaganj,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-08-23,22.723307241484292,75.86374285679173
+Siyaganj,bike_theft,16,medium,Synthetic_RealPattern,0,2023-11-27,22.721170879162084,75.86015710172381
+Siyaganj,pickpocket,20,medium,Synthetic_RealPattern,1,2024-10-16,22.72108351946396,75.86382056753355
+Siyaganj,theft,16,medium,Synthetic_RealPattern,0,2023-06-28,22.72175444670796,75.86391353669265
+Siyaganj,pickpocket,21,medium,Synthetic_RealPattern,0,2023-06-29,22.72314808579555,75.86325124309403
+Siyaganj,bike_theft,16,medium,Synthetic_RealPattern,1,2023-05-11,22.720286855247412,75.86389669559678
+Siyaganj,pickpocket,14,medium,Synthetic_RealPattern,1,2024-12-19,22.722268096915354,75.86437552863808
+Siyaganj,theft,14,medium,Synthetic_RealPattern,1,2023-07-06,22.721594391783974,75.86298162468543
+Siyaganj,mobile_snatching,15,medium,Synthetic_RealPattern,0,2024-10-16,22.719802169621016,75.85983162828383
+Navlakha,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-12-06,22.71787177991813,75.868825766858
+Navlakha,bike_theft,21,medium,Synthetic_RealPattern,1,2023-11-24,22.71738455612964,75.86636589600802
+Navlakha,theft,19,medium,Synthetic_RealPattern,0,2024-12-26,22.716550711007947,75.8683452581862
+Navlakha,bike_theft,19,medium,Synthetic_RealPattern,0,2023-09-29,22.717703490374564,75.86834263893475
+Navlakha,theft,19,medium,Synthetic_RealPattern,0,2023-12-25,22.71780376520576,75.86629605906484
+Navlakha,pickpocket,19,medium,Synthetic_RealPattern,0,2023-02-19,22.716850177860287,75.86799292320381
+Navlakha,pickpocket,22,medium,Synthetic_RealPattern,0,2023-06-20,22.71762207997018,75.86656598859274
+Navlakha,pickpocket,22,medium,Synthetic_RealPattern,0,2023-12-26,22.716784828770013,75.87074941126005
+Navlakha,bike_theft,22,medium,Synthetic_RealPattern,0,2024-08-14,22.71668084463056,75.87158612815578
+Navlakha,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-03-17,22.716311668269288,75.86633389885155
+Navlakha,theft,19,medium,Synthetic_RealPattern,0,2023-11-23,22.717116299837343,75.87163069124375
+Navlakha,bike_theft,19,medium,Synthetic_RealPattern,0,2023-12-17,22.713551630631756,75.86903545959602
+Navlakha,mobile_snatching,20,medium,Synthetic_RealPattern,0,2023-03-18,22.717885224555193,75.86769739406772
+Navlakha,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-12-22,22.71783106116647,75.86636117245165
+Navlakha,pickpocket,20,medium,Synthetic_RealPattern,0,2024-09-13,22.712775483698206,75.86890374560842
+Navlakha,theft,19,medium,Synthetic_RealPattern,0,2023-04-14,22.717554900503387,75.87066709326695
+Navlakha,theft,20,medium,Synthetic_RealPattern,1,2024-02-24,22.71337321920484,75.8701425188636
+Navlakha,bike_theft,21,medium,Synthetic_RealPattern,0,2023-11-01,22.714610713125552,75.86620135606879
+Navlakha,pickpocket,19,medium,Synthetic_RealPattern,0,2024-02-07,22.717061049537747,75.86633741101221
+Navlakha,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-01-05,22.713564559376287,75.8683172396958
+Navlakha,pickpocket,19,medium,Synthetic_RealPattern,0,2023-10-29,22.717507802144713,75.86767174296429
+Navlakha,bike_theft,19,medium,Synthetic_RealPattern,0,2023-01-27,22.717592805067746,75.86729430593833
+Navlakha,pickpocket,21,medium,Synthetic_RealPattern,0,2023-03-25,22.715644806402562,75.86758602699345
+Navlakha,pickpocket,21,medium,Synthetic_RealPattern,0,2024-02-12,22.7126383152303,75.87072089645977
+Navlakha,pickpocket,21,medium,Synthetic_RealPattern,0,2023-04-04,22.71432222879905,75.87147536832178
+Navlakha,theft,21,medium,Synthetic_RealPattern,0,2024-01-26,22.716301561510253,75.86833061616716
+Navlakha,theft,22,medium,Synthetic_RealPattern,0,2023-02-15,22.718487117068165,75.8713366660128
+Navlakha,bike_theft,22,medium,Synthetic_RealPattern,0,2023-09-27,22.7163908811621,75.86782897420748
+Navlakha,mobile_snatching,19,medium,Synthetic_RealPattern,0,2023-06-04,22.714158821486382,75.86875862191806
+Navlakha,pickpocket,21,medium,Synthetic_RealPattern,1,2024-07-08,22.716404034218595,75.86725617398689
+Navlakha,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-07-20,22.715839912278295,75.86974285625305
+Navlakha,pickpocket,22,medium,Synthetic_RealPattern,1,2024-07-02,22.717279072370907,75.87177388669105
+Navlakha,theft,20,medium,Synthetic_RealPattern,0,2024-05-02,22.71324188383296,75.86952095857626
+Navlakha,bike_theft,22,medium,Synthetic_RealPattern,0,2023-02-05,22.717166167415012,75.86804688450468
+Navlakha,bike_theft,22,medium,Synthetic_RealPattern,0,2023-06-27,22.715847599472056,75.86978690467593
+Tejaji Nagar,mobile_snatching,8,medium,Synthetic_RealPattern,0,2023-05-10,22.696177952023156,75.83223752407079
+Tejaji Nagar,pickpocket,7,medium,Synthetic_RealPattern,0,2024-11-30,22.692451232996234,75.8368319544816
+Tejaji Nagar,theft,8,medium,Synthetic_RealPattern,0,2024-09-01,22.694195731358803,75.83451850370469
+Tejaji Nagar,pickpocket,7,medium,Synthetic_RealPattern,1,2023-03-31,22.69599216863306,75.83419609845224
+Tejaji Nagar,theft,20,medium,Synthetic_RealPattern,0,2024-07-19,22.691015058367945,75.83501518873072
+Tejaji Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-04-14,22.69602337092342,75.83524870317675
+Tejaji Nagar,pickpocket,21,medium,Synthetic_RealPattern,0,2024-08-24,22.694527314333804,75.83193065483736
+Tejaji Nagar,bike_theft,20,medium,Synthetic_RealPattern,1,2023-06-03,22.690807022354633,75.83559570332734
+Tejaji Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-08-19,22.692205781401682,75.8329515900819
+Tejaji Nagar,theft,21,medium,Synthetic_RealPattern,1,2023-04-14,22.69464903253187,75.83578371579505
+Tejaji Nagar,theft,9,medium,Synthetic_RealPattern,0,2024-02-25,22.690804103608812,75.83643520876632
+Tejaji Nagar,pickpocket,20,medium,Synthetic_RealPattern,0,2024-08-08,22.69389302276106,75.83632375104533
+Tejaji Nagar,pickpocket,8,medium,Synthetic_RealPattern,0,2023-10-10,22.69247529834172,75.83481500580446
+Tejaji Nagar,pickpocket,21,medium,Synthetic_RealPattern,0,2024-09-15,22.694125493106604,75.83462101935388
+Tejaji Nagar,bike_theft,20,medium,Synthetic_RealPattern,0,2023-12-06,22.690674452202874,75.83235725576804
+Tejaji Nagar,theft,20,medium,Synthetic_RealPattern,0,2023-10-03,22.695629220836913,75.83615207690242
+Tejaji Nagar,theft,9,medium,Synthetic_RealPattern,0,2023-11-07,22.696240933815066,75.83312845628268
+Tejaji Nagar,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-12-13,22.696213267131714,75.83448017253691
+Tejaji Nagar,pickpocket,8,medium,Synthetic_RealPattern,0,2023-11-04,22.69489791099046,75.83320564455757
+Tejaji Nagar,mobile_snatching,9,medium,Synthetic_RealPattern,0,2024-03-02,22.691180517440785,75.832302970178
+Tejaji Nagar,pickpocket,20,medium,Synthetic_RealPattern,1,2023-08-05,22.694949579175574,75.83527734618136
+Tejaji Nagar,theft,20,medium,Synthetic_RealPattern,0,2024-06-12,22.690547521498754,75.83182599220895
+Tejaji Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-06-12,22.690532741309173,75.83599187140476
+Tejaji Nagar,bike_theft,21,medium,Synthetic_RealPattern,1,2024-02-18,22.6923416613149,75.83340552077158
+Tejaji Nagar,bike_theft,21,medium,Synthetic_RealPattern,0,2023-01-30,22.69333185914243,75.83150080815803
+Tejaji Nagar,bike_theft,8,medium,Synthetic_RealPattern,0,2023-03-01,22.695022444506847,75.83456677483542
+Tejaji Nagar,theft,20,medium,Synthetic_RealPattern,1,2023-02-21,22.69449977225964,75.83178111145116
+Tejaji Nagar,theft,8,medium,Synthetic_RealPattern,0,2023-10-08,22.693075416238262,75.83315701734693
+Tejaji Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-11,22.69204175999769,75.83574185892473
+Tejaji Nagar,theft,7,medium,Synthetic_RealPattern,0,2023-09-05,22.696382747000946,75.83187613772974
+Tejaji Nagar,bike_theft,21,medium,Synthetic_RealPattern,0,2024-04-01,22.692957087813415,75.83653603095414
+Tejaji Nagar,theft,21,medium,Synthetic_RealPattern,0,2024-07-18,22.693108322145978,75.83152291953596
+Tejaji Nagar,mobile_snatching,8,medium,Synthetic_RealPattern,0,2023-09-22,22.69138174292715,75.83298094321522
+Tejaji Nagar,mobile_snatching,7,medium,Synthetic_RealPattern,0,2024-01-31,22.6951688572925,75.83594542433691
+Tejaji Nagar,bike_theft,21,medium,Synthetic_RealPattern,1,2023-08-08,22.69456209335469,75.83339762089838
+Annapurna Road,bike_theft,20,medium,Synthetic_RealPattern,0,2024-11-24,22.695824617676735,75.8758113543284
+Annapurna Road,mobile_snatching,22,medium,Synthetic_RealPattern,1,2024-02-24,22.694994286273698,75.87736140351281
+Annapurna Road,bike_theft,20,medium,Synthetic_RealPattern,1,2024-04-30,22.69858299581245,75.87682235971832
+Annapurna Road,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-09-07,22.69842706728569,75.88025627141297
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,1,2024-09-14,22.69613955716199,75.87708008750552
+Annapurna Road,theft,22,medium,Synthetic_RealPattern,0,2024-10-20,22.700205181373505,75.87993359483066
+Annapurna Road,pickpocket,21,medium,Synthetic_RealPattern,0,2023-12-24,22.695406347350687,75.88055123286887
+Annapurna Road,theft,20,medium,Synthetic_RealPattern,1,2024-04-22,22.697094008806257,75.87780290451747
+Annapurna Road,pickpocket,22,medium,Synthetic_RealPattern,1,2024-09-30,22.700161695521007,75.88065965886314
+Annapurna Road,theft,20,medium,Synthetic_RealPattern,1,2023-01-08,22.69701836390156,75.87746390832379
+Annapurna Road,theft,22,medium,Synthetic_RealPattern,0,2024-08-31,22.698331155685985,75.88098447049894
+Annapurna Road,pickpocket,22,medium,Synthetic_RealPattern,0,2023-04-21,22.696885566387778,75.87573573714717
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,0,2023-10-11,22.696145291214094,75.87932211559902
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,0,2024-11-02,22.70040386588776,75.87816288424276
+Annapurna Road,bike_theft,20,medium,Synthetic_RealPattern,0,2024-06-13,22.69695600403789,75.87752589283274
+Annapurna Road,theft,22,medium,Synthetic_RealPattern,1,2024-02-18,22.699864595222078,75.8789962712725
+Annapurna Road,pickpocket,20,medium,Synthetic_RealPattern,0,2023-01-27,22.695879727635347,75.87942314254981
+Annapurna Road,pickpocket,21,medium,Synthetic_RealPattern,0,2024-03-04,22.69577862822415,75.87522617961791
+Annapurna Road,bike_theft,22,medium,Synthetic_RealPattern,0,2023-02-06,22.69468680449731,75.87620171853249
+Annapurna Road,bike_theft,22,medium,Synthetic_RealPattern,1,2024-12-31,22.698410000952258,75.87947827630381
+Annapurna Road,pickpocket,22,medium,Synthetic_RealPattern,1,2024-10-15,22.696711158062342,75.87919831248148
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,0,2024-06-03,22.69968614949904,75.88099628503078
+Annapurna Road,bike_theft,22,medium,Synthetic_RealPattern,0,2024-07-25,22.697339259440152,75.87976622674151
+Annapurna Road,bike_theft,20,medium,Synthetic_RealPattern,1,2024-04-27,22.70030916056749,75.8809046362464
+Annapurna Road,bike_theft,21,medium,Synthetic_RealPattern,1,2024-07-26,22.69561315309422,75.87941524300922
+Annapurna Road,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-11-01,22.699711739007736,75.87698831325184
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,0,2023-08-17,22.699159581116753,75.87583218953351
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,1,2024-01-16,22.699125531067867,75.87989094318007
+Annapurna Road,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-04-19,22.699568699368704,75.87906489532887
+Annapurna Road,mobile_snatching,20,medium,Synthetic_RealPattern,0,2024-10-11,22.69906614394566,75.87548911607436
+Annapurna Road,mobile_snatching,20,medium,Synthetic_RealPattern,1,2024-05-27,22.69825732192979,75.87736030279541
+Annapurna Road,theft,21,medium,Synthetic_RealPattern,0,2024-06-26,22.695287469266095,75.88094079889291
+Annapurna Road,bike_theft,20,medium,Synthetic_RealPattern,0,2023-06-04,22.69469515707695,75.87820240687427
+Annapurna Road,pickpocket,21,medium,Synthetic_RealPattern,0,2024-02-24,22.700025087086896,75.87779637481613
+Annapurna Road,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-07-04,22.698199901887126,75.87794619763096
+Bhanwarkuan,bike_theft,20,medium,Synthetic_RealPattern,0,2024-10-08,22.682979223745857,75.86275329634404
+Bhanwarkuan,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-03-01,22.681089134109076,75.86371224302519
+Bhanwarkuan,bike_theft,20,medium,Synthetic_RealPattern,1,2023-08-03,22.678903849133775,75.86371887953592
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-05-16,22.678951114753215,75.86181413012113
+Bhanwarkuan,pickpocket,21,medium,Synthetic_RealPattern,0,2024-03-20,22.682313391723373,75.86610540577111
+Bhanwarkuan,pickpocket,20,medium,Synthetic_RealPattern,0,2024-05-03,22.680781835369398,75.86399902659143
+Bhanwarkuan,bike_theft,19,medium,Synthetic_RealPattern,1,2024-06-30,22.6794031483602,75.8664330793209
+Bhanwarkuan,theft,20,medium,Synthetic_RealPattern,1,2023-01-15,22.68114956728045,75.86660208800673
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,1,2023-01-19,22.67858525362245,75.8627719643282
+Bhanwarkuan,bike_theft,21,medium,Synthetic_RealPattern,1,2023-09-12,22.681691828411488,75.86544412089303
+Bhanwarkuan,bike_theft,20,medium,Synthetic_RealPattern,0,2023-11-16,22.67981396042661,75.86433369082498
+Bhanwarkuan,theft,20,medium,Synthetic_RealPattern,0,2024-05-30,22.682985354603822,75.86678094042753
+Bhanwarkuan,theft,19,medium,Synthetic_RealPattern,0,2023-02-16,22.68006217175354,75.86279444407506
+Bhanwarkuan,theft,20,medium,Synthetic_RealPattern,0,2024-06-16,22.68093132089449,75.86556687920186
+Bhanwarkuan,theft,21,medium,Synthetic_RealPattern,0,2023-05-18,22.67826972323945,75.86514651273352
+Bhanwarkuan,bike_theft,20,medium,Synthetic_RealPattern,0,2023-07-12,22.678634681326766,75.86327180886543
+Bhanwarkuan,bike_theft,19,medium,Synthetic_RealPattern,1,2023-08-22,22.68055496133844,75.86231960542192
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,1,2023-08-05,22.681079633008302,75.86540983856287
+Bhanwarkuan,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-06-23,22.681800123288717,75.86593158474881
+Bhanwarkuan,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-10-28,22.679949975472255,75.8633937640626
+Bhanwarkuan,mobile_snatching,21,medium,Synthetic_RealPattern,1,2023-09-19,22.68236989131676,75.86536899562414
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,1,2024-11-08,22.683360734383136,75.86387078544567
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,0,2023-02-19,22.68287910593336,75.8657792412997
+Bhanwarkuan,mobile_snatching,20,medium,Synthetic_RealPattern,1,2024-01-25,22.67843771295209,75.86269529164937
+Bhanwarkuan,bike_theft,20,medium,Synthetic_RealPattern,0,2024-04-30,22.681083041683546,75.86684129001583
+Bhanwarkuan,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-12-03,22.67882958107051,75.8632244575788
+Bhanwarkuan,mobile_snatching,20,medium,Synthetic_RealPattern,1,2024-11-08,22.679652270095175,75.86370671592654
+Bhanwarkuan,bike_theft,21,medium,Synthetic_RealPattern,0,2023-10-04,22.684119975559604,75.86184855171248
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,0,2024-06-07,22.679054973257408,75.86216907327393
+Bhanwarkuan,pickpocket,19,medium,Synthetic_RealPattern,0,2023-04-19,22.68119332892071,75.86459517141628
+Bhanwarkuan,theft,21,medium,Synthetic_RealPattern,1,2023-07-24,22.68190893440591,75.86310555606038
+Bhanwarkuan,pickpocket,19,medium,Synthetic_RealPattern,0,2024-01-02,22.682414789823266,75.86651288135447
+Bhanwarkuan,pickpocket,19,medium,Synthetic_RealPattern,0,2023-02-10,22.681557892100923,75.86158816033193
+Bhanwarkuan,theft,21,medium,Synthetic_RealPattern,0,2024-05-07,22.678258625084517,75.86377456429204
+Bhanwarkuan,mobile_snatching,19,medium,Synthetic_RealPattern,0,2023-01-14,22.680158767849463,75.86352407328062
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2024-11-16,22.689206269860307,75.8702159657855
+Sudama Nagar,mobile_snatching,20,medium,Synthetic_RealPattern,1,2024-06-07,22.68662719899487,75.87084621039399
+Sudama Nagar,theft,22,medium,Synthetic_RealPattern,1,2023-04-14,22.688203761587253,75.87258185604951
+Sudama Nagar,theft,20,medium,Synthetic_RealPattern,0,2024-04-12,22.68629921865275,75.87305718750667
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-02-21,22.68657147098293,75.87252573848352
+Sudama Nagar,theft,20,medium,Synthetic_RealPattern,1,2023-10-25,22.68848153965721,75.87328562607047
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-03-12,22.686896294524256,75.87367079004943
+Sudama Nagar,bike_theft,20,medium,Synthetic_RealPattern,1,2023-01-10,22.68950524508957,75.87015954292676
+Sudama Nagar,theft,22,medium,Synthetic_RealPattern,0,2023-06-24,22.690236789814822,75.87288457095671
+Sudama Nagar,theft,21,medium,Synthetic_RealPattern,1,2024-09-28,22.690903520194656,75.87588099544531
+Sudama Nagar,theft,20,medium,Synthetic_RealPattern,0,2024-01-17,22.68730090146547,75.87321419368077
+Sudama Nagar,pickpocket,20,medium,Synthetic_RealPattern,0,2024-02-15,22.687104895493555,75.87416525360474
+Sudama Nagar,pickpocket,21,medium,Synthetic_RealPattern,0,2024-01-30,22.686727407042007,75.8719711831475
+Sudama Nagar,mobile_snatching,22,medium,Synthetic_RealPattern,0,2023-06-20,22.689918581497263,75.87474394826891
+Sudama Nagar,bike_theft,22,medium,Synthetic_RealPattern,0,2023-03-02,22.69033885435892,75.87473752889125
+Sudama Nagar,pickpocket,21,medium,Synthetic_RealPattern,1,2024-08-27,22.686289516868953,75.87322777628592
+Sudama Nagar,bike_theft,22,medium,Synthetic_RealPattern,1,2024-03-24,22.69171727347746,75.87595608293967
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-01-03,22.68641182770191,75.87085330128858
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2023-05-14,22.689347778011808,75.87020168598933
+Sudama Nagar,pickpocket,20,medium,Synthetic_RealPattern,0,2024-02-26,22.690354363116704,75.87472094927054
+Sudama Nagar,theft,20,medium,Synthetic_RealPattern,0,2023-09-25,22.691325814742477,75.87494293322418
+Sudama Nagar,bike_theft,22,medium,Synthetic_RealPattern,1,2024-11-25,22.690384521592794,75.87082124337472
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2024-06-15,22.690910368498418,75.87169349699775
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2023-09-12,22.68813670115526,75.8702053141802
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2024-11-23,22.690988950682478,75.87185985166468
+Sudama Nagar,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-09-19,22.68658068907831,75.8747388512435
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2023-06-10,22.691468899936364,75.87320776316626
+Sudama Nagar,pickpocket,20,medium,Synthetic_RealPattern,0,2023-03-18,22.689385554256923,75.872188573559
+Sudama Nagar,theft,20,medium,Synthetic_RealPattern,0,2023-12-05,22.691003786619774,75.87233043576943
+Sudama Nagar,pickpocket,22,medium,Synthetic_RealPattern,0,2023-08-17,22.68881390970711,75.87010812175428
+Sudama Nagar,pickpocket,20,medium,Synthetic_RealPattern,0,2023-03-22,22.68996146617118,75.87189880316538
+Sudama Nagar,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-04-03,22.689258415965618,75.87397875244982
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,0,2023-11-20,22.69048953713053,75.87594516666289
+Sudama Nagar,mobile_snatching,22,medium,Synthetic_RealPattern,0,2024-10-31,22.686589779892184,75.8751823649619
+Sudama Nagar,mobile_snatching,21,medium,Synthetic_RealPattern,1,2024-02-27,22.686462112503943,75.87024156978786
+Vijay Nagar,pickpocket,18,low,Synthetic_RealPattern,1,2023-01-01,22.732782619404063,75.88909136362805
+Vijay Nagar,bike_theft,18,low,Synthetic_RealPattern,1,2024-10-14,22.73225726808068,75.8883991904798
+Vijay Nagar,bike_theft,18,low,Synthetic_RealPattern,0,2023-07-31,22.736530701399555,75.88838225674144
+Vijay Nagar,pickpocket,17,low,Synthetic_RealPattern,0,2023-02-25,22.73261528392415,75.88644797455403
+Vijay Nagar,bike_theft,17,low,Synthetic_RealPattern,1,2024-07-27,22.737155191534917,75.88608803175774
+Vijay Nagar,bike_theft,18,low,Synthetic_RealPattern,0,2024-01-08,22.733321374750627,75.885517494373
+Vijay Nagar,pickpocket,16,low,Synthetic_RealPattern,0,2024-11-05,22.73239270749413,75.88409416915373
+Vijay Nagar,bike_theft,17,low,Synthetic_RealPattern,1,2023-12-30,22.736038191042855,75.88506941218097
+Vijay Nagar,pickpocket,18,low,Synthetic_RealPattern,0,2024-01-18,22.735252246653005,75.88517962180987
+Vijay Nagar,pickpocket,16,low,Synthetic_RealPattern,1,2024-05-19,22.73428917429872,75.88660446241826
+MG Road,pickpocket,19,low,Synthetic_RealPattern,0,2024-02-24,22.719932181305627,75.88138466643959
+MG Road,pickpocket,19,low,Synthetic_RealPattern,0,2023-07-20,22.720915210669634,75.87974285897039
+MG Road,bike_theft,18,low,Synthetic_RealPattern,0,2023-08-09,22.717970728447987,75.87724706669668
+MG Road,pickpocket,19,low,Synthetic_RealPattern,0,2023-12-13,22.72257800349634,75.88264673880593
+MG Road,pickpocket,17,low,Synthetic_RealPattern,0,2024-10-10,22.72244875897288,75.88255634591457
+MG Road,pickpocket,18,low,Synthetic_RealPattern,0,2024-11-05,22.72050195411808,75.8816111372589
+MG Road,pickpocket,17,low,Synthetic_RealPattern,1,2024-06-27,22.717797254705573,75.88284796740939
+MG Road,bike_theft,18,low,Synthetic_RealPattern,1,2024-08-22,22.72068136945459,75.8801668939968
+MG Road,pickpocket,17,low,Synthetic_RealPattern,1,2024-12-09,22.717033190453876,75.88267661010153
+MG Road,bike_theft,17,low,Synthetic_RealPattern,1,2023-04-17,22.716783915013234,75.8773536302437
+Palasia,bike_theft,15,low,Synthetic_RealPattern,1,2024-09-12,22.71824609733107,75.87639408448958
+Palasia,pickpocket,14,low,Synthetic_RealPattern,0,2024-03-04,22.719475737740435,75.87555228760804
+Palasia,bike_theft,14,low,Synthetic_RealPattern,0,2023-12-18,22.72190963503245,75.87537499850481
+Palasia,bike_theft,13,low,Synthetic_RealPattern,1,2023-05-22,22.721063014418597,75.87504481769336
+Palasia,bike_theft,15,low,Synthetic_RealPattern,1,2024-06-08,22.7211562391272,75.8779344818494
+Palasia,pickpocket,15,low,Synthetic_RealPattern,0,2023-11-18,22.71925296000669,75.87888793113449
+Palasia,bike_theft,13,low,Synthetic_RealPattern,1,2024-10-01,22.71877560995528,75.87766979039652
+Palasia,pickpocket,14,low,Synthetic_RealPattern,1,2024-11-19,22.718926232577907,75.87508177625753
+Palasia,bike_theft,15,low,Synthetic_RealPattern,1,2023-07-02,22.722625897382414,75.8790667426196
+Palasia,bike_theft,13,low,Synthetic_RealPattern,1,2023-12-27,22.716940655148473,75.87801572824299
+Scheme 54,bike_theft,12,low,Synthetic_RealPattern,1,2024-11-14,22.743302188976735,75.86662899423676
+Scheme 54,bike_theft,12,low,Synthetic_RealPattern,0,2024-06-30,22.741572052451435,75.86834478177322
+Scheme 54,pickpocket,10,low,Synthetic_RealPattern,0,2024-06-19,22.740731692515137,75.86585942987546
+Scheme 54,pickpocket,11,low,Synthetic_RealPattern,1,2023-05-29,22.74245154596249,75.86637115325097
+Scheme 54,bike_theft,10,low,Synthetic_RealPattern,0,2023-07-24,22.741020013648548,75.8698049150588
+Scheme 54,bike_theft,11,low,Synthetic_RealPattern,0,2024-11-30,22.74334053942849,75.86604302703402
+Scheme 54,bike_theft,10,low,Synthetic_RealPattern,0,2024-12-08,22.743504211184067,75.86711992960895
+Scheme 54,bike_theft,12,low,Synthetic_RealPattern,0,2023-02-03,22.74063032556124,75.86964084682438
+Scheme 54,pickpocket,10,low,Synthetic_RealPattern,1,2024-09-22,22.73976096678341,75.8685463281016
+Scheme 54,bike_theft,12,low,Synthetic_RealPattern,0,2024-07-28,22.74165410197156,75.86467321935699
+Sapna Sangeeta,pickpocket,18,low,Synthetic_RealPattern,0,2024-12-10,22.7297741800737,75.87788381826567
+Sapna Sangeeta,bike_theft,18,low,Synthetic_RealPattern,1,2024-03-02,22.725563973134033,75.87704704954463
+Sapna Sangeeta,bike_theft,17,low,Synthetic_RealPattern,0,2023-01-14,22.72803779950138,75.88078553074138
+Sapna Sangeeta,bike_theft,18,low,Synthetic_RealPattern,1,2023-08-19,22.728089361320556,75.87968604055246
+Sapna Sangeeta,bike_theft,17,low,Synthetic_RealPattern,0,2023-07-18,22.728698678134492,75.87780564910541
+Sapna Sangeeta,pickpocket,17,low,Synthetic_RealPattern,0,2024-11-30,22.72508940611076,75.88274760472633
+Sapna Sangeeta,pickpocket,17,low,Synthetic_RealPattern,0,2024-06-10,22.728594949788093,75.88017795834367
+Sapna Sangeeta,bike_theft,17,low,Synthetic_RealPattern,1,2024-03-14,22.729754195123995,75.87845135976467
+Sapna Sangeeta,pickpocket,18,low,Synthetic_RealPattern,1,2023-05-14,22.72537809865322,75.88000362142692
+Sapna Sangeeta,bike_theft,18,low,Synthetic_RealPattern,0,2023-01-06,22.72572525994954,75.8810777219964
+Chappan Dukan,pickpocket,20,low,Synthetic_RealPattern,0,2023-02-10,22.73402837056425,75.87975743530784
+Chappan Dukan,bike_theft,20,low,Synthetic_RealPattern,0,2024-10-02,22.729285861716257,75.88094822289028
+Chappan Dukan,bike_theft,21,low,Synthetic_RealPattern,1,2023-03-16,22.73332631056022,75.8841417929453
+Chappan Dukan,pickpocket,20,low,Synthetic_RealPattern,1,2023-07-08,22.73115366713869,75.88205798922242
+Chappan Dukan,bike_theft,20,low,Synthetic_RealPattern,0,2024-03-01,22.72968338644642,75.88257946285219
+Chappan Dukan,pickpocket,21,low,Synthetic_RealPattern,1,2023-08-15,22.733424499407636,75.88189689601326
+Chappan Dukan,bike_theft,21,low,Synthetic_RealPattern,0,2023-12-06,22.730871831530017,75.87956339965586
+Chappan Dukan,bike_theft,20,low,Synthetic_RealPattern,1,2024-09-25,22.73128890412358,75.88029449867892
+Chappan Dukan,bike_theft,20,low,Synthetic_RealPattern,0,2023-04-28,22.7303554002164,75.88197324983246
+Chappan Dukan,pickpocket,20,low,Synthetic_RealPattern,0,2024-10-19,22.73175770510861,75.88055511279245
+Geeta Bhawan,pickpocket,11,low,Synthetic_RealPattern,0,2024-01-26,22.72218114323551,75.87929987417196
+Geeta Bhawan,bike_theft,11,low,Synthetic_RealPattern,0,2024-07-07,22.72354648921991,75.88406189798431
+Geeta Bhawan,bike_theft,11,low,Synthetic_RealPattern,0,2024-06-10,22.72701647393401,75.884887155175
+Geeta Bhawan,pickpocket,10,low,Synthetic_RealPattern,0,2023-10-31,22.722748800596207,75.88375885724399
+Geeta Bhawan,pickpocket,10,low,Synthetic_RealPattern,1,2023-04-09,22.725140419987248,75.88412270953023
+Geeta Bhawan,pickpocket,10,low,Synthetic_RealPattern,0,2024-10-03,22.723151140385347,75.88045186278191
+Geeta Bhawan,bike_theft,10,low,Synthetic_RealPattern,0,2024-12-02,22.72584083875412,75.88476376185308
+Geeta Bhawan,bike_theft,10,low,Synthetic_RealPattern,1,2024-07-04,22.72198524196431,75.88018155422672
+Geeta Bhawan,pickpocket,10,low,Synthetic_RealPattern,0,2024-12-03,22.72701892627047,75.88470857886217
+Geeta Bhawan,pickpocket,11,low,Synthetic_RealPattern,0,2023-12-06,22.7239227372483,75.8849689157638
+South Tukoganj,pickpocket,14,low,Synthetic_RealPattern,0,2023-02-25,22.71321630278008,75.88387033683448
+South Tukoganj,pickpocket,16,low,Synthetic_RealPattern,0,2023-03-14,22.71224098048398,75.88548686239075
+South Tukoganj,bike_theft,15,low,Synthetic_RealPattern,1,2024-02-02,22.712818547430526,75.8830172386774
+South Tukoganj,bike_theft,15,low,Synthetic_RealPattern,0,2024-03-19,22.714918643691338,75.88115725069905
+South Tukoganj,pickpocket,15,low,Synthetic_RealPattern,1,2024-11-20,22.71382201905859,75.882221975314
+South Tukoganj,pickpocket,14,low,Synthetic_RealPattern,1,2024-10-18,22.716773300195296,75.88316136561227
+South Tukoganj,pickpocket,16,low,Synthetic_RealPattern,0,2023-02-16,22.714385325141972,75.88003848937215
+South Tukoganj,bike_theft,16,low,Synthetic_RealPattern,1,2023-04-19,22.713292285635525,75.8833340595877
+South Tukoganj,pickpocket,15,low,Synthetic_RealPattern,0,2024-09-13,22.715502869919625,75.88548706702058
+South Tukoganj,bike_theft,15,low,Synthetic_RealPattern,1,2024-01-26,22.716040663301314,75.8807406458987

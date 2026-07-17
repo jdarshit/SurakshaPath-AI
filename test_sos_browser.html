@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurakshaPath AI - SOS Alert Tester</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.connected {
+            background: #4CAF50;
+            animation: pulse-green 2s infinite;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .alert-log {
+            background: #f5f5f5;
+            border-radius: 6px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .alert-message {
+            background: white;
+            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            animation: slideRight 0.3s ease-out;
+            font-size: 0.9em;
+        }
+
+        .alert-message.error {
+            border-left-color: #f44336;
+            color: #f44336;
+        }
+
+        .alert-message.sos {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+            color: #e65100;
+            font-weight: 600;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: #4CAF50;
+            animation: pulse-green 2s infinite;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-box .label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes pulse-green {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+            }
+        }
+
+        .help-text {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+        }
+
+        .success {
+            color: #4CAF50;
+        }
+
+        .error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 SurakshaPath AI - SOS Alert Tester</h1>
+            <p>Real-time Emergency Alert System</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- WebSocket Listener Panel -->
+            <div class="card">
+                <h2>
+                    <span class="status-indicator" id="wsIndicator"></span>
+                    WebSocket Listener
+                </h2>
+
+                <div class="connection-status">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Attempting to connect...</span>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number" id="alertCount">0</div>
+                        <div class="label">Alerts Received</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="connectedCount">0</div>
+                        <div class="label">Clients Connected</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="uptime">0s</div>
+                        <div class="label">Listen Time</div>
+                    </div>
+                </div>
+
+                <button id="toggleListener" style="margin-top: 15px;">
+                    Start Listening
+                </button>
+
+                <div class="alert-log" id="alertLog">
+                    <div class="alert-message" style="border-left-color: #2196F3;">
+                        ℹ️ Waiting for alerts...
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    💡 <strong>Tip:</strong> Click "Start Listening" to begin receiving real-time SOS alerts via WebSocket.
+                </div>
+            </div>
+
+            <!-- SOS Trigger Panel -->
+            <div class="card">
+                <h2>🚀 Trigger SOS Alert</h2>
+
+                <div class="form-group">
+                    <label for="userId">User ID (optional)</label>
+                    <input type="number" id="userId" value="4" placeholder="Leave empty for anonymous">
+                </div>
+
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input type="number" id="latitude" value="22.7196" step="0.0001" placeholder="22.7196">
+                </div>
+
+                <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input type="number" id="longitude" value="75.8577" step="0.0001" placeholder="75.8577">
+                </div>
+
+                <div class="form-group">
+                    <label for="source">Source</label>
+                    <select id="source">
+                        <option value="app">📱 Mobile App</option>
+                        <option value="iot">🔌 IoT Device</option>
+                    </select>
+                </div>
+
+                <button id="triggerBtn">🚨 Send SOS Alert</button>
+
+                <div class="alert-log" id="triggerLog">
+                    <div class="alert-message" style="border-left-color: #2196F3;">
+                        ℹ️ Alert triggers will appear here
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    💡 <strong>Tip:</strong> Fill in the location details and click "Send SOS Alert" to trigger an emergency. The alert will be broadcasted to all connected listeners.
+                </div>
+            </div>
+
+            <!-- Active Alerts Panel -->
+            <div class="card full-width">
+                <h2>📋 Active SOS Alerts</h2>
+
+                <button id="refreshBtn" style="margin-bottom: 15px;">🔄 Refresh Active Alerts</button>
+
+                <div class="alert-log" id="activeAlertsLog">
+                    <div class="alert-message" style="border-left-color: #2196F3;">
+                        ℹ️ Click "Refresh" to load active alerts from server
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    💡 <strong>Tip:</strong> Shows all currently active SOS alerts from the database, sorted by newest first.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const WS_URL = 'ws://localhost:8000/ws/sos';
+        const API_URL = 'http://localhost:8000';
+
+        // State
+        let ws = null;
+        let isListening = false;
+        let alertsReceived = 0;
+        let startTime = null;
+        let uptimeInterval = null;
+
+        // DOM Elements
+        const toggleListener = document.getElementById('toggleListener');
+        const triggerBtn = document.getElementById('triggerBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const alertLog = document.getElementById('alertLog');
+        const triggerLog = document.getElementById('triggerLog');
+        const activeAlertsLog = document.getElementById('activeAlertsLog');
+        const alertCount = document.getElementById('alertCount');
+        const uptime = document.getElementById('uptime');
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                ws = new WebSocket(WS_URL);
+
+                ws.onopen = () => {
+                    console.log('✅ WebSocket connected');
+                    statusDot.classList.add('connected');
+                    statusText.textContent = '✅ Connected';
+                    toggleListener.textContent = '⏹️ Stop Listening';
+                    isListening = true;
+                    startTime = Date.now();
+                    startUptimeTimer();
+                    addLog(alertLog, '✅ WebSocket connected - waiting for alerts', 'success');
+                };
+
+                ws.onmessage = (event) => {
+                    const message = JSON.parse(event.data);
+                    
+                    if (message.type === 'SOS_ALERT') {
+                        alertsReceived++;
+                        alertCount.textContent = alertsReceived;
+
+                        const alert = message.data;
+                        const logText = `
+                            🚨 ALERT #${alert.id}
+                            📍 Location: ${alert.lat}, ${alert.lng}
+                            👤 User: ${alert.user_id || 'Anonymous'}
+                            📱 Source: ${alert.source}
+                            ⏰ Time: ${new Date(alert.triggered_at).toLocaleTimeString()}
+                        `;
+                        addLog(alertLog, logText.trim(), 'sos');
+
+                        // Trigger browser notification if supported
+                        if ('Notification' in window && Notification.permission === 'granted') {
+                            new Notification('🚨 Emergency SOS Alert!', {
+                                body: `Alert at ${alert.lat}, ${alert.lng} (${alert.source})`,
+                                tag: 'sos-alert',
+                                requireInteraction: true
+                            });
+                        }
+
+                        // Play sound if possible
+                        playAlertSound();
+                    }
+                };
+
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    statusDot.classList.remove('connected');
+                    statusText.textContent = '❌ Connection error';
+                    addLog(alertLog, '❌ WebSocket error', 'error');
+                };
+
+                ws.onclose = () => {
+                    console.log('WebSocket disconnected');
+                    statusDot.classList.remove('connected');
+                    statusText.textContent = '❌ Disconnected';
+                    toggleListener.textContent = '▶️ Start Listening';
+                    isListening = false;
+                    stopUptimeTimer();
+                    addLog(alertLog, '❌ WebSocket disconnected', 'error');
+                };
+
+            } catch (error) {
+                console.error('Error connecting to WebSocket:', error);
+                addLog(alertLog, `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Disconnect WebSocket
+        function disconnectWebSocket() {
+            if (ws) {
+                ws.close();
+                stopUptimeTimer();
+            }
+        }
+
+        // Toggle listener
+        toggleListener.addEventListener('click', () => {
+            if (isListening) {
+                disconnectWebSocket();
+            } else {
+                connectWebSocket();
+            }
+        });
+
+        // Trigger SOS alert
+        triggerBtn.addEventListener('click', async () => {
+            const userId = document.getElementById('userId').value || null;
+            const lat = parseFloat(document.getElementById('latitude').value);
+            const lng = parseFloat(document.getElementById('longitude').value);
+            const source = document.getElementById('source').value;
+
+            if (!lat || !lng) {
+                addLog(triggerLog, '❌ Please enter latitude and longitude', 'error');
+                return;
+            }
+
+            triggerBtn.disabled = true;
+            triggerBtn.textContent = '⏳ Sending...';
+
+            try {
+                const response = await fetch(`${API_URL}/sos/trigger`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_id: userId ? parseInt(userId) : null,
+                        lat: lat,
+                        lng: lng,
+                        source: source
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const alert = data.alert;
+                    const logText = `
+                        ✅ ALERT SENT #${alert.id}
+                        📍 Location: ${alert.lat}, ${alert.lng}
+                        👤 User: ${alert.user_id || 'Anonymous'}
+                        📱 Source: ${alert.source}
+                        ✓ Broadcast to all connected clients
+                    `;
+                    addLog(triggerLog, logText.trim(), 'success');
+                } else {
+                    const error = await response.json();
+                    addLog(triggerLog, `❌ Error: ${error.detail || 'Failed to trigger alert'}`, 'error');
+                }
+            } catch (error) {
+                addLog(triggerLog, `❌ Error: ${error.message}`, 'error');
+            } finally {
+                triggerBtn.disabled = false;
+                triggerBtn.textContent = '🚨 Send SOS Alert';
+            }
+        });
+
+        // Refresh active alerts
+        refreshBtn.addEventListener('click', async () => {
+            refreshBtn.disabled = true;
+            refreshBtn.textContent = '⏳ Loading...';
+
+            try {
+                const response = await fetch(`${API_URL}/sos/active`);
+                if (response.ok) {
+                    const data = await response.json();
+                    activeAlertsLog.innerHTML = '';
+
+                    if (data.count === 0) {
+                        addLog(activeAlertsLog, 'ℹ️ No active alerts', 'info');
+                    } else {
+                        data.alerts.forEach(alert => {
+                            const logText = `
+                                Alert #${alert.id}
+                                📍 ${alert.lat}, ${alert.lng}
+                                👤 User: ${alert.user_id || 'Anonymous'}
+                                📱 Source: ${alert.source}
+                                Status: ${alert.status}
+                            `;
+                            addLog(activeAlertsLog, logText.trim(), 'sos');
+                        });
+                    }
+                } else {
+                    addLog(activeAlertsLog, '❌ Failed to load alerts', 'error');
+                }
+            } catch (error) {
+                addLog(activeAlertsLog, `❌ Error: ${error.message}`, 'error');
+            } finally {
+                refreshBtn.disabled = false;
+                refreshBtn.textContent = '🔄 Refresh Active Alerts';
+            }
+        });
+
+        // Utility functions
+        function addLog(container, message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `alert-message ${type}`;
+            div.textContent = message;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+
+            // Keep only last 50 messages
+            const messages = container.querySelectorAll('.alert-message');
+            if (messages.length > 50) {
+                messages[0].remove();
+            }
+        }
+
+        function startUptimeTimer() {
+            uptimeInterval = setInterval(() => {
+                if (startTime) {
+                    const seconds = Math.floor((Date.now() - startTime) / 1000);
+                    uptime.textContent = `${seconds}s`;
+                }
+            }, 1000);
+        }
+
+        function stopUptimeTimer() {
+            if (uptimeInterval) {
+                clearInterval(uptimeInterval);
+                uptimeInterval = null;
+            }
+        }
+
+        function playAlertSound() {
+            // Create a simple beep using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                console.log('Audio not available');
+            }
+        }
+
+        // Request notification permission
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+
+        // Auto-connect on load
+        window.addEventListener('load', () => {
+            connectWebSocket();
+        });
+
+        // Cleanup on unload
+        window.addEventListener('beforeunload', () => {
+            if (ws) {
+                ws.close();
+            }
+        });
+
+        // Initial log
+        setTimeout(() => {
+            addLog(triggerLog, 'ℹ️ Ready to trigger alerts', 'info');
+        }, 500);
+    </script>
+</body>
+</html>
