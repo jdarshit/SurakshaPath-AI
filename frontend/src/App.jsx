@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import SplashScreen from './components/SplashScreen';
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
+import BottomNav from './components/BottomNav';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './context/AuthContext';
 import { triggerSosAlert } from './services/sos';
@@ -12,6 +12,8 @@ import { getCurrentLocation, startGPS, stopGPS } from './services/gpsService';
 const Home = lazy(() => import('./pages/Home'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const Profile = lazy(() => import('./pages/Profile'));
+const Alerts = lazy(() => import('./pages/Alerts'));
+const Settings = lazy(() => import('./pages/Settings'));
 const AuthPage = lazy(() => import('./pages/Auth'));
 
 const SOS_HOLD_DURATION_MS = 3000;
@@ -284,17 +286,20 @@ export default function App() {
                   <ProtectedRoute>
                     <>
                       <Navbar />
-                      <div className="flex w-full flex-1 flex-col overflow-hidden px-4 pb-4 pt-2">
+                      <div className="flex w-full flex-1 flex-col overflow-hidden px-4 pb-20 pt-2">
                         <main className="flex min-h-[calc(100vh-6rem)] flex-1 flex-col gap-4">
                           <Suspense fallback={<AppLoadingState />}>
                             <Routes>
                               <Route path="/" element={<Home />} />
+                              <Route path="/alerts" element={<Alerts />} />
+                              <Route path="/settings" element={<Settings />} />
                               <Route path="/profile" element={<Profile />} />
                               <Route path="*" element={<Navigate to="/" replace />} />
                             </Routes>
                           </Suspense>
                         </main>
                       </div>
+                      <BottomNav />
                     </>
                   </ProtectedRoute>
                 }
@@ -303,7 +308,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="fixed bottom-[30px] right-[30px] z-[9999] h-20 w-20">
+      <div className="fixed bottom-[86px] right-[20px] z-[9999] h-20 w-20">
         {sosStatus === 'pressing' && (
           <svg className="pointer-events-none absolute inset-0 h-20 w-20 -rotate-90" viewBox="0 0 80 80">
             <circle cx="40" cy="40" r={SOS_RING_RADIUS} fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="4" />
@@ -337,7 +342,7 @@ export default function App() {
         </button>
       </div>
       {sosMessage ? (
-        <div className="fixed bottom-32 right-6 z-50 max-w-xs rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-sm text-slate-100 shadow-xl backdrop-blur-xl">
+        <div className="fixed bottom-[180px] right-6 z-50 max-w-xs rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-sm text-slate-100 shadow-xl backdrop-blur-xl">
           <div className="font-semibold text-cyan-300">{sosStatus === 'error' ? 'SOS error' : sosStatus === 'success' ? 'SOS sent' : 'SOS status'}</div>
           <p className="mt-2 leading-relaxed">{sosMessage}</p>
         </div>

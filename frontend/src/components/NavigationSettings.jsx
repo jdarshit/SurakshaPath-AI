@@ -28,7 +28,7 @@ export default function NavigationSettings({ settings, onChange }) {
   return (
     <div className="glass-card flex flex-col gap-3">
       <div className="border-b border-[var(--card-border)] pb-2">
-        <h3 className="glass-card-header !mb-0">AI Settings</h3>
+        <h3 className="glass-card-header !mb-0">Safety Preferences</h3>
         <p className="mt-1 text-[9px] text-[var(--text-secondary)]">Tune alert behaviors and smart rerouting.</p>
       </div>
 

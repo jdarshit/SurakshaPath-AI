@@ -60,7 +60,7 @@ export default function IncidentPanel({ incidents = [], isLoading = false }) {
 
       {/* Incidents List */}
       {!isLoading && sortedIncidents.length > 0 && (
-        <div className="flex flex-col gap-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
+        <div className="flex flex-col gap-2 max-h-[calc(100vh-16rem)] overflow-y-auto custom-scrollbar pr-1">
           {sortedIncidents.map((incident) => {
             const severityKey = normalizeSeverityKey(incident?.severity);
             const severity = severityKey.toLowerCase();

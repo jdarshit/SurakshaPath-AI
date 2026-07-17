@@ -1,20 +1,15 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import MapView from '../components/MapView';
 import LocationAutocomplete from '../components/LocationAutocomplete';
 import RouteCard from '../components/RouteCard';
 import RouteComparisonPanel from '../components/RouteComparisonPanel';
 import LiveNavigationPanel from '../components/LiveNavigationPanel';
 import SmartAlertToast from '../components/SmartAlertToast';
-import NavigationSettings from '../components/NavigationSettings';
 import IncidentReportModal from '../components/IncidentReportModal';
-import IncidentPanel from '../components/IncidentPanel';
-import TestApiPanel from '../components/TestApiPanel';
 import { useSafeRoute } from '../hooks/useSafeRoute';
 import { useToast, ToastContainer } from '../hooks/useToast.jsx';
-import { testPrediction } from '../services/prediction';
-import api from '../api/client';
+import { useIncidents } from '../context/IncidentsContext';
+import { useNavigationSettings } from '../context/NavigationSettingsContext';
 import {
   buildTripSummary,
   calculateHeading,
@@ -174,6 +169,8 @@ function findNearestRouteProgress(position, coordinates = []) {
 export default function Home() {
   const { loading, error, data, findRoute, setData } = useSafeRoute();
   const { toasts, showToast, removeToast } = useToast();
+  const { incidents, addIncident } = useIncidents();
+  const { settings: navigationSettings } = useNavigationSettings();
 
   const [source, setSource] = useState({ name: 'Indore Railway Station', lat: 22.6307, lng: 75.8394, address: 'Indore Railway Station' });
   const [sourceText, setSourceText] = useState('Indore Railway Station');
@@ -184,28 +181,14 @@ export default function Home() {
   const [locationMessage, setLocationMessage] = useState('');
   const [locateMeLoading, setLocateMeLoading] = useState(false);
   const [showMapClickFallback, setShowMapClickFallback] = useState(false);
-  const [testLoading, setTestLoading] = useState(false);
-  const [testResult, setTestResult] = useState(null);
-  const [testError, setTestError] = useState('');
   const [activeRouteId, setActiveRouteId] = useState(null);
-  const [incidents, setIncidents] = useState([]);
-  const [incidentsLoading, setIncidentsLoading] = useState(false);
   const [isIncidentModalOpen, setIsIncidentModalOpen] = useState(false);
   const [incidentLocation, setIncidentLocation] = useState(null);
-  const [navigationSettings, setNavigationSettings] = useState({
-    voiceAlerts: true,
-    alertSensitivity: 'balanced',
-    autoReroute: true,
-    nightSafetyPriority: true,
-  });
+  const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(true);
   const [smartAlerts, setSmartAlerts] = useState([]);
   const [isLiveMode, setIsLiveMode] = useState(true);
   const routes = data?.routes || [];
   const activeRoute = useMemo(() => routes.find((route) => route.id === activeRouteId) || routes[0], [routes, activeRouteId]);
-  const areasCoveredCount = useMemo(
-    () => new Set(incidents.map((incident) => incident?.area_name).filter(Boolean)).size,
-    [incidents]
-  );
   const [navigation, setNavigation] = useState({
     status: 'idle',
     routeId: null,
@@ -728,24 +711,6 @@ export default function Home() {
   const navigateRoute = useMemo(() => routes.find((route) => route.id === navigation.routeId) || activeRoute, [routes, navigation.routeId, activeRoute]);
 
   useEffect(() => {
-    const fetchIncidents = async () => {
-      setIncidentsLoading(true);
-      try {
-        const response = await api.get('/incidents/recent?skip=0&limit=50');
-        setIncidents(response.data?.incidents || []);
-      } catch (err) {
-        console.error('Failed to fetch incidents:', err);
-      } finally {
-        setIncidentsLoading(false);
-      }
-    };
-
-    fetchIncidents();
-    const interval = setInterval(fetchIncidents, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     startWatchingLocation();
 
     // Subscribe to GPS location updates
@@ -1000,19 +965,6 @@ export default function Home() {
     showToast('Navigation stopped.', 'info', 2200);
   };
 
-  const handleTestPrediction = async () => {
-    setTestLoading(true);
-    setTestError('');
-    try {
-      const response = await testPrediction();
-      setTestResult(response);
-    } catch (err) {
-      setTestError(err?.response?.data?.message || err?.message || 'Test request failed');
-    } finally {
-      setTestLoading(false);
-    }
-  };
-
   const handleMapContextMenu = (location) => {
     setIncidentLocation(location);
     setIsIncidentModalOpen(true);
@@ -1022,9 +974,7 @@ export default function Home() {
     // Refresh map markers/heatmap immediately instead of waiting for the
     // next 10s poll. The modal itself already shows a success toast with
     // the AI-detected severity, so we don't duplicate it here.
-    if (newIncident) {
-      setIncidents((prev) => [newIncident, ...prev]);
-    }
+    addIncident(newIncident);
     setIsIncidentModalOpen(false);
   };
 
@@ -1033,103 +983,15 @@ export default function Home() {
     setIncidentLocation(null);
   };
 
-  const systemStats = [
-    { label: 'AI Engine Online', value: 'Active' },
-    { label: 'Routes Active', value: `${routes.length || 0}` },
-    { label: 'Incident Feed Live', value: `${incidents.length}` },
-    { label: 'Safety Monitoring', value: 'Enabled' },
-  ];
-
   return (
     <>
       <SmartAlertToast alerts={smartAlerts} onDismiss={dismissSmartAlert} />
 
-      <div className="grid h-[calc(100vh-70px)] w-full gap-2 lg:grid-cols-[280px_1fr_320px]">
-        
-        {/* LEFT PANEL */}
-        <section className="flex flex-col gap-2 overflow-y-auto overflow-x-hidden pr-2 pb-10 left-panel-text-fix">
-          
-          {/* Card 1: Route Input */}
-          <div className="glass-card flex flex-col gap-4">
-            <h3 className="glass-card-header !mb-0 truncate">Route Input</h3>
-            <div className="space-y-1">
-              <LocationAutocomplete label="Source" placeholder="Search source..." value={sourceText} onChange={handleSourceTextChange} onSelect={(location) => { cancelPendingLocateMe(); setSource(location); sourceEditedRef.current = true; }} showAccuracy={!!currentLocation} accuracy={currentLocation?.accuracy} />
-              <div className="flex flex-col gap-1">
-                <button
-                  type="button"
-                  onClick={handleUseCurrentLocation}
-                  disabled={locateMeLoading}
-                  className="flex w-full items-center gap-2 truncate text-left text-[11px] font-medium uppercase tracking-wider text-[var(--primary)] underline hover:opacity-80 disabled:cursor-wait disabled:opacity-60"
-                >
-                  {locateMeLoading ? (
-                    <>
-                      <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-[var(--primary)]/30 border-t-[var(--primary)]" />
-                      {locationMessage?.replace(/^📍|^📡/, '').trim() || 'Locating you...'}
-                    </>
-                  ) : (
-                    '📍 Use Current Location'
-                  )}
-                </button>
-                {currentLocation && !currentLocation.error && (
-                  <button type="button" onClick={handleRecenterToLocation} className="text-[11px] font-medium uppercase tracking-wider text-cyan-400 underline hover:opacity-80 truncate block w-full text-left">
-                    🔄 Recenter to My Location
-                  </button>
-                )}
-                {locationStatus === 'error' && locationMessage && (
-                  <p className="text-[11px] leading-snug text-rose-300">{locationMessage}</p>
-                )}
-                {showMapClickFallback && (
-                  <p className="text-[11px] leading-snug text-slate-400">
-                    📌 Ya map par tap karke source set karein <span className="text-slate-500">(or tap the map to set your source)</span>
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="space-y-1">
-              <LocationAutocomplete label="Destination" placeholder="Search destination..." value={destinationText} onChange={handleDestinationTextChange} onSelect={setDestination} />
-            </div>
-            <div className="mt-2 flex flex-col gap-2">
-              <button type="button" onClick={handleSearch} disabled={loading} className="btn-primary truncate">
-                {loading ? 'Analyzing...' : 'Find Safe Route'}
-              </button>
-              <button type="button" onClick={() => { setData(null); setActiveRouteId(null); }} className="btn-secondary truncate">
-                Reset
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2: Safety Legend */}
-          <div className="glass-card">
-            <h3 className="glass-card-header truncate">Safety Legend</h3>
-            <div className="flex flex-col gap-3 text-[13px]">
-              <div className="flex items-center gap-3 overflow-hidden"><div className="h-3 w-3 shrink-0 rounded-full bg-[var(--safe-green)] shadow-[0_0_8px_var(--safe-green)]"></div> <span className="text-[var(--text-secondary)] font-medium truncate">Safe Zone (70-100)</span></div>
-              <div className="flex items-center gap-3 overflow-hidden"><div className="h-3 w-3 shrink-0 rounded-full bg-[var(--medium-yellow)] shadow-[0_0_8px_var(--medium-yellow)]"></div> <span className="text-[var(--text-secondary)] font-medium truncate">Medium Zone (40-69)</span></div>
-              <div className="flex items-center gap-3 overflow-hidden"><div className="h-3 w-3 shrink-0 rounded-full bg-[var(--unsafe-red)] shadow-[0_0_8px_var(--unsafe-red)]"></div> <span className="text-[var(--text-secondary)] font-medium truncate">Unsafe Zone (0-39)</span></div>
-            </div>
-          </div>
-
-          {/* Card 3: Quick Stats */}
-          <div className="glass-card">
-            <h3 className="glass-card-header truncate">Quick Stats</h3>
-            <div className="flex flex-col gap-4">
-              <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Routes Analyzed</p>
-                <p className="mt-1 quick-stats-value font-bold text-white truncate">{routes.length}</p>
-              </div>
-              <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Incidents Reported Nearby</p>
-                <p className="mt-1 quick-stats-value font-bold truncate" style={{ color: 'var(--primary)' }}>{incidents.length}</p>
-              </div>
-              <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] truncate">Areas Covered</p>
-                <p className="mt-1 quick-stats-value font-bold text-[var(--safe-green)] truncate">{areasCoveredCount}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CENTER MAP */}
-        <section className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[0_0_20px_rgba(255,45,120,0.08)] h-full">
+      {/* Home is the hero experience: the map fills the screen, and every
+          control is a compact floating overlay on top of it (Google Maps
+          style) instead of permanent side columns. */}
+      <div className="relative h-[calc(100vh-70px-64px)] w-full overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[0_0_20px_rgba(255,45,120,0.08)]">
+        <div className="absolute inset-0">
           <MapView
             source={source}
             destination={destination}
@@ -1143,63 +1005,130 @@ export default function Home() {
             selectedSourceMarker={source}
             selectedDestinationMarker={destination}
           />
-        </section>
+        </div>
 
-        {/* RIGHT PANEL */}
-        <section className="flex flex-col gap-2 overflow-y-auto overflow-x-hidden pl-2 pb-24 right-panel-text-fix">
-          
-          {/* Card 1: Route Options */}
-          <div className="glass-card">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <h3 className="glass-card-header !mb-0">Route Options</h3>
-              {routes.length > 0 && (
-                <div className="rounded-full border border-[var(--primary)] bg-[rgba(255,45,120,0.1)] px-2 py-0.5 text-[10px] text-[var(--primary)]">{routes.length} routes</div>
+        {/* Top overlay: collapsible route input + (once searched) route
+            results, stacked in one scrollable column so it never fights
+            other corners for space. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] flex justify-center p-3">
+          <div className="pointer-events-auto flex max-h-[calc(100vh-70px-64px-1.5rem)] w-full max-w-md flex-col gap-2 overflow-y-auto custom-scrollbar">
+            {/* Route Input (collapsible) */}
+            <div className="glass-card flex flex-col gap-4">
+              <button
+                type="button"
+                onClick={() => setIsRouteCardExpanded((prev) => !prev)}
+                className="flex items-center justify-between gap-3 text-left"
+              >
+                <h3 className="glass-card-header !mb-0 truncate">
+                  {isRouteCardExpanded ? 'Plan a Safe Route' : `${sourceText || 'Source'} → ${destinationText || 'Destination'}`}
+                </h3>
+                <span className="shrink-0 text-xs text-[var(--text-secondary)]">{isRouteCardExpanded ? '▲' : '▼'}</span>
+              </button>
+
+              {isRouteCardExpanded && (
+                <>
+                  <div className="space-y-1">
+                    <LocationAutocomplete label="Source" placeholder="Search source..." value={sourceText} onChange={handleSourceTextChange} onSelect={(location) => { cancelPendingLocateMe(); setSource(location); sourceEditedRef.current = true; }} showAccuracy={!!currentLocation} accuracy={currentLocation?.accuracy} />
+                    <div className="flex flex-col gap-1">
+                      <button
+                        type="button"
+                        onClick={handleUseCurrentLocation}
+                        disabled={locateMeLoading}
+                        className="flex w-full items-center gap-2 truncate text-left text-[11px] font-medium uppercase tracking-wider text-[var(--primary)] underline hover:opacity-80 disabled:cursor-wait disabled:opacity-60"
+                      >
+                        {locateMeLoading ? (
+                          <>
+                            <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-[var(--primary)]/30 border-t-[var(--primary)]" />
+                            {locationMessage?.replace(/^📍|^📡/, '').trim() || 'Locating you...'}
+                          </>
+                        ) : (
+                          '📍 Use Current Location'
+                        )}
+                      </button>
+                      {currentLocation && !currentLocation.error && (
+                        <button type="button" onClick={handleRecenterToLocation} className="text-[11px] font-medium uppercase tracking-wider text-cyan-400 underline hover:opacity-80 truncate block w-full text-left">
+                          🔄 Recenter to My Location
+                        </button>
+                      )}
+                      {locationStatus === 'error' && locationMessage && (
+                        <p className="text-[11px] leading-snug text-rose-300">{locationMessage}</p>
+                      )}
+                      {showMapClickFallback && (
+                        <p className="text-[11px] leading-snug text-slate-400">
+                          📌 Ya map par tap karke source set karein <span className="text-slate-500">(or tap the map to set your source)</span>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <LocationAutocomplete label="Destination" placeholder="Search destination..." value={destinationText} onChange={handleDestinationTextChange} onSelect={setDestination} />
+                  </div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <button type="button" onClick={handleSearch} disabled={loading} className="btn-primary truncate">
+                      {loading ? 'Analyzing...' : 'Find Safe Route'}
+                    </button>
+                    <button type="button" onClick={() => { setData(null); setActiveRouteId(null); }} className="btn-secondary truncate">
+                      Reset
+                    </button>
+                  </div>
+                </>
               )}
             </div>
-            <div className="flex flex-col gap-3">
-              {routes.length > 0 ? (
-                routes.map((route, idx) => (
-                  <RouteCard
-                    key={route.id}
-                    route={route}
-                    active={route.id === activeRoute?.id}
-                    onClick={() => setActiveRouteId(route.id)}
-                    isRecommended={idx === 0}
-                  />
-                ))
-              ) : (
-                <p className="text-center text-[13px] text-[var(--text-secondary)]">{loading ? 'Analyzing route safety...' : 'Click "Find Safe Route" to see options'}</p>
-              )}
-            </div>
+
+            {/* Route results - only takes space once a search has run */}
+            {routes.length > 0 && (
+              <div className="glass-card">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <h3 className="glass-card-header !mb-0">Route Options</h3>
+                  <div className="rounded-full border border-[var(--primary)] bg-[rgba(255,45,120,0.1)] px-2 py-0.5 text-[10px] text-[var(--primary)]">{routes.length} routes</div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {routes.map((route, idx) => (
+                    <RouteCard
+                      key={route.id}
+                      route={route}
+                      active={route.id === activeRoute?.id}
+                      onClick={() => setActiveRouteId(route.id)}
+                      isRecommended={idx === 0}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <LiveNavigationPanel
+              navigation={navigation}
+              route={navigateRoute}
+              isLiveMode={isLiveMode}
+              onToggleLiveMode={setIsLiveMode}
+              onStart={() => startNavigation(navigateRoute)}
+              onPause={pauseNavigation}
+              onStop={stopNavigation}
+            />
+
+            {routes.length > 0 && (
+              <RouteComparisonPanel routes={routes} activeRouteId={activeRoute?.id} onSelectRoute={setActiveRouteId} />
+            )}
           </div>
+        </div>
 
-          {/* Card 2: Live Navigation */}
-          <LiveNavigationPanel
-            navigation={navigation}
-            route={navigateRoute}
-            isLiveMode={isLiveMode}
-            onToggleLiveMode={setIsLiveMode}
-            onStart={() => startNavigation(navigateRoute)}
-            onPause={pauseNavigation}
-            onStop={stopNavigation}
-          />
+        {/* Safety Legend - compact badge, top-right corner */}
+        <div className="pointer-events-none absolute right-3 top-3 z-[1200]">
+          <div className="glass-card pointer-events-auto flex flex-col gap-2 !p-3 text-[11px]">
+            <div className="flex items-center gap-2"><div className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--safe-green)] shadow-[0_0_6px_var(--safe-green)]" /><span className="text-[var(--text-secondary)] font-medium">Safe (70-100)</span></div>
+            <div className="flex items-center gap-2"><div className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--medium-yellow)] shadow-[0_0_6px_var(--medium-yellow)]" /><span className="text-[var(--text-secondary)] font-medium">Medium (40-69)</span></div>
+            <div className="flex items-center gap-2"><div className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--unsafe-red)] shadow-[0_0_6px_var(--unsafe-red)]" /><span className="text-[var(--text-secondary)] font-medium">Unsafe (0-39)</span></div>
+          </div>
+        </div>
 
-          {/* Explainability Panel */}
-          {routes.length > 0 && (
-             <RouteComparisonPanel routes={routes} activeRouteId={activeRoute?.id} onSelectRoute={setActiveRouteId} />
-          )}
-
-          {/* Card 3: Recent Incidents */}
-          <IncidentPanel incidents={incidents} isLoading={incidentsLoading} />
-
-          {/* Card 4: AI Settings */}
-          <NavigationSettings settings={navigationSettings} onChange={setNavigationSettings} />
-          
-          {/* Danger Button */}
-          <button type="button" onClick={() => setIsIncidentModalOpen(true)} className="btn-danger mt-2 w-full shrink-0">
-            🚨 Report Incident
-          </button>
-        </section>
+        {/* Report Incident - floating action button, bottom-left (SOS owns bottom-right globally) */}
+        <button
+          type="button"
+          onClick={() => setIsIncidentModalOpen(true)}
+          className="btn-danger pointer-events-auto absolute bottom-4 left-4 z-[1200] w-auto px-4 py-3 shadow-lg"
+        >
+          🚨 Report Incident
+        </button>
       </div>
 
       <IncidentReportModal isOpen={isIncidentModalOpen} onClose={handleIncidentModalClose} location={incidentLocation} onSuccess={handleIncidentReportSuccess} />

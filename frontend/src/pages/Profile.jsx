@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { getCurrentUser, updateGuardian } from '../services/auth';
 
 export default function Profile() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, logout } = useAuth();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     guardianName: '',
     guardianPhone: '',
@@ -49,6 +51,11 @@ export default function Profile() {
 
   const handleChange = (field, value) => {
     setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/auth');
   };
 
   const handleSubmit = async (event) => {
@@ -111,12 +118,21 @@ export default function Profile() {
               Keep your emergency contact details up to date so SOS alerts can reach your guardian immediately.
             </p>
           </div>
-          {connectionOk !== null && (
-            <div className="flex items-center gap-2 text-xs text-slate-500" title={connectionOk ? 'Connected' : 'Connection issue'}>
-              <span className={`h-2 w-2 rounded-full ${connectionOk ? 'bg-emerald-400' : 'bg-rose-400'}`} />
-              {connectionOk ? 'Connected' : 'Connection issue'}
-            </div>
-          )}
+          <div className="flex items-center gap-3">
+            {connectionOk !== null && (
+              <div className="flex items-center gap-2 text-xs text-slate-500" title={connectionOk ? 'Connected' : 'Connection issue'}>
+                <span className={`h-2 w-2 rounded-full ${connectionOk ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                {connectionOk ? 'Connected' : 'Connection issue'}
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-semibold text-[var(--primary)] transition hover:bg-[#FF2D7810]"
+            >
+              Log Out
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
