@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, Polyline, TileLayer, useMap, useMapEvent } from 'react-leaflet';
 import L from 'leaflet';
 import SafetyZoneLayer from './SafetyZoneLayer';
@@ -200,6 +200,29 @@ function MapLocationController({ currentLocation }) {
   return null;
 }
 
+// Auto-fits the map to the active route the moment navigation starts, so
+// the user always sees the route they're on instead of whatever the map
+// happened to be centered on. Fits once per navigation session (not on
+// every position tick) by tracking the transition into 'running'.
+function MapNavigationFitController({ status, routeCoordinates }) {
+  const map = useMap();
+  const hasFitRef = useRef(false);
+
+  useEffect(() => {
+    if (status === 'running' && !hasFitRef.current && routeCoordinates.length > 1) {
+      const bounds = L.latLngBounds(routeCoordinates);
+      map.fitBounds(bounds, { padding: [56, 56] });
+      hasFitRef.current = true;
+    }
+
+    if (status === 'idle' || status === 'stopped') {
+      hasFitRef.current = false;
+    }
+  }, [map, status, routeCoordinates]);
+
+  return null;
+}
+
 const currentLocationIcon = new L.divIcon({
   className: 'current-location-marker',
   html: `
@@ -319,6 +342,8 @@ function MapView({
         {navigation?.status !== 'running' && currentLocationLatLng && (
           <MapLocationController currentLocation={currentLocation} />
         )}
+
+        <MapNavigationFitController status={navigation?.status} routeCoordinates={routeCoordinates} />
 
 
 

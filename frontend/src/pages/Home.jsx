@@ -1106,16 +1106,6 @@ export default function Home() {
               </div>
             )}
 
-            <LiveNavigationPanel
-              navigation={navigation}
-              route={navigateRoute}
-              isLiveMode={isLiveMode}
-              onToggleLiveMode={setIsLiveMode}
-              onStart={() => startNavigation(navigateRoute)}
-              onPause={pauseNavigation}
-              onStop={stopNavigation}
-            />
-
             {routes.length > 0 && (
               <RouteComparisonPanel routes={routes} activeRouteId={activeRoute?.id} onSelectRoute={setActiveRouteId} />
             )}
@@ -1131,15 +1121,32 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Report Incident - floating action button, bottom-left (SOS owns bottom-right globally) */}
+        {/* Report Incident - floating action button. Moved to top-left
+            (mirroring the Safety Legend badge at top-right) because the
+            live navigation bar now docks along the whole bottom edge and
+            would otherwise sit directly under a bottom-anchored button. */}
         <button
           type="button"
           onClick={() => setIsIncidentModalOpen(true)}
-          className="btn-danger pointer-events-auto absolute bottom-4 left-4 z-[1200] w-auto px-4 py-3 shadow-lg"
+          className="btn-danger pointer-events-auto absolute left-3 top-3 z-[1200] w-auto px-4 py-3 shadow-lg"
         >
           🚨 Report Incident
         </button>
       </div>
+
+      {/* Live Navigation: a self-positioning fixed overlay (compact bar +
+          expandable sheet), not part of the floating column above - it
+          docks along the bottom edge instead of stacking with route
+          results. */}
+      <LiveNavigationPanel
+        navigation={navigation}
+        route={navigateRoute}
+        isLiveMode={isLiveMode}
+        onToggleLiveMode={setIsLiveMode}
+        onStart={() => startNavigation(navigateRoute)}
+        onPause={pauseNavigation}
+        onStop={stopNavigation}
+      />
 
       <IncidentReportModal isOpen={isIncidentModalOpen} onClose={handleIncidentModalClose} location={incidentLocation} onSuccess={handleIncidentReportSuccess} />
       <ToastContainer toasts={toasts} removeToast={removeToast} />
