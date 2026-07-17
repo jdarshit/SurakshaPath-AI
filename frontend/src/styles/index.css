@@ -129,13 +129,17 @@ body {
   width: 100%;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, box-shadow 0.2s;
   text-align: center;
   display: inline-block;
+  /* Primary call-to-action (Find Safe Route, Save, etc.) - the theme's
+     glow is reserved for this and the SOS button, not decorative cards. */
+  box-shadow: 0 0 24px rgba(255, 45, 120, 0.3);
 }
 
 .btn-primary:hover {
   opacity: 0.9;
+  box-shadow: 0 0 32px rgba(255, 45, 120, 0.4);
 }
 
 .btn-secondary {

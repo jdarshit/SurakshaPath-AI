@@ -26,6 +26,14 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY = 3000; // milliseconds
 const STALE_LOCATION_AGE = 60000; // 1 minute
 
+// Every GPS tick was re-rendering the map (and, during live navigation, the
+// whole navigation panel) up to twice a second. Real navigation apps update
+// position roughly once every 2-3s, snapping to sooner only on a real jump
+// in position - so notify listeners on whichever comes first: enough time
+// elapsed, or the position actually moved a meaningful distance.
+const GPS_NOTIFY_INTERVAL_MS = 2500;
+const GPS_NOTIFY_MIN_MOVEMENT_METERS = 20;
+
 /**
  * Calculate haversine distance between coordinates
  */
@@ -66,7 +74,8 @@ class GPSService {
     this.lastRequestTime = null;
     this.debugMode = false;
     this.deviceType = getDeviceType();
-    this.lastNotifyTime = 0; // Throttle notifications to max 1 per 500ms
+    this.lastNotifyTime = 0;
+    this.lastNotifiedLocation = null;
     // Once high-accuracy GPS times out / is unavailable (e.g. a laptop with
     // no GPS chip), stop asking for it and stick to WiFi/IP-based location.
     this.usingLowAccuracy = false;
@@ -115,16 +124,32 @@ class GPSService {
   }
 
   /**
-   * Notify all subscribers (throttled to max 1 per 500ms to reduce lag)
+   * Notify all subscribers, throttled to once every GPS_NOTIFY_INTERVAL_MS
+   * unless the position actually moved more than GPS_NOTIFY_MIN_MOVEMENT_METERS,
+   * or the location just transitioned to/from an error state - each GPS tick
+   * used to re-render the map (and, during live navigation, the whole
+   * navigation panel) up to twice a second even while standing still.
    */
   notifyListeners() {
     const now = Date.now();
-    // Skip if called too frequently - throttle to 500ms intervals
-    if (now - this.lastNotifyTime < 500) {
+    const current = this.currentLocation;
+    const previous = this.lastNotifiedLocation;
+
+    const statusChanged = Boolean(current?.error) !== Boolean(previous?.error) || current?.status !== previous?.status;
+    const distanceMoved = (!statusChanged && previous && current && !previous.error && !current.error)
+      ? haversineDistanceMeters(previous, current)
+      : Infinity;
+
+    const enoughTimePassed = now - this.lastNotifyTime >= GPS_NOTIFY_INTERVAL_MS;
+    const movedFarEnough = distanceMoved >= GPS_NOTIFY_MIN_MOVEMENT_METERS;
+
+    if (!statusChanged && !enoughTimePassed && !movedFarEnough) {
       return;
     }
+
     this.lastNotifyTime = now;
-    
+    this.lastNotifiedLocation = current;
+
     this.listeners.forEach((callback) => {
       try {
         callback(this.currentLocation);
@@ -156,6 +181,8 @@ class GPSService {
     this.retryCount = 0;
     this.bestAccuracy = Infinity;
     this.usingLowAccuracy = false;
+    this.lastNotifyTime = 0;
+    this.lastNotifiedLocation = null;
 
     // Request permission explicitly (required for HTTPS/secure contexts)
     navigator.geolocation.getCurrentPosition(

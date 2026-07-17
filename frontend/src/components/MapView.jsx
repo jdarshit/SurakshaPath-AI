@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { MapContainer, Marker, Popup, Polyline, TileLayer, useMap, useMapEvent } from 'react-leaflet';
 import L from 'leaflet';
 import SafetyZoneLayer from './SafetyZoneLayer';
@@ -6,6 +6,11 @@ import IncidentLayer from './IncidentLayer';
 import { calculateHeading } from '../services/navigation';
 
 const indore = [22.7196, 75.8577];
+// Stable references for default props - a `[]`/`() => {}` written directly
+// as a default parameter value is a NEW object every time the default
+// engages, which would defeat React.memo below.
+const EMPTY_ARRAY = [];
+const NOOP = () => {};
 
 const colorMap = {
   safe: '#22c55e',
@@ -207,16 +212,16 @@ const currentLocationIcon = new L.divIcon({
   iconAnchor: [17, 17],
 });
 
-export default function MapView({ 
-  source, 
-  destination, 
-  currentLocation = null, 
-  routes = [], 
-  activeRouteId = null, 
-  incidents = [], 
+function MapView({
+  source,
+  destination,
+  currentLocation = null,
+  routes = EMPTY_ARRAY,
+  activeRouteId = null,
+  incidents = EMPTY_ARRAY,
   onContextMenu,
   navigation = null,
-  onMapClick = () => {},
+  onMapClick = NOOP,
   selectedSourceMarker = null,
   selectedDestinationMarker = null,
 }) {
@@ -417,3 +422,9 @@ export default function MapView({
     </div>
   );
 }
+
+// The map (Leaflet + all its layers/markers/polylines) is the most
+// expensive thing on Home, and Home re-renders often (GPS updates, toasts,
+// live navigation ticks). Memoizing keeps MapView from re-rendering unless
+// one of its own props actually changed.
+export default memo(MapView);

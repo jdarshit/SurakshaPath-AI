@@ -22,11 +22,19 @@ export default function Alerts() {
       <div className="grid grid-cols-2 gap-3">
         <div className="glass-card !p-4">
           <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Incidents Reported Nearby</p>
-          <p className="mt-1 quick-stats-value font-bold text-white">{incidents.length}</p>
+          {incidentsLoading && incidents.length === 0 ? (
+            <div className="mt-1.5 h-5 w-10 animate-pulse rounded bg-white/10" />
+          ) : (
+            <p className="mt-1 quick-stats-value font-bold text-white">{incidents.length}</p>
+          )}
         </div>
         <div className="glass-card !p-4">
           <p className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">Areas Covered</p>
-          <p className="mt-1 quick-stats-value font-bold text-[var(--safe-green)]">{areasCoveredCount}</p>
+          {incidentsLoading && incidents.length === 0 ? (
+            <div className="mt-1.5 h-5 w-10 animate-pulse rounded bg-white/10" />
+          ) : (
+            <p className="mt-1 quick-stats-value font-bold text-[var(--safe-green)]">{areasCoveredCount}</p>
+          )}
         </div>
       </div>
 

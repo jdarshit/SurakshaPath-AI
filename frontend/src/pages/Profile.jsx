@@ -108,19 +108,19 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl rounded-[2rem] border border-white/10 bg-slate-950/80 p-6 shadow-[0_0_60px_rgba(7,89,133,0.25)] backdrop-blur-xl">
-        <div className="flex flex-col gap-3 border-b border-white/10 pb-4 text-white sm:flex-row sm:items-center sm:justify-between">
+    <div className="mx-auto w-full max-w-3xl px-4 py-6 text-slate-100">
+      <div className="glass-card !p-6">
+        <div className="flex flex-col gap-3 border-b border-[var(--card-border)] pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/80">Profile Settings</p>
-            <h1 className="mt-2 text-3xl font-semibold text-white">Emergency Guardian</h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-400">
+            <p className="glass-card-header !mb-0">Profile Settings</p>
+            <h1 className="mt-2 text-2xl font-semibold text-white">Emergency Guardian</h1>
+            <p className="mt-2 max-w-2xl text-sm text-[var(--text-secondary)]">
               Keep your emergency contact details up to date so SOS alerts can reach your guardian immediately.
             </p>
           </div>
           <div className="flex items-center gap-3">
             {connectionOk !== null && (
-              <div className="flex items-center gap-2 text-xs text-slate-500" title={connectionOk ? 'Connected' : 'Connection issue'}>
+              <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]" title={connectionOk ? 'Connected' : 'Connection issue'}>
                 <span className={`h-2 w-2 rounded-full ${connectionOk ? 'bg-emerald-400' : 'bg-rose-400'}`} />
                 {connectionOk ? 'Connected' : 'Connection issue'}
               </div>
@@ -137,51 +137,47 @@ export default function Profile() {
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="space-y-2 text-sm text-slate-300">
-              <span className="font-semibold text-slate-100">Guardian Name</span>
+            <label className="space-y-2 text-sm text-[var(--text-secondary)]">
+              <span className="font-semibold text-white">Guardian Name</span>
               <input
                 value={form.guardianName}
                 onChange={(event) => handleChange('guardianName', event.target.value)}
                 placeholder="Anjali Sharma"
-                className="w-full rounded-3xl border border-white/10 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
+                className="w-full rounded-2xl border border-[var(--card-border)] bg-[#ffffff05] px-4 py-3 text-sm text-white outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20"
               />
             </label>
-            <label className="space-y-2 text-sm text-slate-300">
-              <span className="font-semibold text-slate-100">Guardian WhatsApp</span>
+            <label className="space-y-2 text-sm text-[var(--text-secondary)]">
+              <span className="font-semibold text-white">Guardian WhatsApp</span>
               <input
                 value={form.guardianPhone}
                 onChange={(event) => handleChange('guardianPhone', event.target.value)}
                 placeholder="919876543210"
-                className="w-full rounded-3xl border border-white/10 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
+                className="w-full rounded-2xl border border-[var(--card-border)] bg-[#ffffff05] px-4 py-3 text-sm text-white outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20"
               />
             </label>
           </div>
 
-          <label className="space-y-2 text-sm text-slate-300">
-            <span className="font-semibold text-slate-100">Relation</span>
+          <label className="space-y-2 text-sm text-[var(--text-secondary)]">
+            <span className="font-semibold text-white">Relation</span>
             <input
               value={form.guardianRelation}
               onChange={(event) => handleChange('guardianRelation', event.target.value)}
               placeholder="Mother / Sister / Friend"
-              className="w-full rounded-3xl border border-white/10 bg-slate-900/80 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20"
+              className="w-full rounded-2xl border border-[var(--card-border)] bg-[#ffffff05] px-4 py-3 text-sm text-white outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20"
             />
           </label>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button
-              type="submit"
-              disabled={saving}
-              className="inline-flex items-center justify-center rounded-3xl bg-gradient-to-r from-cyan-400 to-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
-            >
+          <div className="flex flex-col gap-3">
+            <button type="submit" disabled={saving} className="btn-primary">
               {saving ? 'Saving...' : 'Save Guardian Details'}
             </button>
-            <p className="text-sm text-slate-400">
+            <p className="text-center text-sm text-[var(--text-secondary)]">
               This information is used for emergency WhatsApp SOS alerts.
             </p>
           </div>
 
           {status ? (
-            <div className="rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100">
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[#ffffff05] px-4 py-3 text-sm text-white">
               {status}
             </div>
           ) : null}

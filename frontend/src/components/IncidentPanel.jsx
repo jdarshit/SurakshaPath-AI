@@ -41,11 +41,21 @@ export default function IncidentPanel({ incidents = [], isLoading = false }) {
         </div>
       </div>
 
-      {/* Loading State */}
-      {isLoading && (
-        <div className="flex items-center justify-center py-4">
-          <div className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--text-secondary)] border-t-[var(--primary)]" />
-          <span className="ml-2 text-[10px] text-[var(--text-secondary)]">Loading incidents...</span>
+      {/* Loading State - skeleton rows instead of an empty gap */}
+      {isLoading && sortedIncidents.length === 0 && (
+        <div className="flex flex-col gap-2">
+          {[0, 1, 2].map((key) => (
+            <div key={key} className="animate-pulse rounded-xl border border-[var(--card-border)] bg-[#ffffff02] p-2.5">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 space-y-1.5">
+                  <div className="h-2.5 w-1/2 rounded bg-white/10" />
+                  <div className="h-2 w-1/3 rounded bg-white/5" />
+                </div>
+                <div className="h-4 w-12 shrink-0 rounded-full bg-white/5" />
+              </div>
+              <div className="mt-2 h-2 w-4/5 rounded bg-white/5" />
+            </div>
+          ))}
         </div>
       )}
 
@@ -53,8 +63,7 @@ export default function IncidentPanel({ incidents = [], isLoading = false }) {
       {!isLoading && sortedIncidents.length === 0 && (
         <div className="flex flex-col items-center justify-center py-6 text-center">
           <div className="text-2xl mb-1 text-[var(--safe-green)]">✅</div>
-          <p className="text-[11px] font-medium text-[var(--text-secondary)]">No incidents reported</p>
-          <p className="text-[9px] text-[var(--text-secondary)] mt-0.5 opacity-70">Stay safe out there!</p>
+          <p className="text-[11px] font-medium text-[var(--text-secondary)]">No incidents reported nearby — stay safe!</p>
         </div>
       )}
 

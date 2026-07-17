@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useCallback, useMemo, useState, useEffect, useRef } from 'react';
 import MapView from '../components/MapView';
 import LocationAutocomplete from '../components/LocationAutocomplete';
 import RouteCard from '../components/RouteCard';
@@ -33,6 +33,7 @@ const ALERT_AUTO_DISMISS_MS = 5000;
 const MAX_VISIBLE_ALERTS = 3;
 const GPS_MIN_MOVEMENT_KM = 0.01;
 const GEOLOCATION_UNSUPPORTED_MESSAGE = 'Geolocation not supported in this browser.';
+const EMPTY_ROUTES = [];
 
 function clamp(value, min = 0, max = 1) {
   return Math.max(min, Math.min(max, Number(value) || 0));
@@ -166,6 +167,22 @@ function findNearestRouteProgress(position, coordinates = []) {
   };
 }
 
+// Pure - hoisted out of the component so callbacks that use them (e.g.
+// handleMapClick) can be wrapped in useCallback without these recreating
+// a new function identity on every render.
+function hasValidCoordinates(location) {
+  return Boolean(
+    location
+    && Number.isFinite(Number(location.lat))
+    && Number.isFinite(Number(location.lng))
+  );
+}
+
+function hasRoutingInput(location, text) {
+  if (hasValidCoordinates(location)) return true;
+  return String(text ?? location?.name ?? '').trim().length > 0;
+}
+
 export default function Home() {
   const { loading, error, data, findRoute, setData } = useSafeRoute();
   const { toasts, showToast, removeToast } = useToast();
@@ -187,7 +204,11 @@ export default function Home() {
   const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(true);
   const [smartAlerts, setSmartAlerts] = useState([]);
   const [isLiveMode, setIsLiveMode] = useState(true);
-  const routes = data?.routes || [];
+  // Stable empty-array fallback: `data?.routes || []` would create a brand
+  // new [] reference on every render whenever there's no data yet, which
+  // defeats React.memo on MapView (and any other array-prop comparison)
+  // since it looks like `routes` "changed" on every unrelated re-render.
+  const routes = useMemo(() => data?.routes || EMPTY_ROUTES, [data]);
   const activeRoute = useMemo(() => routes.find((route) => route.id === activeRouteId) || routes[0], [routes, activeRouteId]);
   const [navigation, setNavigation] = useState({
     status: 'idle',
@@ -498,7 +519,7 @@ export default function Home() {
         remainingCoordinates: [coordinates[coordinates.length - 1]],
         timeline: [...prev.timeline, { id: `${Date.now()}-arrival`, label: 'Destination reached', detail: 'Trip completed with live GPS monitoring.', time: new Date().toISOString() }],
       }));
-      showToast('Destination reached. Trip safety summary generated.', 'success', 3500);
+      showToast('Destination reached. Trip safety summary generated.', 'success', 4000);
     }
   };
 
@@ -560,7 +581,7 @@ export default function Home() {
     setLocationMessage(`📍 Location found: ±${Math.round(accuracy)}m`);
     setLocateMeLoading(false);
     setShowMapClickFallback(false);
-    showToast('📍 Current location set as source', 'success', 2500);
+    showToast('📍 Current location set as source', 'success', 4000);
   };
 
   const handleUseCurrentLocation = () => {
@@ -591,7 +612,7 @@ export default function Home() {
       }
       setLocationStatus('error');
       setLocationMessage(`❌ ${message}`);
-      showToast(`❌ ${message}`, 'error', 6000);
+      showToast(`❌ ${message}`, 'error', 4000);
       setShowMapClickFallback(true);
     };
 
@@ -669,14 +690,14 @@ export default function Home() {
     setDestination({ name: safeQuery });
   };
 
-  const handleMapClick = async (coords) => {
+  const handleMapClick = useCallback(async (coords) => {
     if (!coords || !Number.isFinite(coords.lat) || !Number.isFinite(coords.lng)) {
       return;
     }
 
     // Reverse geocode to get location name
     const locationName = await reverseGeocodeWithCache(coords.lat, coords.lng);
-    
+
     const newLocation = {
       lat: Number(coords.lat.toFixed(6)),
       lng: Number(coords.lng.toFixed(6)),
@@ -689,24 +710,13 @@ export default function Home() {
       setSource(newLocation);
       setSourceText(locationName);
       sourceEditedRef.current = true;
-      showToast(`📍 Source set to ${locationName}`, 'info', 2000);
+      showToast(`📍 Source set to ${locationName}`, 'info', 4000);
     } else {
       setDestination(newLocation);
       setDestinationText(locationName);
-      showToast(`🎯 Destination set to ${locationName}`, 'info', 2000);
+      showToast(`🎯 Destination set to ${locationName}`, 'info', 4000);
     }
-  };
-
-  const hasValidCoordinates = (location) => (
-    location
-    && Number.isFinite(Number(location.lat))
-    && Number.isFinite(Number(location.lng))
-  );
-
-  const hasRoutingInput = (location, text) => {
-    if (hasValidCoordinates(location)) return true;
-    return String(text ?? location?.name ?? '').trim().length > 0;
-  };
+  }, [source, showToast]);
 
   const navigateRoute = useMemo(() => routes.find((route) => route.id === navigation.routeId) || activeRoute, [routes, navigation.routeId, activeRoute]);
 
@@ -851,7 +861,7 @@ export default function Home() {
   const startNavigation = (routeOverride = activeRoute) => {
     const selectedRoute = routeOverride || activeRoute;
     if (!selectedRoute?.coordinates?.length) {
-      showToast('Find a route first to start live navigation.', 'warning', 3000);
+      showToast('Find a route first to start live navigation.', 'warning', 4000);
       return;
     }
 
@@ -859,7 +869,7 @@ export default function Home() {
       setLocationStatus('unsupported');
       setLocationMessage(GEOLOCATION_UNSUPPORTED_MESSAGE);
       setNavigation((prev) => ({ ...prev, gpsLoading: false, gpsError: GEOLOCATION_UNSUPPORTED_MESSAGE }));
-      showToast(GEOLOCATION_UNSUPPORTED_MESSAGE, 'error', 3500);
+      showToast(GEOLOCATION_UNSUPPORTED_MESSAGE, 'error', 4000);
       return;
     }
 
@@ -907,7 +917,7 @@ export default function Home() {
     if (initialGpsPosition) {
       requestAnimationFrame(() => updateLiveNavigationFromGps(initialGpsPosition, latestGpsRef.current?.accuracy));
     }
-    showToast('Live navigation started.', 'success', 2500);
+    showToast('Live navigation started.', 'success', 4000);
   };
 
   const pauseNavigation = () => {
@@ -962,13 +972,13 @@ export default function Home() {
       remainingCoordinates: [],
       timeline: [...prev.timeline, { id: `${Date.now()}-stopped`, label: 'Navigation stopped', detail: 'Live movement has been stopped.', time: new Date().toISOString() }],
     }));
-    showToast('Navigation stopped.', 'info', 2200);
+    showToast('Navigation stopped.', 'info', 4000);
   };
 
-  const handleMapContextMenu = (location) => {
+  const handleMapContextMenu = useCallback((location) => {
     setIncidentLocation(location);
     setIsIncidentModalOpen(true);
-  };
+  }, []);
 
   const handleIncidentReportSuccess = (newIncident) => {
     // Refresh map markers/heatmap immediately instead of waiting for the

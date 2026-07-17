@@ -11,7 +11,8 @@ let toastId = 0;
 export function useToast() {
   const [toasts, setToasts] = useState([]);
 
-  const showToast = useCallback((message, type = 'info', duration = 3000) => {
+  // 4s is the single standard auto-dismiss time for every toast in the app.
+  const showToast = useCallback((message, type = 'info', duration = 4000) => {
     const id = toastId++;
     const newToast = { id, message, type, duration };
 

@@ -349,7 +349,7 @@ export default function AuthPage() {
               ['Community Reports', 'Real incident data from real people nearby'],
               ['Private & Secure', 'Your location is never shared without your consent'],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 shadow-[0_0_35px_rgba(255,45,120,0.08)] backdrop-blur-xl">
+              <div key={title} className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 backdrop-blur-xl">
                 <div className="text-sm font-semibold text-white">{title}</div>
                 <div className="mt-2 text-sm leading-6 text-slate-300">{text}</div>
               </div>
@@ -363,8 +363,8 @@ export default function AuthPage() {
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className="relative"
         >
-          <div className="absolute -inset-8 rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(255,45,120,0.18),transparent_40%)] blur-3xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-[var(--card-border)] bg-[var(--card-bg)] p-4 shadow-[0_0_80px_rgba(255,45,120,0.18)] backdrop-blur-2xl sm:p-6">
+          <div className="absolute -inset-8 rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(255,45,120,0.10),transparent_40%)] blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-[var(--card-border)] bg-[var(--card-bg)] p-4 backdrop-blur-2xl sm:p-6">
             <div className="mb-5 flex lg:hidden">
               <Logo size={32} />
             </div>
