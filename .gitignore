@@ -1,0 +1,25 @@
+# Python
+.venv/
+backend/venv/
+__pycache__/
+*.pyc
+backend/safety.db
+
+# Secrets - never commit real credentials
+backend/.env
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Logs
+*.log
+uvicorn.out.log
+uvicorn.err.log
+frontend/vite-dev.log
+frontend/vite-dev.err.log
+
+# OS
+.DS_Store
+Thumbs.db
