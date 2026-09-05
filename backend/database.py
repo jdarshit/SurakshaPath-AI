@@ -20,7 +20,8 @@ SQLALCHEMY_DATABASE_URL = (
     f"mysql+pymysql://{DB_USER}:{ENCODED_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+connect_args = {"ssl": {}} if os.getenv("DB_SSL", "false").strip().lower() in {"1", "true", "yes"} else {}
+engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
