@@ -1,7 +1,7 @@
 import api from '../api/client';
 
-const TOKEN_KEY = 'sp_token';
-const USER_KEY = 'sp_user';
+const TOKEN_KEY = 'token';
+const USER_KEY = 'user';
 
 export async function sendOtp(payload) {
   const response = await api.post('/auth/send-otp', payload);

@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+const configuredBaseUrl = import.meta.env.VITE_API_BASE || import.meta.env.VITE_API_BASE_URL;
+const browserHost = typeof window !== 'undefined' && window.location.hostname
+  ? window.location.hostname
+  : '127.0.0.1';
+const browserProtocol = typeof window !== 'undefined' && window.location.protocol === 'https:'
+  ? 'https:'
+  : 'http:';
+const BASE_URL = (configuredBaseUrl || `${browserProtocol}//${browserHost}:8000`).replace(/\/$/, '');
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000',
+  baseURL: BASE_URL,
   timeout: 20000,
   headers: {
     'Content-Type': 'application/json',
@@ -9,7 +18,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('sp_token');
+  const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -28,8 +37,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Clear auth state
-      localStorage.removeItem('sp_token');
-      localStorage.removeItem('sp_user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       // Redirect to login
       window.location.href = '/auth';
     }

@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, Polyline, TileLayer, useMap, useMapEvent } from 'react-leaflet';
 import L from 'leaflet';
+import { Eye, MapPinned, Route } from 'lucide-react';
 import SafetyZoneLayer from './SafetyZoneLayer';
 import IncidentLayer from './IncidentLayer';
 import { calculateHeading } from '../services/navigation';
@@ -44,14 +45,12 @@ function formatSafeDisplay(value, fallback = '--') {
   return String(value);
 }
 
-const safeIcon = new L.Icon({
-  iconUrl: 'https://example.com/new-marker-icon.png',
-  iconRetinaUrl: 'https://example.com/new-marker-icon-2x.png',
-  shadowUrl: 'https://example.com/new-marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+const safeIcon = L.divIcon({
+  className: 'safe-location-icon',
+  html: '<span aria-hidden="true"></span>',
+  iconSize: [30, 38],
+  iconAnchor: [15, 38],
+  popupAnchor: [0, -34],
 });
 
 function createNavigationIcon(heading = 0) {
@@ -98,7 +97,8 @@ function MapControlsOverlay({ showRoutes, showSafetyZones, onToggleRoutes, onTog
             width: '100%',
           }}
         >
-          🛣️ Routes
+          <Route aria-hidden="true" className="mr-1 inline-block h-3.5 w-3.5 align-text-bottom" />
+          Routes
         </button>
 
         <button
@@ -118,7 +118,8 @@ function MapControlsOverlay({ showRoutes, showSafetyZones, onToggleRoutes, onTog
             width: '100%',
           }}
         >
-          📍 Zones
+          <MapPinned aria-hidden="true" className="mr-1 inline-block h-3.5 w-3.5 align-text-bottom" />
+          Zones
         </button>
 
         <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', margin: '4px 0' }} />
@@ -140,7 +141,8 @@ function MapControlsOverlay({ showRoutes, showSafetyZones, onToggleRoutes, onTog
             transition: 'all 200ms',
           }}
         >
-          👁️ Show Both
+          <Eye aria-hidden="true" className="mr-1 inline-block h-3.5 w-3.5 align-text-bottom" />
+          Show Both
         </button>
       </div>
     </div>
@@ -228,7 +230,7 @@ const currentLocationIcon = new L.divIcon({
   html: `
     <div class="current-location-marker-wrap">
       <div class="current-location-pulse"></div>
-      <div class="current-location-core">📍</div>
+      <div class="current-location-core"></div>
     </div>
   `,
   iconSize: [34, 34],

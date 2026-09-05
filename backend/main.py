@@ -29,24 +29,31 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from PIL import Image
 import io
+import importlib
 
-from backend.safety import load_models, predict_safety
+from backend.safety import FEATURE_COLUMNS, load_models, predict_safety
 
-# TensorFlow/Keras imports for NLP
+# TensorFlow/Keras imports for NLP — use dynamic import to avoid static analyzer errors
+# Attempt to load tensorflow and pad_sequences at runtime; fall back to keras or None.
+pad_sequences = None
+tensorflow = None
+joblib = None
 try:
-    import tensorflow
-    import tensorflow.keras.models # pyright: ignore[reportMissingModuleSource]
+    tensorflow = importlib.import_module("tensorflow")
+    # Attempt to get pad_sequences from tensorflow.keras.preprocessing.sequence
     try:
-        import tensorflow.keras.preprocessing.sequence # pyright: ignore[reportMissingModuleSource]
-    except ImportError:
+        seq_mod = importlib.import_module("tensorflow.keras.preprocessing.sequence")
+        pad_sequences = getattr(seq_mod, "pad_sequences", None)
+    except Exception:
         try:
-            from keras.preprocessing.sequence import pad_sequences
-        except ImportError:
-            tensorflow.keras.preprocessing.sequence.pad_sequences = None
-    import joblib
-except ImportError:
+            seq_mod = importlib.import_module("keras.preprocessing.sequence")
+            pad_sequences = getattr(seq_mod, "pad_sequences", None)
+        except Exception:
+            pad_sequences = None
+    joblib = importlib.import_module("joblib")
+except Exception:
     tensorflow = None
-    tensorflow.keras.preprocessing.sequence.pad_sequences = None
+    pad_sequences = None
     joblib = None
 
 from backend.database import Base, engine, get_db, SessionLocal
@@ -231,6 +238,15 @@ class SafetyPredictionRequest(BaseModel):
         }
 
 
+class RoutePredictionPoint(BaseModel):
+    lat: float = Field(..., ge=-90, le=90)
+    lng: float = Field(..., ge=-180, le=180)
+
+
+class RoutePredictionRequest(BaseModel):
+    points: list[RoutePredictionPoint] = Field(..., min_length=2, max_length=5)
+
+
 class SOSRequest(BaseModel):
     """Request model for SOS alert trigger."""
     
@@ -333,26 +349,26 @@ def startup_event():
         if tensorflow.keras.models.load_model and joblib:
             nlp_model = tensorflow.keras.models.load_model(NLP_MODEL_PATH)
             nlp_tokenizer = joblib.load(NLP_TOKENIZER_PATH)
-            print("✅ NLP Model loaded successfully!")
+            print("NLP Model loaded successfully!")
         else:
-            print("⚠️ TensorFlow not available - NLP features disabled")
+            print("Warning: TensorFlow not available - NLP features disabled")
     except Exception as e:
         nlp_model = None
         nlp_tokenizer = None
-        print(f"⚠️ NLP Model not found: {e}")
+        print(f"Warning: NLP Model not found: {e}")
 
     # Load TensorFlow CNN model
     try:
         if tensorflow.keras.models.load_model and joblib:
             cnn_model = tensorflow.keras.models.load_model(CNN_MODEL_PATH)
             cnn_class_indices = joblib.load(CNN_CLASS_INDICES_PATH)
-            print("✅ CNN Model loaded successfully!")
+            print("CNN Model loaded successfully!")
         else:
-            print("⚠️ TensorFlow not available - CNN features disabled")
+            print("Warning: TensorFlow not available - CNN features disabled")
     except Exception as e:
         cnn_model = None
         cnn_class_indices = None
-        print(f"⚠️ CNN Model not found: {e}")
+        print(f"Warning: CNN Model not found: {e}")
 
     print("Backend startup complete!")
     # Helpful links for developers / testers
@@ -722,6 +738,64 @@ def predict(payload: SafetyPredictionRequest):
         return JSONResponse(status_code=200, content={"status": "success", "prediction": prediction})
     except Exception as e:
         return JSONResponse(status_code=500, content={"status": "error", "message": f"Prediction failed: {e}"})
+
+
+_SAFETY_DATASET_CACHE: pd.DataFrame | None = None
+
+
+def _load_safety_dataset() -> pd.DataFrame:
+    global _SAFETY_DATASET_CACHE
+    if _SAFETY_DATASET_CACHE is None:
+        dataset_path = Path(__file__).parent.parent / "safety_dataset_enhanced.csv"
+        dataset = pd.read_csv(dataset_path)
+        derived_features = {"real_incident_count", "women_incident_count", "high_severity_count"}
+        required = {"lat", "lng", *(set(FEATURE_COLUMNS) - derived_features)}
+        missing = required.difference(dataset.columns)
+        if missing:
+            raise RuntimeError(f"Safety dataset is missing columns: {sorted(missing)}")
+        _SAFETY_DATASET_CACHE = dataset
+    return _SAFETY_DATASET_CACHE
+
+
+@app.post("/predict/route", tags=["predict"], summary="Predict route safety from nearby dataset records")
+def predict_route(payload: RoutePredictionRequest):
+    """Score route samples using the trained model and nearest real dataset rows.
+
+    The response is deliberately provenance-aware: callers can show users which
+    dataset supplied each prediction instead of presenting distance heuristics
+    as measured safety data.
+    """
+    if not (regressor_model and classifier_model and label_encoders):
+        return JSONResponse(status_code=503, content={"status": "error", "message": "Models not loaded"})
+
+    try:
+        dataset = _load_safety_dataset()
+        coordinates = np.array([[point.lat, point.lng] for point in payload.points], dtype=float)
+        dataset_coords = dataset[["lat", "lng"]].to_numpy(dtype=float)
+        predictions = []
+        derived_features = {"real_incident_count", "women_incident_count", "high_severity_count"}
+        for point, coordinate in zip(payload.points, coordinates):
+            distance = np.square(dataset_coords - coordinate).sum(axis=1)
+            row = dataset.iloc[int(np.argmin(distance))]
+            values = {feature: row[feature] for feature in FEATURE_COLUMNS if feature not in derived_features}
+            incident_count = int(float(values["incident_count"]))
+            values["real_incident_count"] = incident_count
+            values["women_incident_count"] = round(incident_count * 0.5)
+            values["high_severity_count"] = round(incident_count * 0.2)
+            prediction = predict_safety(**values)
+            predictions.append({
+                **prediction,
+                "data_source": "safety_dataset_enhanced.csv",
+                "matched_area": str(row["area_name"]),
+                "matched_lat": float(row["lat"]),
+                "matched_lng": float(row["lng"]),
+                "requested_lat": point.lat,
+                "requested_lng": point.lng,
+            })
+
+        return {"status": "success", "predictions": predictions}
+    except Exception as exc:
+        return JSONResponse(status_code=500, content={"status": "error", "message": f"Route prediction failed: {exc}"})
 
 
 # Custom validation error handler

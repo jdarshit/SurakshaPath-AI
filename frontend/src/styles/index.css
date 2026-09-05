@@ -59,9 +59,6 @@
   background: linear-gradient(135deg, rgba(34, 211, 238, 1), rgba(59, 130, 246, 1));
   border: 2px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.85);
-  color: white;
-  font-size: 11px;
-  line-height: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,4 +273,21 @@ body {
   to {
     width: 0%;
   }
+}
+
+.safe-location-icon {
+  background: transparent;
+  border: 0;
+}
+
+.safe-location-icon span {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 2px;
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, var(--primary), #c026d3);
+  box-shadow: 0 4px 12px rgba(255, 45, 120, 0.45);
+  transform: rotate(-45deg);
 }

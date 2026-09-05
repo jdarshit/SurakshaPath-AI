@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { Bell, Map, Settings, UserRound } from 'lucide-react';
 
 const TABS = [
-  { to: '/', label: 'Home', icon: '🗺️', end: true },
-  { to: '/alerts', label: 'Alerts', icon: '📣' },
-  { to: '/settings', label: 'Settings', icon: '⚙️' },
-  { to: '/profile', label: 'Profile', icon: '👤' },
+  { to: '/', label: 'Home', icon: Map, end: true },
+  { to: '/alerts', label: 'Alerts', icon: Bell },
+  { to: '/settings', label: 'Settings', icon: Settings },
+  { to: '/profile', label: 'Profile', icon: UserRound },
 ];
 
 /**
@@ -28,7 +29,7 @@ export default function BottomNav() {
               }`
             }
           >
-            <span className="text-lg leading-none">{tab.icon}</span>
+            <tab.icon aria-hidden="true" className="h-5 w-5" strokeWidth={2.2} />
             {tab.label}
           </NavLink>
         ))}

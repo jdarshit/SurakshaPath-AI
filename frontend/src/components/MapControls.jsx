@@ -1,3 +1,5 @@
+import { Eye, MapPinned, Route } from 'lucide-react';
+
 /**
  * MapControls - Toggle buttons for showing/hiding map layers
  */
@@ -22,7 +24,8 @@ export default function MapControls({
               : 'bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10'
           }`}
         >
-          🛣️ Routes
+          <Route aria-hidden="true" className="h-3.5 w-3.5" />
+          Routes
         </button>
 
         <button
@@ -35,7 +38,8 @@ export default function MapControls({
               : 'bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10'
           }`}
         >
-          📍 Zones
+          <MapPinned aria-hidden="true" className="h-3.5 w-3.5" />
+          Zones
         </button>
       </div>
 
@@ -46,7 +50,8 @@ export default function MapControls({
         title="Show both routes and safety zones"
         className="rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-2 text-xs font-semibold text-slate-200 transition hover:bg-white/10 backdrop-blur-lg"
       >
-        👁️ Show Both
+        <Eye aria-hidden="true" className="h-3.5 w-3.5" />
+        Show Both
       </button>
     </div>
   );

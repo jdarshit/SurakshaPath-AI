@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import re
 import secrets
 import smtplib
+import ssl
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from smtplib import SMTPAuthenticationError, SMTPConnectError, SMTPException, SMTPNotSupportedError
@@ -28,7 +29,7 @@ except Exception:
 
 router = APIRouter()
 
-pwd_context = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt_sha256", "bcrypt"], deprecated="auto")
 security = HTTPBearer(auto_error=False)
 
 OTP_STORE: dict[str, dict[str, Any]] = {}
@@ -46,6 +47,7 @@ class SendOTPRequest(BaseModel):
     password: str | None = None
     guardian_name: str | None = None
     guardian_phone: str | None = None
+    guardian_whatsapp: str | None = None
     guardian_relation: str | None = None
 
 
@@ -91,8 +93,9 @@ def create_jwt_token(user_id: int | str, email: str) -> str:
     payload = {
         "user_id": str(user_id),
         "email": email,
-        "iat": issued_at,
-        "exp": expires_at,
+        # Use numeric timestamps for JWT claims
+        "iat": int(issued_at.timestamp()),
+        "exp": int(expires_at.timestamp()),
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
@@ -175,6 +178,9 @@ def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str, str | Non
     """
     tb_str: str | None = None
     try:
+        # Ensure recipient is normalized (use caller-supplied email)
+        recipient_email = (recipient_email or "").strip().lower()
+
         # Load SMTP configuration from environment (ensure dotenv was loaded earlier)
         smtp_server_raw = os.getenv("SMTP_SERVER", "smtp.gmail.com")
         smtp_port_raw = os.getenv("SMTP_PORT", "587")
@@ -236,10 +242,11 @@ def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str, str | Non
 
         try:
             with server:
-                print("[AUTH] Starting TLS")
+                print("[AUTH] Starting TLS using secure SSL context")
                 try:
                     server.ehlo()
-                    server.starttls()
+                    context = ssl.create_default_context()
+                    server.starttls(context=context)
                     server.ehlo()
                 except Exception as e:
                     tb_str = traceback.format_exc()
@@ -248,7 +255,7 @@ def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str, str | Non
                     print(tb_str)
                     return False, error_msg, tb_str
 
-                print("[AUTH] Logging into Gmail")
+                print("[AUTH] Logging into SMTP server")
                 try:
                     server.login(smtp_user, smtp_password)
                     print("[AUTH] Login success")
@@ -288,10 +295,18 @@ def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str, str | Non
 
 
 @router.post("/send-otp")
-def send_otp(payload: SendOTPRequest):
+def send_otp(payload: SendOTPRequest, db: Session = Depends(get_db)):
     email = payload.email.strip().lower()
     if not _is_valid_email(email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format")
+
+    # Prevent registering an already-registered email
+    try:
+        existing = db.query(User).filter(User.email == email).first()
+    except Exception:
+        existing = None
+    if existing and existing.password_hash:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered")
 
     otp = generate_otp()
     expires_at = _utcnow() + timedelta(minutes=OTP_TTL_MINUTES)
@@ -299,34 +314,43 @@ def send_otp(payload: SendOTPRequest):
 
     if payload.name or payload.phone or payload.password or payload.guardian_name or payload.guardian_phone or payload.guardian_relation:
         with OTP_LOCK:
+            # Allow frontend to send guardian_whatsapp (alias) or guardian_phone
+            guardian_phone = payload.guardian_phone or payload.guardian_whatsapp
             OTP_STORE[email]["profile"] = {
                 "name": payload.name,
                 "phone": payload.phone,
                 "password_hash": hash_password(payload.password) if payload.password else None,
                 "guardian_name": payload.guardian_name,
-                "guardian_phone": payload.guardian_phone,
+                "guardian_phone": guardian_phone,
                 "guardian_relation": payload.guardian_relation,
             }
 
     print(f"[AUTH] OTP generated for {email}: {otp} (expires at {expires_at.isoformat()})")
 
-    # Send OTP email
-    success, error_message, tb = send_otp_email(email, otp)
+    # Try sending OTP email but never crash the request if email fails.
+    email_result = send_otp_email(email, otp)
+    if len(email_result) == 2:
+        success, error_message = email_result
+        tb = None
+    else:
+        success, error_message, tb = email_result
     if not success:
-        # OTP was stored but email failed - return error with details and traceback
-        print(f"[AUTH ERROR] send_otp failed: {error_message}")
+        print(f"[AUTH WARNING] send_otp email failed for {email}: {error_message}")
         if tb:
             print(tb)
+        # Always print OTP in server logs as a backup for testing/demo.
+        print(f"[AUTH BACKUP OTP] {email} -> {otp}")
+        _clear_otp(email)
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Failed to send OTP email: {error_message}",
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="OTP email could not be sent. Check SMTP configuration and try again.",
         )
-
-    response = {
-        "status": "success",
-        "message": "OTP sent successfully",
-        "expires_in_seconds": OTP_TTL_MINUTES * 60,
-    }
+    else:
+        response = {
+            "status": "success",
+            "message": "OTP sent successfully",
+            "expires_in_seconds": OTP_TTL_MINUTES * 60,
+        }
 
     if os.getenv("OTP_DEBUG", "false").strip().lower() in {"1", "true", "yes"}:
         response["otp"] = otp
@@ -364,7 +388,8 @@ def test_email(to: str | None = None):
             "smtp_password_repr": _mask_password(smtp_password),
         }
 
-    recipient = to or smtp_user
+    # prefer explicit 'to' param, otherwise use configured SMTP_EMAIL
+    recipient = (to or smtp_user or "").strip().lower()
     otp = generate_otp()
 
     success, message, tb = send_otp_email(recipient, otp)
@@ -383,20 +408,23 @@ def verify_otp(payload: VerifyOTPRequest, db: Session = Depends(get_db)):
     email = payload.email.strip().lower()
     if not _is_valid_email(email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format")
+    # Demo bypass: in DEMO_MODE skip strict OTP matching to simplify demos/tests
+    demo_mode = os.getenv("DEMO_MODE", "false").strip().lower() in {"1", "true", "yes"}
 
     entry = _get_otp_entry(email)
-    if not entry:
+    if not entry and not demo_mode:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="OTP not found or expired")
 
-    expires_at = entry["expires_at"]
-    if expires_at <= _utcnow():
-        _clear_otp(email)
-        print(f"[auth] OTP expired for {email}")
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="OTP expired")
+    if not demo_mode:
+        expires_at = entry["expires_at"]
+        if expires_at <= _utcnow():
+            _clear_otp(email)
+            print(f"[auth] OTP expired for {email}")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="OTP expired")
 
-    if entry["otp"] != payload.otp.strip():
-        print(f"[auth] Invalid OTP attempt for {email}")
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid OTP")
+        if entry["otp"] != payload.otp.strip():
+            print(f"[auth] Invalid OTP attempt for {email}")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid OTP")
 
     profile = entry.get("profile") or {}
     user = None
@@ -453,7 +481,43 @@ def verify_otp(payload: VerifyOTPRequest, db: Session = Depends(get_db)):
     if user is not None:
         response["token"] = create_jwt_token(user.id, user.email)
         response["user"] = serialize_user(user)
+        response["message"] = "Registration successful"
     return response
+
+
+@router.post("/register")
+def register(payload: SendOTPRequest, db: Session = Depends(get_db)):
+    """Direct registration endpoint (skips OTP). Useful for demo or simple signups.
+
+    Returns a JWT token on success and standard messages used by the frontend.
+    """
+    email = (payload.email or "").strip().lower()
+    if not _is_valid_email(email):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format")
+
+    existing = db.query(User).filter(User.email == email).first()
+    if existing and existing.password_hash:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered")
+
+    password_hash = hash_password(payload.password) if payload.password else None
+
+    user = User(
+        name=payload.name or (email.split("@")[0] if email else None),
+        email=email,
+        phone=payload.phone,
+        password_hash=password_hash,
+        guardian_name=payload.guardian_name,
+        guardian_phone=payload.guardian_phone,
+        guardian_relation=payload.guardian_relation,
+        is_active=True,
+        is_verified=True,
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+
+    token = create_jwt_token(user.id, user.email)
+    return {"status": "success", "message": "Registration successful", "token": token, "user": serialize_user(user)}
 
 
 @router.post("/login")

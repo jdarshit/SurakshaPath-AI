@@ -106,8 +106,8 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
           opened the panel. */}
       {!isExpanded && isRunning && hasWarning && !warningDismissed && (
         <div
-          className="pointer-events-auto fixed bottom-[176px] left-3 z-[1150] mx-auto max-w-[680px]"
-          style={{ right: '116px' }}
+          className="pointer-events-auto absolute bottom-20 left-3 z-[1150] mx-auto max-w-[680px]"
+          style={{ right: '12px' }}
         >
           <button
             type="button"
@@ -133,8 +133,8 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
       {/* Expanded bottom sheet - capped height, never covers the full map. */}
       {isExpanded && (
         <div
-          className="pointer-events-auto fixed bottom-[76px] left-3 z-[1150] mx-auto flex max-h-[45vh] max-w-[680px] flex-col gap-3 overflow-y-auto rounded-2xl border border-[var(--card-border)] bg-[#12121A]/95 p-4 shadow-2xl backdrop-blur-xl"
-          style={{ right: '116px' }}
+          className="pointer-events-auto absolute bottom-16 left-3 z-[1150] mx-auto flex max-h-[45vh] max-w-[680px] flex-col gap-3 overflow-y-auto rounded-2xl border border-[var(--card-border)] bg-[#12121A]/95 p-4 shadow-2xl backdrop-blur-xl"
+          style={{ right: '12px' }}
         >
           <div className="flex items-center justify-between gap-2">
             <h3 className="glass-card-header !mb-0">Live Navigation</h3>
@@ -208,8 +208,8 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
           alone doesn't reliably fit alongside everything else on a narrow
           phone once the SOS button's corner is reserved. */}
       <div
-        className="pointer-events-auto fixed bottom-4 left-3 z-[1150] mx-auto max-w-[680px] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[#12121A]/90 shadow-lg backdrop-blur-xl"
-        style={{ right: '116px' }}
+        className="pointer-events-auto absolute bottom-4 left-3 z-[1150] mx-auto max-w-[680px] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[#12121A]/90 shadow-lg backdrop-blur-xl"
+        style={{ right: '12px' }}
       >
         <div className="flex items-center gap-1.5 px-2.5 py-2 sm:gap-2.5 sm:px-4">
           <div className="min-w-0 shrink-0">

@@ -208,56 +208,20 @@ export async function calculateRoutePrediction(coordinates, meta = {}) {
     coordinates[coordinates.length - 1],
   ];
 
-  const predictions = [];
-
-  for (const pt of samplePoints) {
-    // derive lightweight heuristics for payload based on route meta
-    const distanceKm = meta.distanceKm ?? 1;
-    const durationMin = meta.durationMin ?? 1;
-    const nowHour = new Date().getHours();
-    const time_of_day = nowHour >= 19 || nowHour < 6 ? 'Night' : nowHour >= 17 ? 'Evening' : 'Day';
-
-    const area_type = distanceKm < 2 ? 'Market' : distanceKm < 6 ? 'Residential' : 'Highway';
-    const crowd_density = distanceKm < 2 ? 'High' : distanceKm < 5 ? 'Medium' : 'Low';
-
-    const street_light_coverage = Math.max(5, Math.round(60 - distanceKm * 4));
-    const cctv_coverage = Math.max(2, Math.round(40 - distanceKm * 3));
-    const incident_count = Math.max(0, Math.round(distanceKm * 2));
-    const crime_rate = Math.min(100, Math.round(40 + distanceKm * 3));
-    const police_distance_km = Math.max(0.1, Math.round(Math.min(10, distanceKm / 2) * 10) / 10);
-
-    const payload = {
-      area_type,
-      time_of_day,
-      lighting_quality: time_of_day === 'Night' && street_light_coverage < 40 ? 'Poor' : 'Good',
-      crime_rate,
-      crowd_density,
-      incident_count,
-      cctv_coverage,
-      police_distance_km,
-      women_safety_risk: Math.min(100, Math.round(crime_rate * 0.9)),
-      street_light_coverage,
-      police_station_nearby: police_distance_km <= 2 ? 1 : 0,
-      ncrb_crime_intensity: crime_rate,
-      real_incident_count: incident_count,
-      women_incident_count: Math.round(incident_count * 0.5),
-      high_severity_count: Math.round(incident_count * 0.2),
-    };
-
-    try {
-      const res = await api.post('/predict', payload);
-      if (res?.data?.prediction) {
-        predictions.push(res.data.prediction);
-      }
-    } catch (err) {
-      console.warn('Safety prediction failed for point:', err);
-    }
+  let predictions = [];
+  try {
+    const response = await api.post('/predict/route', {
+      points: samplePoints.map(([lat, lng]) => ({ lat, lng })),
+    });
+    predictions = response?.data?.predictions || [];
+  } catch (err) {
+    console.warn('Dataset-backed route prediction failed:', err);
   }
 
   if (predictions.length === 0) {
     return {
       safety_score: 50,
-      safety_label: 'Unknown',
+      safety_label: 'Insufficient data',
       confidence: 0,
       top_risk_factors: [],
       feature_importance: [],
@@ -272,10 +236,11 @@ export async function calculateRoutePrediction(coordinates, meta = {}) {
         police_accessibility: 50,
       },
       risk_level: 'moderate',
-      safest_route_reason: 'Safety data could not be computed for this route.',
-      avoid_route_reason: 'Safety data could not be computed for this route.',
-      route_recommendation_text: 'Safety data could not be computed for this route.',
-      ai_summary: 'Safety data could not be computed for this route.',
+      safest_route_reason: 'There is not enough nearby safety data to rank this route.',
+      avoid_route_reason: 'Do not treat this route as verified safe or unsafe without local records.',
+      route_recommendation_text: 'Insufficient nearby safety data. Use caution and review local conditions.',
+      ai_summary: 'Insufficient nearby safety data. Use caution and review local conditions.',
+      data_source: 'none',
     };
   }
 

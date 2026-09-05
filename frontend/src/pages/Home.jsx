@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState, useEffect, useRef } from 'react';
+import { AlertTriangle, LocateFixed, RefreshCw } from 'lucide-react';
 import MapView from '../components/MapView';
 import LocationAutocomplete from '../components/LocationAutocomplete';
 import RouteCard from '../components/RouteCard';
@@ -997,11 +998,57 @@ export default function Home() {
     <>
       <SmartAlertToast alerts={smartAlerts} onDismiss={dismissSmartAlert} />
 
-      {/* Home is the hero experience: the map fills the screen, and every
-          control is a compact floating overlay on top of it (Google Maps
-          style) instead of permanent side columns. */}
-      <div className="relative h-[calc(100vh-70px-64px)] w-full overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[0_0_20px_rgba(255,45,120,0.08)]">
-        <div className="absolute inset-0">
+      {/* Keep route controls beside the map on larger screens so the map stays
+          fully visible. The rail becomes a compact overlay on small screens. */}
+      <div className="relative grid h-[calc(100vh-70px-64px)] min-h-[420px] w-full min-w-0 grid-cols-1 overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[0_0_20px_rgba(255,45,120,0.08)] lg:min-h-[520px] lg:grid-cols-[minmax(280px,360px)_minmax(0,1fr)]">
+        <aside className="relative z-[1200] hidden min-h-0 flex-col gap-3 overflow-hidden border-b border-[var(--card-border)] bg-[var(--card-bg)] p-3 lg:flex lg:border-b-0 lg:border-r lg:p-4">
+          <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto custom-scrollbar">
+            {/* Route input and results stay in the rail instead of covering the map. */}
+            <div className="glass-card flex flex-col gap-4">
+              <button
+                type="button"
+                onClick={() => setIsRouteCardExpanded((prev) => !prev)}
+                className="flex items-center justify-between gap-3 text-left"
+              >
+                <h3 className="glass-card-header !mb-0 truncate">
+                  {isRouteCardExpanded ? 'Plan a Safe Route' : `${sourceText || 'Source'} → ${destinationText || 'Destination'}`}
+                </h3>
+                <span className="shrink-0 text-xs text-[var(--text-secondary)]">{isRouteCardExpanded ? '▲' : '▼'}</span>
+              </button>
+
+              {isRouteCardExpanded && (
+                <>
+                  <div className="space-y-1">
+                    <LocationAutocomplete label="Source" placeholder="Search source..." value={sourceText} onChange={handleSourceTextChange} onSelect={(location) => { cancelPendingLocateMe(); setSource(location); sourceEditedRef.current = true; }} showAccuracy={!!currentLocation} accuracy={currentLocation?.accuracy} />
+                    <div className="flex flex-col gap-1">
+                      <button type="button" onClick={handleUseCurrentLocation} disabled={locateMeLoading} className="flex w-full items-center gap-2 truncate text-left text-[11px] font-medium uppercase tracking-wider text-[var(--primary)] underline hover:opacity-80 disabled:cursor-wait disabled:opacity-60">
+                        {locateMeLoading ? <><span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-[var(--primary)]/30 border-t-[var(--primary)]" />{locationMessage?.replace(/^📍|^📡/, '').trim() || 'Locating you...'}</> : <><LocateFixed aria-hidden="true" className="h-3.5 w-3.5" />Use Current Location</>}
+                      </button>
+                      {currentLocation && !currentLocation.error && <button type="button" onClick={handleRecenterToLocation} className="flex w-full items-center gap-1.5 truncate text-left text-[11px] font-medium uppercase tracking-wider text-cyan-400 underline hover:opacity-80"><RefreshCw aria-hidden="true" className="h-3.5 w-3.5" />Recenter to My Location</button>}
+                      {locationStatus === 'error' && locationMessage && <p className="text-[11px] leading-snug text-rose-300">{locationMessage}</p>}
+                      {showMapClickFallback && <p className="text-[11px] leading-snug text-slate-400">📌 Ya map par tap karke source set karein <span className="text-slate-500">(or tap the map to set your source)</span></p>}
+                    </div>
+                  </div>
+                  <LocationAutocomplete label="Destination" placeholder="Search destination..." value={destinationText} onChange={handleDestinationTextChange} onSelect={setDestination} />
+                  <div className="mt-2 flex flex-col gap-2">
+                    <button type="button" onClick={handleSearch} disabled={loading} className="btn-primary truncate">{loading ? 'Analyzing...' : 'Find Safe Route'}</button>
+                    <button type="button" onClick={() => { setData(null); setActiveRouteId(null); }} className="btn-secondary truncate">Reset</button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {routes.length > 0 && <div className="glass-card">
+              <div className="mb-3 flex items-center justify-between gap-3"><h3 className="glass-card-header !mb-0">Route Options</h3><div className="rounded-full border border-[var(--primary)] bg-[rgba(255,45,120,0.1)] px-2 py-0.5 text-[10px] text-[var(--primary)]">{routes.length} routes</div></div>
+              <div className="flex flex-col gap-3">{routes.map((route, idx) => <RouteCard key={route.id} route={route} active={route.id === activeRoute?.id} onClick={() => setActiveRouteId(route.id)} isRecommended={idx === 0} />)}</div>
+            </div>}
+            {routes.length > 0 && <RouteComparisonPanel routes={routes} activeRouteId={activeRoute?.id} onSelectRoute={setActiveRouteId} />}
+          </div>
+
+          <button type="button" onClick={() => setIsIncidentModalOpen(true)} className="btn-danger mt-2 flex w-full shrink-0 items-center justify-center gap-2 px-4 py-3 shadow-lg"><AlertTriangle aria-hidden="true" className="h-4 w-4" />Report Incident</button>
+        </aside>
+
+        <div className="relative min-h-0 min-w-0">
           <MapView
             source={source}
             destination={destination}
@@ -1015,12 +1062,19 @@ export default function Home() {
             selectedSourceMarker={source}
             selectedDestinationMarker={destination}
           />
+          <LiveNavigationPanel
+            navigation={navigation}
+            route={navigateRoute}
+            isLiveMode={isLiveMode}
+            onToggleLiveMode={setIsLiveMode}
+            onStart={() => startNavigation(navigateRoute)}
+            onPause={pauseNavigation}
+            onStop={stopNavigation}
+          />
         </div>
 
-        {/* Top overlay: collapsible route input + (once searched) route
-            results, stacked in one scrollable column so it never fights
-            other corners for space. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] flex justify-center p-3">
+        {/* Keep the old compact overlay only for narrow screens. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] hidden justify-center p-3 lg:hidden">
           <div className="pointer-events-auto flex max-h-[calc(100vh-70px-64px-1.5rem)] w-full max-w-md flex-col gap-2 overflow-y-auto custom-scrollbar">
             {/* Route Input (collapsible) */}
             <div className="glass-card flex flex-col gap-4">
@@ -1052,12 +1106,12 @@ export default function Home() {
                             {locationMessage?.replace(/^📍|^📡/, '').trim() || 'Locating you...'}
                           </>
                         ) : (
-                          '📍 Use Current Location'
+                          <><LocateFixed aria-hidden="true" className="h-3.5 w-3.5" />Use Current Location</>
                         )}
                       </button>
                       {currentLocation && !currentLocation.error && (
                         <button type="button" onClick={handleRecenterToLocation} className="text-[11px] font-medium uppercase tracking-wider text-cyan-400 underline hover:opacity-80 truncate block w-full text-left">
-                          🔄 Recenter to My Location
+                          <><RefreshCw aria-hidden="true" className="h-3.5 w-3.5" />Recenter to My Location</>
                         </button>
                       )}
                       {locationStatus === 'error' && locationMessage && (
@@ -1128,25 +1182,11 @@ export default function Home() {
         <button
           type="button"
           onClick={() => setIsIncidentModalOpen(true)}
-          className="btn-danger pointer-events-auto absolute left-3 top-3 z-[1200] w-auto px-4 py-3 shadow-lg"
+          className="btn-danger pointer-events-auto absolute left-3 top-3 z-[1200] w-auto px-4 py-3 shadow-lg lg:hidden"
         >
-          🚨 Report Incident
+          <><AlertTriangle aria-hidden="true" className="h-4 w-4" />Report Incident</>
         </button>
       </div>
-
-      {/* Live Navigation: a self-positioning fixed overlay (compact bar +
-          expandable sheet), not part of the floating column above - it
-          docks along the bottom edge instead of stacking with route
-          results. */}
-      <LiveNavigationPanel
-        navigation={navigation}
-        route={navigateRoute}
-        isLiveMode={isLiveMode}
-        onToggleLiveMode={setIsLiveMode}
-        onStart={() => startNavigation(navigateRoute)}
-        onPause={pauseNavigation}
-        onStop={stopNavigation}
-      />
 
       <IncidentReportModal isOpen={isIncidentModalOpen} onClose={handleIncidentModalClose} location={incidentLocation} onSuccess={handleIncidentReportSuccess} />
       <ToastContainer toasts={toasts} removeToast={removeToast} />

@@ -178,6 +178,7 @@ export default function AuthPage() {
         password: registerForm.password,
         guardian_name: registerForm.guardianName,
         guardian_phone: registerForm.guardianPhone,
+        guardian_whatsapp: registerForm.guardianPhone,
         guardian_relation: registerForm.guardianRelation,
       });
       setStep('otp');
@@ -186,7 +187,19 @@ export default function AuthPage() {
       addToast('success', 'OTP sent', 'Check your inbox for the 6-digit verification code.');
       otpRefs.current[0]?.focus?.();
     } catch (error) {
-      const detail = error?.response?.data?.detail || 'Could not send OTP right now.';
+      let detail = 'Could not send OTP right now.';
+      if (!error?.response) {
+        detail = 'Cannot connect to server. Is backend running?';
+      } else if (error.response?.data?.detail) {
+        const d = error.response.data.detail;
+        if (typeof d === 'string') {
+          if (d.includes('already registered')) {
+            detail = 'Email already registered. Please login.';
+          } else {
+            detail = d;
+          }
+        }
+      }
       addToast('error', 'OTP failed', detail);
     } finally {
       setBusy(false);
@@ -203,12 +216,18 @@ export default function AuthPage() {
         password: registerForm.password,
         guardian_name: registerForm.guardianName,
         guardian_phone: registerForm.guardianPhone,
+        guardian_whatsapp: registerForm.guardianPhone,
         guardian_relation: registerForm.guardianRelation,
       });
       setCountdown(OTP_SECONDS);
       addToast('success', 'OTP resent', 'A fresh verification code was sent.');
     } catch (error) {
-      const detail = error?.response?.data?.detail || 'Could not resend OTP.';
+      let detail = 'Could not resend OTP.';
+      if (!error?.response) {
+        detail = 'Cannot connect to server. Is backend running?';
+      } else if (error.response?.data?.detail) {
+        detail = error.response.data.detail;
+      }
       addToast('error', 'Resend failed', detail);
     } finally {
       setBusy(false);
@@ -272,7 +291,17 @@ export default function AuthPage() {
       setVerified(true);
       addToast('success', 'Verification complete', 'Your email has been verified successfully.');
     } catch (error) {
-      const detail = error?.response?.data?.detail || 'OTP verification failed.';
+      let detail = 'OTP verification failed.';
+      if (!error?.response) {
+        detail = 'Cannot connect to server. Is backend running?';
+      } else if (error.response?.data?.detail) {
+        const d = error.response.data.detail;
+        if (typeof d === 'string' && d.includes('Invalid OTP')) {
+          detail = 'Invalid OTP. Try again.';
+        } else {
+          detail = d;
+        }
+      }
       addToast('error', 'Verification failed', detail);
     } finally {
       setBusy(false);
@@ -294,7 +323,12 @@ export default function AuthPage() {
         navigate('/', { replace: true });
       }
     } catch (error) {
-      const detail = error?.response?.data?.detail || 'Login failed. Check your credentials.';
+      let detail = 'Login failed. Check your credentials.';
+      if (!error?.response) {
+        detail = 'Cannot connect to server. Is backend running?';
+      } else if (error.response?.data?.detail) {
+        detail = error.response.data.detail;
+      }
       addToast('error', 'Login failed', detail);
     } finally {
       setBusy(false);
