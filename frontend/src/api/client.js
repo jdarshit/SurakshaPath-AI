@@ -7,7 +7,13 @@ const browserHost = typeof window !== 'undefined' && window.location.hostname
 const browserProtocol = typeof window !== 'undefined' && window.location.protocol === 'https:'
   ? 'https:'
   : 'http:';
-const BASE_URL = (configuredBaseUrl || `${browserProtocol}//${browserHost}:8000`).replace(/\/$/, '');
+const isLocalHost = browserHost === 'localhost' || browserHost === '127.0.0.1';
+const fallbackBaseUrl = isLocalHost ? `${browserProtocol}//${browserHost}:8000` : '';
+const BASE_URL = (configuredBaseUrl || fallbackBaseUrl).replace(/\/$/, '');
+
+if (!BASE_URL && typeof window !== 'undefined') {
+  console.error('Missing VITE_API_BASE_URL. Configure the deployed backend URL before building the frontend.');
+}
 
 const api = axios.create({
   baseURL: BASE_URL,

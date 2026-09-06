@@ -26,12 +26,9 @@ This guide covers realistic deployment for the backend, frontend, and database l
 ### Deployment Steps
 
 1. Push the repository to GitHub.
-2. Create a new backend service on Railway or Render.
-3. Set the root directory to `backend`.
-4. Install dependencies from `requirements.txt`.
-5. Set the start command.
-6. Add the required environment variables.
-7. Connect the backend to a production MySQL database.
+2. In Render, choose **New Blueprint** and select the repository. Keep the root directory at the repository root because `render.yaml` uses `backend/...` paths.
+3. Add the environment variables marked `sync: false` in Render.
+4. Connect the backend to a production MySQL-compatible database.
 
 ### Environment Variables
 
@@ -43,13 +40,21 @@ DB_PORT=3306
 DB_USER=
 DB_PASSWORD=
 DB_NAME=
-SECRET_KEY=
+DB_SSL=true
+JWT_SECRET=
+JWT_ALGORITHM=HS256
+JWT_EXPIRE_HOURS=24
+CORS_ORIGINS=https://your-frontend.vercel.app
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+SMTP_EMAIL=
+SMTP_PASSWORD=
 ```
 
 ### Production Start Command
 
 ```bash
-uvicorn backend.main:app --host 0.0.0.0 --port 8000
+uvicorn backend.main:app --host 0.0.0.0 --port $PORT
 ```
 
 ### Notes
@@ -71,9 +76,9 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 1. Create a new Vercel project from the GitHub repository.
 2. Set the root directory to `frontend`.
-3. Use the default Vite build command.
-4. Set the output directory to `dist`.
-5. Configure the API base URL for the deployed backend.
+3. Use `npm run build` as the build command and `dist` as the output directory.
+4. Set `VITE_API_BASE_URL` to the public Render backend URL, for example `https://surakshapath-api.onrender.com`.
+5. Redeploy after setting the environment variable. `frontend/vercel.json` preserves React routes such as `/auth` on refresh.
 
 ### Build Settings
 
@@ -95,7 +100,7 @@ VITE_API_BASE_URL=https://your-backend-domain.com
 ### Notes
 
 - Make sure the frontend points to the deployed backend, not localhost.
-- Update CORS settings in the backend to allow the deployed frontend domain.
+- Set Render `CORS_ORIGINS` to the exact Vercel URL without a trailing slash. Multiple origins can be comma-separated.
 
 ---
 
