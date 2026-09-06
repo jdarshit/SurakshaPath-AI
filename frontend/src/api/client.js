@@ -8,12 +8,11 @@ const browserProtocol = typeof window !== 'undefined' && window.location.protoco
   ? 'https:'
   : 'http:';
 const isLocalHost = browserHost === 'localhost' || browserHost === '127.0.0.1';
-const fallbackBaseUrl = isLocalHost ? `${browserProtocol}//${browserHost}:8000` : '';
-const BASE_URL = (configuredBaseUrl || fallbackBaseUrl).replace(/\/$/, '');
-
-if (!BASE_URL && typeof window !== 'undefined') {
-  console.error('Missing VITE_API_BASE_URL. Configure the deployed backend URL before building the frontend.');
-}
+const configuredIsLocal = configuredBaseUrl?.includes('localhost:8000') || configuredBaseUrl?.includes('127.0.0.1:8000');
+const fallbackBaseUrl = isLocalHost
+  ? `${browserProtocol}//${browserHost}:8000`
+  : 'https://surakshapath-api.onrender.com';
+const BASE_URL = ((configuredBaseUrl && (!configuredIsLocal || isLocalHost)) || fallbackBaseUrl).replace(/\/$/, '');
 
 const api = axios.create({
   baseURL: BASE_URL,
