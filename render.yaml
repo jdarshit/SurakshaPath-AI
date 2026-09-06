@@ -22,7 +22,7 @@ services:
       - key: DB_PASSWORD
         sync: false
       - key: DB_NAME
-        sync: false
+        value: surakshapath_db
       - key: DB_SSL
         value: "true"
       - key: JWT_SECRET
@@ -40,6 +40,8 @@ services:
       - key: SMTP_EMAIL
         sync: false
       - key: SMTP_PASSWORD
+        sync: false
+      - key: RESEND_API_KEY
         sync: false
       - key: WHATSAPP_PHONE_ID
         sync: false

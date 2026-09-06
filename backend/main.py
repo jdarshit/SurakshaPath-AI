@@ -329,16 +329,18 @@ class IncidentAnalysisRequest(BaseModel):
 
 
 @app.on_event("startup")
-def startup_event():
+async def startup_event():
     global regressor_model, classifier_model, label_encoders
     global nlp_model, nlp_tokenizer
     global cnn_model, cnn_class_indices
     print("Starting SurakshaPath AI Backend...")
-    # Create DB tables
+    # Create every model table before serving requests.
     try:
         Base.metadata.create_all(bind=engine)
         ensure_auth_columns(engine)
+        ensure_sos_columns(engine)
         print("Database connected successfully!")
+        print("Tables created!")
     except Exception as e:
         print(f"Warning: Database init failed: {e}")
 

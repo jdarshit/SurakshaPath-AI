@@ -5,11 +5,7 @@ import traceback
 from dotenv import load_dotenv
 import re
 import secrets
-import smtplib
-import ssl
 from datetime import datetime, timedelta, timezone
-from email.message import EmailMessage
-from smtplib import SMTPAuthenticationError, SMTPConnectError, SMTPException, SMTPNotSupportedError
 from threading import Lock
 from typing import Any
 
@@ -19,6 +15,11 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+
+try:
+    import resend
+except Exception:
+    resend = None
 
 try:
     from backend.database import get_db
@@ -150,148 +151,44 @@ def _sanitize_env(value: str | None) -> str | None:
     return v.strip()
 
 
-def _normalize_smtp_password(value: str | None) -> str | None:
-    if value is None:
-        return None
-    sanitized = _sanitize_env(value)
-    if sanitized is None:
-        return None
-    # Gmail app passwords are often displayed with spaces for readability.
-    return ''.join(ch for ch in sanitized if not ch.isspace())
-
-
-def _mask_password(pw: str | None) -> str:
-    if pw is None:
-        return "<None>"
-    if len(pw) <= 4:
-        return "*" * len(pw)
-    head = pw[:2]
-    tail = pw[-2:]
-    middle = "*" * (len(pw) - 4)
-    return f"{head}{middle}{tail}"
-
-
-def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str, str | None]:
-    """
-    Send OTP email via Gmail SMTP with detailed logging and error handling.
-    Returns (success: bool, message: str, traceback: str|None)
-    """
-    tb_str: str | None = None
+def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str]:
+    """Send an OTP through Resend's HTTPS API for Render-safe production delivery."""
     try:
-        # Ensure recipient is normalized (use caller-supplied email)
         recipient_email = (recipient_email or "").strip().lower()
+        api_key = _sanitize_env(os.getenv("RESEND_API_KEY"))
+        if not recipient_email:
+            return False, "Recipient email is required"
+        if resend is None:
+            print("[AUTH ERROR] resend package is not installed")
+            print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
+            return False, "resend package is not installed"
+        if not api_key:
+            message = "RESEND_API_KEY not configured"
+            print(f"[AUTH ERROR] {message}")
+            print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
+            return False, message
 
-        # Load SMTP configuration from environment (ensure dotenv was loaded earlier)
-        smtp_server_raw = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-        smtp_port_raw = os.getenv("SMTP_PORT", "587")
-        smtp_user_raw = os.getenv("SMTP_EMAIL")
-        smtp_password_raw = os.getenv("SMTP_PASSWORD")
-
-        print("[AUTH] Loading SMTP config")
-
-        smtp_server = _sanitize_env(smtp_server_raw) or "smtp.gmail.com"
-        smtp_port = int(_sanitize_env(smtp_port_raw) or "587")
-        smtp_user = _sanitize_env(smtp_user_raw)
-        smtp_password = _normalize_smtp_password(smtp_password_raw)
-
-        # Debug prints for validation
-        print(f"[AUTH] SMTP host: {smtp_server}")
-        print(f"[AUTH] SMTP port: {smtp_port}")
-
-        # Print masked password repr for debugging
-        print(f"[AUTH] SMTP_PASSWORD repr: '{_mask_password(smtp_password)}'")
-
-        # Check for common misconfigurations
-        if smtp_server.lower() != "smtp.gmail.com":
-            print(f"[AUTH WARNING] SMTP_SERVER expected 'smtp.gmail.com' but got '{smtp_server}'")
-        if smtp_port != 587:
-            print(f"[AUTH WARNING] SMTP_PORT expected 587 but got {smtp_port}")
-
-        # Validate configuration
-        if not smtp_user:
-            error_msg = "SMTP_EMAIL not configured"
-            print(f"[AUTH ERROR] {error_msg}")
-            return False, error_msg, None
-
-        if not smtp_password:
-            error_msg = "SMTP_PASSWORD not configured"
-            print(f"[AUTH ERROR] {error_msg}")
-            return False, error_msg, None
-
-        # Prepare email message
-        message = EmailMessage()
-        message["Subject"] = "SurakshaPath AI - OTP Verification"
-        message["From"] = smtp_user
-        message["To"] = recipient_email
-        message.set_content(
-            f"Your One-Time Password (OTP) for SurakshaPath AI is:\n\n{otp}\n\n"
-            f"This code will expire in {OTP_TTL_MINUTES} minutes.\n\n"
-            f"Do not share this code with anyone.\n\n"
-            f"Best regards,\nSurakshaPath AI Team"
-        )
-
-        print("[AUTH] Opening SMTP connection")
-        try:
-            server = smtplib.SMTP(smtp_server, smtp_port, timeout=15)
-        except Exception as e:
-            tb_str = traceback.format_exc()
-            error_msg = f"Failed to open SMTP connection: {str(e)}"
-            print(f"[AUTH ERROR] {error_msg}")
-            print(tb_str)
-            return False, error_msg, tb_str
-
-        try:
-            with server:
-                print("[AUTH] Starting TLS using secure SSL context")
-                try:
-                    server.ehlo()
-                    context = ssl.create_default_context()
-                    server.starttls(context=context)
-                    server.ehlo()
-                except Exception as e:
-                    tb_str = traceback.format_exc()
-                    error_msg = f"TLS start failed: {str(e)}"
-                    print(f"[AUTH ERROR] {error_msg}")
-                    print(tb_str)
-                    return False, error_msg, tb_str
-
-                print("[AUTH] Logging into SMTP server")
-                try:
-                    server.login(smtp_user, smtp_password)
-                    print("[AUTH] Login success")
-                except Exception as e:
-                    tb_str = traceback.format_exc()
-                    error_msg = f"SMTP login failed: {str(e)}"
-                    print(f"[AUTH ERROR] {error_msg}")
-                    print(tb_str)
-                    return False, error_msg, tb_str
-
-                print("[AUTH] Sending message")
-                try:
-                    server.send_message(message)
-                except Exception as e:
-                    tb_str = traceback.format_exc()
-                    error_msg = f"Failed to send email: {str(e)}"
-                    print(f"[AUTH ERROR] {error_msg}")
-                    print(tb_str)
-                    return False, error_msg, tb_str
-
-                print("[AUTH] Email sent successfully")
-                return True, "OTP sent successfully", None
-
-        except Exception as e:
-            tb_str = traceback.format_exc()
-            error_msg = f"SMTP server error: {str(e)}"
-            print(f"[AUTH ERROR] {error_msg}")
-            print(tb_str)
-            return False, error_msg, tb_str
-
+        resend.api_key = api_key
+        response = resend.Emails.send({
+            "from": "SurakshaPath AI <onboarding@resend.dev>",
+            "to": [recipient_email],
+            "subject": "SurakshaPath AI - OTP Verification",
+            "text": (
+                f"Your OTP for SurakshaPath AI is: {otp}\n"
+                f"Valid for {OTP_TTL_MINUTES} minutes.\n"
+                "Do not share with anyone.\n\n"
+                "Best regards,\n"
+                "SurakshaPath AI Team\n"
+                "Surakshit Raasta, Smart Faisla"
+            ),
+        })
+        print(f"[AUTH] OTP sent via Resend to {recipient_email}: {response}")
+        return True, "OTP sent successfully"
     except Exception as e:
-        tb_str = traceback.format_exc()
-        error_msg = f"Critical error in OTP email sender: {str(e)}"
-        print(f"[AUTH ERROR] {error_msg}")
-        print(tb_str)
-        return False, error_msg, tb_str
+        error_message = f"Resend email failed: {e}"
+        print(f"[AUTH ERROR] {error_message}")
+        print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
+        return False, str(e)
 
 
 @router.post("/send-otp")
@@ -338,19 +235,31 @@ def send_otp(payload: SendOTPRequest, db: Session = Depends(get_db)):
         print(f"[AUTH WARNING] send_otp email failed for {email}: {error_message}")
         if tb:
             print(tb)
+        if os.getenv("DEMO_MODE", "false").strip().lower() in {"1", "true", "yes"}:
+            response = {
+                "status": "success",
+                "message": "OTP sent to your email",
+                "expires_in_seconds": OTP_TTL_MINUTES * 60,
+                "otp": str(otp),
+                "note": "Email delivery failed. OTP shown for demo/testing only.",
+            }
+            if os.getenv("OTP_DEBUG", "false").strip().lower() in {"1", "true", "yes"}:
+                response["otp"] = otp
+                print(f"[AUTH DEBUG] Returning OTP in response for {email}")
+            return response
         # Always print OTP in server logs as a backup for testing/demo.
         print(f"[AUTH BACKUP OTP] {email} -> {otp}")
         _clear_otp(email)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="OTP email could not be sent. Check SMTP configuration and try again.",
+            detail="OTP email could not be sent. Check email configuration and try again.",
         )
-    else:
-        response = {
-            "status": "success",
-            "message": "OTP sent successfully",
-            "expires_in_seconds": OTP_TTL_MINUTES * 60,
-        }
+
+    response = {
+        "status": "success",
+        "message": "OTP sent successfully",
+        "expires_in_seconds": OTP_TTL_MINUTES * 60,
+    }
 
     if os.getenv("OTP_DEBUG", "false").strip().lower() in {"1", "true", "yes"}:
         response["otp"] = otp
@@ -361,38 +270,16 @@ def send_otp(payload: SendOTPRequest, db: Session = Depends(get_db)):
 
 @router.get("/test-email")
 def test_email(to: str | None = None):
-    """Send a real test OTP email and return detailed SMTP runtime info."""
-    # Load raw envs to validate
-    smtp_user_raw = os.getenv("SMTP_EMAIL")
-    smtp_password_raw = os.getenv("SMTP_PASSWORD")
-    smtp_server_raw = os.getenv("SMTP_SERVER")
-    smtp_port_raw = os.getenv("SMTP_PORT")
-
-    smtp_user = _sanitize_env(smtp_user_raw)
-    smtp_password = _sanitize_env(smtp_password_raw)
-    smtp_server = _sanitize_env(smtp_server_raw) or "smtp.gmail.com"
-    smtp_port = int(_sanitize_env(smtp_port_raw) or "587")
-
-    print("[AUTH] /auth/test-email invoked")
-    print(f"[AUTH] SMTP_EMAIL loaded: {smtp_user is not None}")
-    print(f"[AUTH] SMTP_PASSWORD loaded: {smtp_password is not None}")
-    print(f"[AUTH] SMTP_SERVER == smtp.gmail.com: {smtp_server.lower() == 'smtp.gmail.com'}")
-    print(f"[AUTH] SMTP_PORT == 587: {smtp_port == 587}")
-    print(f"[AUTH] SMTP_PASSWORD repr: '{_mask_password(smtp_password)}'")
-
-    if not smtp_user or not smtp_password:
-        return {
-            "status": "error",
-            "message": "SMTP_EMAIL or SMTP_PASSWORD not configured",
-            "smtp_email": smtp_user,
-            "smtp_password_repr": _mask_password(smtp_password),
-        }
-
-    # prefer explicit 'to' param, otherwise use configured SMTP_EMAIL
-    recipient = (to or smtp_user or "").strip().lower()
+    """Send a real test OTP email through SendGrid."""
+    recipient = (to or _sanitize_env(os.getenv("SMTP_EMAIL")) or "").strip().lower()
     otp = generate_otp()
 
-    success, message, tb = send_otp_email(recipient, otp)
+    email_result = send_otp_email(recipient, otp)
+    if len(email_result) == 2:
+        success, message = email_result
+        tb = None
+    else:
+        success, message, tb = email_result
     if not success:
         return {
             "status": "error",
