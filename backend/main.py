@@ -26,6 +26,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from PIL import Image
 import io
@@ -399,6 +400,11 @@ def read_root():
 def health_check():
     """Check server and model health status."""
     db_status = "connected"
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+    except Exception as error:
+        db_status = f"error: {type(error).__name__}"
     ml_status = "loaded" if regressor_model and classifier_model and label_encoders else "missing"
     nlp_status = "loaded" if nlp_model and nlp_tokenizer else "missing"
     cnn_status = "loaded" if cnn_model and cnn_class_indices else "missing"
