@@ -72,6 +72,8 @@ app = FastAPI(
 def _cors_origins() -> list[str]:
     configured = os.getenv("CORS_ORIGINS", "*")
     origins = [origin.strip().rstrip("/") for origin in configured.split(",") if origin.strip()]
+    if "*" not in origins:
+        origins.append("https://suraksha-path-ai.vercel.app")
     return origins or ["*"]
 
 
