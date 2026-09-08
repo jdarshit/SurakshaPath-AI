@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import os
+import smtplib
 import traceback
+from email.message import EmailMessage
 from dotenv import load_dotenv
 import re
 import secrets
@@ -15,11 +17,6 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-
-try:
-    import resend
-except Exception:
-    resend = None
 
 try:
     from backend.database import get_db
@@ -154,42 +151,38 @@ def _sanitize_env(value: str | None) -> str | None:
 def send_otp_email(
         to_email: str,
         otp: str) -> tuple:
+    smtp_server = _sanitize_env(os.getenv("SMTP_SERVER")) or "smtp.gmail.com"
+    smtp_port = int(_sanitize_env(os.getenv("SMTP_PORT")) or "587")
+    smtp_email = _sanitize_env(os.getenv("SMTP_EMAIL"))
+    smtp_password = _sanitize_env(os.getenv("SMTP_PASSWORD"))
+
+    if not smtp_email or not smtp_password:
+        return False, "SMTP_EMAIL and SMTP_PASSWORD are not configured"
+
     try:
-        if resend is None:
-            return False, "Resend email package is not installed"
+        message = EmailMessage()
+        message["From"] = smtp_email
+        message["To"] = to_email
+        message["Subject"] = "SurakshaPath AI - OTP Verification"
+        message.set_content(
+            f"Your OTP for SurakshaPath AI is:\n\n"
+            f"{otp}\n\n"
+            f"Valid for {OTP_TTL_MINUTES} minutes.\n"
+            "Do not share it with anyone.\n\n"
+            "SurakshaPath AI\n"
+            "Surakshit Raasta, Smart Faisla"
+        )
 
-        resend.api_key = os.getenv(
-            "RESEND_API_KEY")
-        if not resend.api_key:
-            return False, "RESEND_API_KEY is not configured"
+        with smtplib.SMTP(smtp_server, smtp_port, timeout=20) as server:
+            server.starttls()
+            server.login(smtp_email, smtp_password)
+            server.send_message(message)
 
-        resend.Emails.send({
-            "from": "SurakshaPath AI "
-                "<onboarding@resend.dev>",
-            "to": [to_email],
-            "subject":
-                "SurakshaPath AI - "
-                "OTP Verification",
-            "text": (
-                f"Your OTP for "
-                f"SurakshaPath AI is:\n\n"
-                f"{otp}\n\n"
-                f"Valid for 5 minutes.\n"
-                f"Do not share with "
-                f"anyone.\n\n"
-                f"SurakshaPath AI\n"
-                f"Surakshit Raasta, "
-                f"Smart Faisla"
-            )
-        })
         print(f"✅ OTP sent to {to_email}")
         return True, "OTP sent"
 
     except Exception as e:
-        print(f"⚠️ Resend failed: {e}")
-        print(
-            f"[BACKUP OTP] "
-            f"{to_email}: {otp}")
+        print(f"⚠️ SMTP failed: {type(e).__name__}: {e}")
         return False, str(e)
 
 

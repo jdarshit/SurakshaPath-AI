@@ -17,4 +17,3 @@ keras>=2.13.0
 pillow>=9.0.0
 joblib>=1.2.0
 python-multipart>=0.0.5
-resend>=2.2.0
