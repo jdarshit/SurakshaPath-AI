@@ -1074,7 +1074,7 @@ export default function Home() {
         </div>
 
         {/* Keep the old compact overlay only for narrow screens. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] hidden justify-center p-3 lg:hidden">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] flex justify-center p-2 sm:p-3 lg:hidden">
           <div className="pointer-events-auto flex max-h-[calc(100vh-70px-64px-1.5rem)] w-full max-w-md flex-col gap-2 overflow-y-auto custom-scrollbar">
             {/* Route Input (collapsible) */}
             <div className="glass-card flex flex-col gap-4">

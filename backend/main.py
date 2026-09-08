@@ -204,6 +204,7 @@ cnn_model = None
 cnn_class_indices = None
 CNN_MODEL_PATH = os.path.join(MODELS_DIR, "cnn_model.h5")
 CNN_CLASS_INDICES_PATH = os.path.join(MODELS_DIR, "cnn_class_indices.pkl")
+NLP_DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "ml_data", "incident_nlp_data.csv")
 
 
 def _ensure_ml_models():
@@ -421,9 +422,17 @@ def health_check():
             connection.execute(text("SELECT 1"))
     except Exception as error:
         db_status = f"error: {type(error).__name__}"
-    ml_status = "loaded" if regressor_model and classifier_model and label_encoders else "missing"
-    nlp_status = "loaded" if nlp_model and nlp_tokenizer else "missing"
-    cnn_status = "loaded" if cnn_model and cnn_class_indices else "missing"
+    ml_status = "loaded" if regressor_model and classifier_model and label_encoders else (
+        "ready (lazy)" if all(os.path.isfile(path) for path in (REG_PATH, CLF_PATH, ENC_PATH)) else "unavailable"
+    )
+    nlp_status = "loaded" if nlp_model and nlp_tokenizer else (
+        "ready (lazy)" if os.path.isfile(NLP_DATA_PATH) or (
+            os.path.isfile(NLP_MODEL_PATH) and os.path.isfile(NLP_TOKENIZER_PATH)
+        ) else "unavailable"
+    )
+    cnn_status = "loaded" if cnn_model and cnn_class_indices else (
+        "ready (lazy)" if os.path.isfile(CNN_MODEL_PATH) and os.path.isfile(CNN_CLASS_INDICES_PATH) else "unavailable"
+    )
     return {
         "server": "running",
         "database": db_status,
