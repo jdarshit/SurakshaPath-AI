@@ -155,8 +155,13 @@ def send_otp_email(
         to_email: str,
         otp: str) -> tuple:
     try:
+        if resend is None:
+            return False, "Resend email package is not installed"
+
         resend.api_key = os.getenv(
             "RESEND_API_KEY")
+        if not resend.api_key:
+            return False, "RESEND_API_KEY is not configured"
 
         resend.Emails.send({
             "from": "SurakshaPath AI "
@@ -223,6 +228,13 @@ def send_otp(payload: SendOTPRequest, db: Session = Depends(get_db)):
 
     email_sent, msg = send_otp_email(
         email, str(otp))
+
+    if not email_sent and os.getenv("DEMO_MODE", "false").strip().lower() not in {"1", "true", "yes"}:
+        _clear_otp(email)
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"Unable to send OTP email: {msg}",
+        )
 
     response_data = {
         "status": "success",
