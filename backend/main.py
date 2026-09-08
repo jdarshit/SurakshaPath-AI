@@ -13,6 +13,7 @@ if hasattr(sys.stderr, "reconfigure"):
 # Suppress TensorFlow warnings FIRST
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ.setdefault('CUDA_VISIBLE_DEVICES', '-1')
 
 # Add backend directory to path for imports
 BACKEND_DIR = Path(__file__).parent
@@ -34,28 +35,28 @@ import importlib
 
 from backend.safety import FEATURE_COLUMNS, load_models, predict_safety
 
-# TensorFlow/Keras imports for NLP — use dynamic import to avoid static analyzer errors
-# Attempt to load tensorflow and pad_sequences at runtime; fall back to keras or None.
+# TensorFlow/Keras is imported only when an NLP or CNN request needs it. Importing
+# it during Render boot can terminate small containers before they bind to a port.
 pad_sequences = None
 tensorflow = None
 joblib = None
 try:
+    joblib = importlib.import_module("joblib")
+except Exception:
+    joblib = None
+
+
+def _load_tensorflow():
+    global tensorflow, pad_sequences
+    if tensorflow is not None:
+        return tensorflow
     tensorflow = importlib.import_module("tensorflow")
-    # Attempt to get pad_sequences from tensorflow.keras.preprocessing.sequence
     try:
         seq_mod = importlib.import_module("tensorflow.keras.preprocessing.sequence")
         pad_sequences = getattr(seq_mod, "pad_sequences", None)
     except Exception:
-        try:
-            seq_mod = importlib.import_module("keras.preprocessing.sequence")
-            pad_sequences = getattr(seq_mod, "pad_sequences", None)
-        except Exception:
-            pad_sequences = None
-    joblib = importlib.import_module("joblib")
-except Exception:
-    tensorflow = None
-    pad_sequences = None
-    joblib = None
+        pad_sequences = None
+    return tensorflow
 
 from backend.database import Base, engine, get_db, SessionLocal
 from backend.models import Area, SOSAlert, Incident, ensure_auth_columns, ensure_sos_columns
@@ -205,6 +206,24 @@ CNN_MODEL_PATH = os.path.join(MODELS_DIR, "cnn_model.h5")
 CNN_CLASS_INDICES_PATH = os.path.join(MODELS_DIR, "cnn_class_indices.pkl")
 
 
+def _ensure_ml_models():
+    global regressor_model, classifier_model, label_encoders
+    if regressor_model is None or classifier_model is None or label_encoders is None:
+        regressor_model, classifier_model, label_encoders = load_models()
+    return regressor_model, classifier_model, label_encoders
+
+
+def _ensure_cnn_model():
+    global cnn_model, cnn_class_indices
+    if cnn_model is None or cnn_class_indices is None:
+        _load_tensorflow()
+        if joblib is None:
+            raise RuntimeError("joblib is not available")
+        cnn_model = tensorflow.keras.models.load_model(CNN_MODEL_PATH)
+        cnn_class_indices = joblib.load(CNN_CLASS_INDICES_PATH)
+    return cnn_model, cnn_class_indices
+
+
 class SafetyPredictionRequest(BaseModel):
     area_type: str = Field(..., example="Market")
     time_of_day: str = Field(..., example="Night")
@@ -339,41 +358,43 @@ async def startup_event():
     except Exception as e:
         print(f"⚠️ DB Error: {e}")
 
-    # Load ML models via safety module loader (cached)
-    try:
-        regressor_model, classifier_model, label_encoders = load_models()
-        print("ML models loaded successfully!")
-    except Exception as e:
-        regressor_model = None
-        classifier_model = None
-        label_encoders = None
-        print(f"Warning: Failed to load ML models: {e}")
+    # Skip heavy model loading at boot for Render stability.
+    # Models are loaded lazily on first actual prediction request when needed.
+    if os.getenv("SKIP_MODEL_LOAD_ON_STARTUP", "true").strip().lower() in {"1", "true", "yes"}:
+        print("[STARTUP] Skipping ML model loads on boot for Render stability.")
+    else:
+        try:
+            regressor_model, classifier_model, label_encoders = load_models()
+            print("ML models loaded successfully!")
+        except Exception as e:
+            regressor_model = None
+            classifier_model = None
+            label_encoders = None
+            print(f"Warning: Failed to load ML models: {e}")
 
-    # Load TensorFlow NLP model
-    try:
-        if tensorflow.keras.models.load_model and joblib:
-            nlp_model = tensorflow.keras.models.load_model(NLP_MODEL_PATH)
-            nlp_tokenizer = joblib.load(NLP_TOKENIZER_PATH)
-            print("NLP Model loaded successfully!")
-        else:
-            print("Warning: TensorFlow not available - NLP features disabled")
-    except Exception as e:
-        nlp_model = None
-        nlp_tokenizer = None
-        print(f"Warning: NLP Model not found: {e}")
+        try:
+            if tensorflow and getattr(tensorflow, "keras", None) and joblib:
+                nlp_model = tensorflow.keras.models.load_model(NLP_MODEL_PATH)
+                nlp_tokenizer = joblib.load(NLP_TOKENIZER_PATH)
+                print("NLP Model loaded successfully!")
+            else:
+                print("Warning: TensorFlow not available - NLP features disabled")
+        except Exception as e:
+            nlp_model = None
+            nlp_tokenizer = None
+            print(f"Warning: NLP Model not found: {e}")
 
-    # Load TensorFlow CNN model
-    try:
-        if tensorflow.keras.models.load_model and joblib:
-            cnn_model = tensorflow.keras.models.load_model(CNN_MODEL_PATH)
-            cnn_class_indices = joblib.load(CNN_CLASS_INDICES_PATH)
-            print("CNN Model loaded successfully!")
-        else:
-            print("Warning: TensorFlow not available - CNN features disabled")
-    except Exception as e:
-        cnn_model = None
-        cnn_class_indices = None
-        print(f"Warning: CNN Model not found: {e}")
+        try:
+            if tensorflow and getattr(tensorflow, "keras", None) and joblib:
+                cnn_model = tensorflow.keras.models.load_model(CNN_MODEL_PATH)
+                cnn_class_indices = joblib.load(CNN_CLASS_INDICES_PATH)
+                print("CNN Model loaded successfully!")
+            else:
+                print("Warning: TensorFlow not available - CNN features disabled")
+        except Exception as e:
+            cnn_model = None
+            cnn_class_indices = None
+            print(f"Warning: CNN Model not found: {e}")
 
     print("Backend startup complete!")
     print("\nSwagger Docs:")
@@ -454,9 +475,9 @@ def analyze_incident(payload: IncidentAnalysisRequest):
 
     try:
         # Try using TensorFlow NLP model if available
-        if nlp_model and nlp_tokenizer and tensorflow.keras.preprocessing.sequence.pad_sequences:
+        if nlp_model and nlp_tokenizer and _load_tensorflow() and pad_sequences:
             seq = nlp_tokenizer.texts_to_sequences([payload.text.lower()])
-            padded = tensorflow.keras.preprocessing.sequence.pad_sequences(seq, maxlen=MAX_LEN, padding='post')
+            padded = pad_sequences(seq, maxlen=MAX_LEN, padding='post')
             prediction = nlp_model.predict(padded, verbose=0)[0]
             class_idx = int(np.argmax(prediction))
             confidence = float(prediction[class_idx])
@@ -524,11 +545,10 @@ async def analyze_area_image(
     - message: Analysis summary
     """
     
-    if cnn_model is None or cnn_class_indices is None:
-        raise HTTPException(
-            status_code=503,
-            detail="CNN model not available. Please train the model first."
-        )
+    try:
+        _ensure_cnn_model()
+    except Exception as error:
+        raise HTTPException(status_code=503, detail=f"CNN model unavailable: {error}") from error
     
     try:
         # Read image file
@@ -736,10 +756,8 @@ FEATURE_COLUMNS = [
 )
 def predict(payload: SafetyPredictionRequest):
     """Accept a JSON body, call predict_safety and return structured response."""
-    if not (regressor_model and classifier_model and label_encoders):
-        return JSONResponse(status_code=503, content={"status": "error", "message": "Models not loaded"})
-
     try:
+        _ensure_ml_models()
         data = payload.dict()
         # call into safety.predict_safety (uses cached models)
         prediction = predict_safety(**data)
@@ -774,10 +792,8 @@ def predict_route(payload: RoutePredictionRequest):
     dataset supplied each prediction instead of presenting distance heuristics
     as measured safety data.
     """
-    if not (regressor_model and classifier_model and label_encoders):
-        return JSONResponse(status_code=503, content={"status": "error", "message": "Models not loaded"})
-
     try:
+        _ensure_ml_models()
         dataset = _load_safety_dataset()
         coordinates = np.array([[point.lat, point.lng] for point in payload.points], dtype=float)
         dataset_coords = dataset[["lat", "lng"]].to_numpy(dtype=float)
