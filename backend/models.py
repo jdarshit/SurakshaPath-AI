@@ -1,12 +1,16 @@
-from datetime import datetime
-
-from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Integer, String, Text, inspect, text
+from sqlalchemy import (
+    Column, Integer, String,
+    Boolean, DateTime, Text,
+    Float, ForeignKey)
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 try:
     from backend.database import Base
 except Exception:
     from database import Base
+
+from sqlalchemy import inspect, text
 
 
 class User(Base):

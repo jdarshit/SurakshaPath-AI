@@ -151,43 +151,40 @@ def _sanitize_env(value: str | None) -> str | None:
     return v.strip()
 
 
-def send_otp_email(recipient_email: str, otp: str) -> tuple[bool, str]:
-    """Send an OTP through Resend's HTTPS API for Render-safe production delivery."""
+def send_otp_email(
+        to_email: str,
+        otp: str) -> tuple:
     try:
-        recipient_email = (recipient_email or "").strip().lower()
-        api_key = _sanitize_env(os.getenv("RESEND_API_KEY"))
-        if not recipient_email:
-            return False, "Recipient email is required"
-        if resend is None:
-            print("[AUTH ERROR] resend package is not installed")
-            print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
-            return False, "resend package is not installed"
-        if not api_key:
-            message = "RESEND_API_KEY not configured"
-            print(f"[AUTH ERROR] {message}")
-            print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
-            return False, message
+        resend.api_key = os.getenv(
+            "RESEND_API_KEY")
 
-        resend.api_key = api_key
-        response = resend.Emails.send({
-            "from": "SurakshaPath AI <onboarding@resend.dev>",
-            "to": [recipient_email],
-            "subject": "SurakshaPath AI - OTP Verification",
+        resend.Emails.send({
+            "from": "SurakshaPath AI "
+                "<onboarding@resend.dev>",
+            "to": [to_email],
+            "subject":
+                "SurakshaPath AI - "
+                "OTP Verification",
             "text": (
-                f"Your OTP for SurakshaPath AI is: {otp}\n"
-                f"Valid for {OTP_TTL_MINUTES} minutes.\n"
-                "Do not share with anyone.\n\n"
-                "Best regards,\n"
-                "SurakshaPath AI Team\n"
-                "Surakshit Raasta, Smart Faisla"
-            ),
+                f"Your OTP for "
+                f"SurakshaPath AI is:\n\n"
+                f"{otp}\n\n"
+                f"Valid for 5 minutes.\n"
+                f"Do not share with "
+                f"anyone.\n\n"
+                f"SurakshaPath AI\n"
+                f"Surakshit Raasta, "
+                f"Smart Faisla"
+            )
         })
-        print(f"[AUTH] OTP sent via Resend to {recipient_email}: {response}")
-        return True, "OTP sent successfully"
+        print(f"✅ OTP sent to {to_email}")
+        return True, "OTP sent"
+
     except Exception as e:
-        error_message = f"Resend email failed: {e}"
-        print(f"[AUTH ERROR] {error_message}")
-        print(f"[AUTH BACKUP OTP] {recipient_email}: {otp}")
+        print(f"⚠️ Resend failed: {e}")
+        print(
+            f"[BACKUP OTP] "
+            f"{to_email}: {otp}")
         return False, str(e)
 
 
@@ -224,48 +221,21 @@ def send_otp(payload: SendOTPRequest, db: Session = Depends(get_db)):
 
     print(f"[AUTH] OTP generated for {email}: {otp} (expires at {expires_at.isoformat()})")
 
-    # Try sending OTP email but never crash the request if email fails.
-    email_result = send_otp_email(email, otp)
-    if len(email_result) == 2:
-        success, error_message = email_result
-        tb = None
-    else:
-        success, error_message, tb = email_result
-    if not success:
-        print(f"[AUTH WARNING] send_otp email failed for {email}: {error_message}")
-        if tb:
-            print(tb)
-        if os.getenv("DEMO_MODE", "false").strip().lower() in {"1", "true", "yes"}:
-            response = {
-                "status": "success",
-                "message": "OTP sent to your email",
-                "expires_in_seconds": OTP_TTL_MINUTES * 60,
-                "otp": str(otp),
-                "note": "Email delivery failed. OTP shown for demo/testing only.",
-            }
-            if os.getenv("OTP_DEBUG", "false").strip().lower() in {"1", "true", "yes"}:
-                response["otp"] = otp
-                print(f"[AUTH DEBUG] Returning OTP in response for {email}")
-            return response
-        # Always print OTP in server logs as a backup for testing/demo.
-        print(f"[AUTH BACKUP OTP] {email} -> {otp}")
-        _clear_otp(email)
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="OTP email could not be sent. Check email configuration and try again.",
-        )
+    email_sent, msg = send_otp_email(
+        email, str(otp))
 
-    response = {
+    response_data = {
         "status": "success",
-        "message": "OTP sent successfully",
-        "expires_in_seconds": OTP_TTL_MINUTES * 60,
+        "message": "OTP sent to your email",
+        "expires_in_seconds": 300
     }
 
-    if os.getenv("OTP_DEBUG", "false").strip().lower() in {"1", "true", "yes"}:
-        response["otp"] = otp
-        print(f"[AUTH DEBUG] Returning OTP in response for {email}")
+    if os.getenv("DEMO_MODE") == "true":
+        response_data["otp"] = str(otp)
+        response_data["note"] = (
+            "Demo mode: OTP shown here")
 
-    return response
+    return response_data
 
 
 @router.get("/test-email")

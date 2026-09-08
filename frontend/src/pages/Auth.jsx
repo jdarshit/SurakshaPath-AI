@@ -90,6 +90,7 @@ export default function AuthPage() {
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const [otpDigits, setOtpDigits] = useState(Array(OTP_LENGTH).fill(''));
+  const [debugOtp, setDebugOtp] = useState(null);
   const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
   const [verified, setVerified] = useState(false);
@@ -171,7 +172,7 @@ export default function AuthPage() {
 
     setBusy(true);
     try {
-      await sendOtp({
+      const response = await sendOtp({
         name: registerForm.name,
         email: registerForm.email,
         phone: registerForm.phone,
@@ -181,6 +182,9 @@ export default function AuthPage() {
         guardian_whatsapp: registerForm.guardianPhone,
         guardian_relation: registerForm.guardianRelation,
       });
+      if (response?.otp) {
+        setDebugOtp(response.otp);
+      }
       setStep('otp');
       setCountdown(OTP_SECONDS);
       setOtpDigits(Array(OTP_LENGTH).fill(''));
@@ -526,6 +530,34 @@ export default function AuthPage() {
                           Resend OTP
                         </button>
                       </div>
+
+                      {debugOtp && (
+                        <div style={{
+                            background: '#1a0a15',
+                            border: '2px solid #FF2D78',
+                            borderRadius: '12px',
+                            padding: '16px',
+                            marginTop: '12px',
+                            textAlign: 'center'
+                        }}>
+                            <p style={{
+                                color: '#94A3B8',
+                                fontSize: '12px',
+                                marginBottom: '4px'
+                            }}>
+                                Demo Mode - Your OTP:
+                            </p>
+                            <p style={{
+                                color: '#FF2D78',
+                                fontSize: '32px',
+                                fontWeight: 'bold',
+                                letterSpacing: '8px',
+                                margin: '0'
+                            }}>
+                                {debugOtp}
+                            </p>
+                        </div>
+                      )}
 
                       <button
                         type="submit"

@@ -1,28 +1,32 @@
-import os
-from urllib.parse import quote_plus
-
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import (
+    sessionmaker, declarative_base)
+import os
+from dotenv import load_dotenv
 
-# Load .env from backend directory
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "3306")
-DB_USER = os.getenv("DB_USER", "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "")
-DB_NAME = os.getenv("DB_NAME", "surakshapath_db")
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", "")
 
-ENCODED_PASSWORD = quote_plus(DB_PASSWORD or "")
-SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{ENCODED_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+if DATABASE_URL.startswith(
+        "postgres://"):
+    DATABASE_URL = DATABASE_URL.replace(
+        "postgres://",
+        "postgresql://", 1)
 
-connect_args = {}
-if os.getenv("DB_SSL", "false").strip().lower() in {"1", "true", "yes"}:
-    SQLALCHEMY_DATABASE_URL += "?ssl_verify_cert=true&ssl_verify_identity=true"
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args=connect_args)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
 Base = declarative_base()
 
 

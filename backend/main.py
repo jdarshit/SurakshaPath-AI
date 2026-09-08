@@ -81,7 +81,13 @@ def _cors_origins() -> list[str]:
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_cors_origins(),
+    allow_origins=[
+        "https://suraksha-path-ai.vercel.app",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5173",
+        "*"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -100,15 +106,6 @@ try:
         app.include_router(sos_router, prefix="/sos", tags=["sos"])
 except Exception:
     pass
-
-# Keep existing MySQL tables aligned with the auth models during import.
-try:
-    Base.metadata.create_all(bind=engine)
-    ensure_auth_columns(engine)
-    ensure_sos_columns(engine)
-except Exception:
-    pass
-
 
 # ==================== WebSocket Connection Manager ====================
 # Shared with backend/sos.py so SOS alerts triggered via the /sos router also broadcast.
@@ -334,22 +331,19 @@ async def startup_event():
     global nlp_model, nlp_tokenizer
     global cnn_model, cnn_class_indices
     print("Starting SurakshaPath AI Backend...")
-    # Create every model table before serving requests.
     try:
         Base.metadata.create_all(bind=engine)
         ensure_auth_columns(engine)
         ensure_sos_columns(engine)
-        print("Database connected successfully!")
-        print("Tables created!")
+        print("✅ Tables created!")
     except Exception as e:
-        print(f"Warning: Database init failed: {e}")
+        print(f"⚠️ DB Error: {e}")
 
     # Load ML models via safety module loader (cached)
     try:
         regressor_model, classifier_model, label_encoders = load_models()
         print("ML models loaded successfully!")
     except Exception as e:
-        # keep server running but mark models as missing
         regressor_model = None
         classifier_model = None
         label_encoders = None
@@ -382,7 +376,6 @@ async def startup_event():
         print(f"Warning: CNN Model not found: {e}")
 
     print("Backend startup complete!")
-    # Helpful links for developers / testers
     print("\nSwagger Docs:")
     print("http://127.0.0.1:8000/docs")
     print("\nReDoc:")
