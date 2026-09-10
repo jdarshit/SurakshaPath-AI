@@ -356,6 +356,8 @@ def register(payload: SendOTPRequest, db: Session = Depends(get_db)):
     email = (payload.email or "").strip().lower()
     if not _is_valid_email(email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format")
+    if not payload.password or len(payload.password) < 6:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be at least 6 characters")
 
     existing = db.query(User).filter(User.email == email).first()
     if existing and existing.password_hash:

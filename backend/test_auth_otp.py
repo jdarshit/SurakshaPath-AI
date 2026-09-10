@@ -4,7 +4,11 @@ from datetime import datetime, timezone
 from fastapi.testclient import TestClient
 
 import backend.auth as auth
+from backend.database import Base, engine
 from backend.main import app
+
+
+Base.metadata.create_all(bind=engine)
 
 
 def run_tests() -> None:
@@ -56,7 +60,7 @@ def run_tests() -> None:
     print("[test] registration flow")
     register_email = f"surakshapath.{int(datetime.now(timezone.utc).timestamp())}@gmail.com"
     response = client.post(
-        "/auth/send-otp",
+        "/auth/register",
         json={
             "email": register_email,
             "name": "Demo User",
@@ -65,15 +69,12 @@ def run_tests() -> None:
         },
     )
     assert response.status_code == 200, response.text
-    register_otp = auth.OTP_STORE[register_email]["otp"]
-    response = client.post("/auth/verify-otp", json={"email": register_email, "otp": register_otp})
-    assert response.status_code == 200, response.text
     payload = response.json()
     assert payload["status"] == "success"
     assert payload.get("token")
     assert payload.get("user", {}).get("email") == register_email
 
-    print("[test] all OTP checks passed")
+    print("[test] all auth checks passed")
 
 
 if __name__ == "__main__":

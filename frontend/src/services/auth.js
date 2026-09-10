@@ -8,6 +8,11 @@ export async function sendOtp(payload) {
   return response.data;
 }
 
+export async function register(payload) {
+  const response = await api.post('/auth/register', payload);
+  return response.data;
+}
+
 export async function verifyOtp(payload) {
   const response = await api.post('/auth/verify-otp', payload);
   return response.data;

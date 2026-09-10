@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { sendOtp, verifyOtp, login, saveToken, saveUser } from '../services/auth';
+import { register, login, saveToken, saveUser } from '../services/auth';
 import { useAuth } from '../context/AuthContext';
 import Logo from '../components/Logo';
-
-const OTP_LENGTH = 6;
-const OTP_SECONDS = 300;
 
 const initialRegisterForm = {
   name: '',
@@ -23,12 +20,6 @@ const initialLoginForm = {
   email: '',
   password: '',
 };
-
-function formatTime(totalSeconds) {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
 
 function Spinner() {
   return (
@@ -58,44 +49,14 @@ function AuthToast({ toast }) {
   );
 }
 
-function OtpBoxes({ value, onChange, onPaste, inputRefs, onKeyDown, disabled }) {
-  return (
-    <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-      {value.map((digit, index) => (
-        <input
-          key={index}
-          ref={(node) => {
-            inputRefs.current[index] = node;
-          }}
-          value={digit}
-          onChange={(event) => onChange(index, event.target.value)}
-          onPaste={onPaste}
-          onKeyDown={(event) => onKeyDown(index, event)}
-          inputMode="numeric"
-          autoComplete="one-time-code"
-          maxLength={1}
-          disabled={disabled}
-          className="h-12 w-11 rounded-2xl border border-white/10 bg-[#0A0A0F]/70 text-center text-xl font-semibold text-white outline-none transition focus:border-[var(--primary)]/50 focus:ring-2 focus:ring-[var(--primary)]/20 sm:h-14 sm:w-12"
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function AuthPage() {
   const navigate = useNavigate();
   const { isAuthenticated, loading: authLoading, loginWithToken } = useAuth();
   const [mode, setMode] = useState('login');
-  const [step, setStep] = useState('form');
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
   const [loginForm, setLoginForm] = useState(initialLoginForm);
-  const [otpDigits, setOtpDigits] = useState(Array(OTP_LENGTH).fill(''));
-  const [debugOtp, setDebugOtp] = useState(null);
-  const [countdown, setCountdown] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [verified, setVerified] = useState(false);
   const [toasts, setToasts] = useState([]);
-  const otpRefs = useRef([]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -103,27 +64,6 @@ export default function AuthPage() {
       navigate('/', { replace: true });
     }
   }, [authLoading, isAuthenticated, navigate]);
-
-  useEffect(() => {
-    if (countdown <= 0) return undefined;
-    const timer = window.setInterval(() => {
-      setCountdown((value) => Math.max(0, value - 1));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, [countdown]);
-
-  useEffect(() => {
-    if (!verified) return undefined;
-    const timer = window.setTimeout(() => {
-      setVerified(false);
-      setStep('form');
-      setMode('login');
-      setOtpDigits(Array(OTP_LENGTH).fill(''));
-      setCountdown(0);
-      setRegisterForm(initialRegisterForm);
-    }, 1800);
-    return () => window.clearTimeout(timer);
-  }, [verified]);
 
   const addToast = (type, title, message) => {
     const id = window.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
@@ -133,18 +73,9 @@ export default function AuthPage() {
     }, 3600);
   };
 
-  const resetRegisterFlow = () => {
-    setStep('form');
-    setOtpDigits(Array(OTP_LENGTH).fill(''));
-    setCountdown(0);
-    setVerified(false);
-  };
-
   const changeMode = (nextMode) => {
     setMode(nextMode);
-    if (nextMode === 'login') {
-      resetRegisterFlow();
-    } else {
+    if (nextMode !== 'login') {
       setLoginForm(initialLoginForm);
     }
   };
@@ -172,7 +103,7 @@ export default function AuthPage() {
 
     setBusy(true);
     try {
-      const response = await sendOtp({
+      const response = await register({
         name: registerForm.name,
         email: registerForm.email,
         phone: registerForm.phone,
@@ -182,16 +113,17 @@ export default function AuthPage() {
         guardian_whatsapp: registerForm.guardianPhone,
         guardian_relation: registerForm.guardianRelation,
       });
-      if (response?.otp) {
-        setDebugOtp(response.otp);
+      if (response?.token) {
+        saveToken(response.token);
+        if (response?.user) {
+          saveUser(response.user);
+        }
+        await loginWithToken(response.token);
+        addToast('success', 'Registration successful', 'Your account is ready. Redirecting...');
+        navigate('/', { replace: true });
       }
-      setStep('otp');
-      setCountdown(OTP_SECONDS);
-      setOtpDigits(Array(OTP_LENGTH).fill(''));
-      addToast('success', 'OTP sent', 'Check your inbox for the 6-digit verification code.');
-      otpRefs.current[0]?.focus?.();
     } catch (error) {
-      let detail = 'Could not send OTP right now.';
+      let detail = 'Could not create your account right now.';
       if (!error?.response) {
         detail = 'Cannot connect to server. Is backend running?';
       } else if (error.response?.data?.detail) {
@@ -204,109 +136,7 @@ export default function AuthPage() {
           }
         }
       }
-      addToast('error', 'OTP failed', detail);
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const resendOtp = async () => {
-    setBusy(true);
-    try {
-      await sendOtp({
-        name: registerForm.name,
-        email: registerForm.email,
-        phone: registerForm.phone,
-        password: registerForm.password,
-        guardian_name: registerForm.guardianName,
-        guardian_phone: registerForm.guardianPhone,
-        guardian_whatsapp: registerForm.guardianPhone,
-        guardian_relation: registerForm.guardianRelation,
-      });
-      setCountdown(OTP_SECONDS);
-      addToast('success', 'OTP resent', 'A fresh verification code was sent.');
-    } catch (error) {
-      let detail = 'Could not resend OTP.';
-      if (!error?.response) {
-        detail = 'Cannot connect to server. Is backend running?';
-      } else if (error.response?.data?.detail) {
-        detail = error.response.data.detail;
-      }
-      addToast('error', 'Resend failed', detail);
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const handleOtpChange = (index, rawValue) => {
-    const digit = rawValue.replace(/\D/g, '').slice(-1);
-    setOtpDigits((current) => {
-      const next = [...current];
-      next[index] = digit;
-      return next;
-    });
-
-    if (digit && index < OTP_LENGTH - 1) {
-      otpRefs.current[index + 1]?.focus?.();
-    }
-  };
-
-  const handleOtpKeyDown = (index, event) => {
-    if (event.key === 'Backspace' && !otpDigits[index] && index > 0) {
-      otpRefs.current[index - 1]?.focus?.();
-    }
-  };
-
-  const handleOtpPaste = (event) => {
-    const pasted = event.clipboardData.getData('text').replace(/\D/g, '').slice(0, OTP_LENGTH);
-    if (!pasted) return;
-
-    event.preventDefault();
-    const nextDigits = Array(OTP_LENGTH).fill('');
-    pasted.split('').forEach((digit, index) => {
-      nextDigits[index] = digit;
-    });
-    setOtpDigits(nextDigits);
-    otpRefs.current[Math.min(pasted.length, OTP_LENGTH - 1)]?.focus?.();
-  };
-
-  const submitOtp = async (event) => {
-    event.preventDefault();
-    const code = otpDigits.join('');
-
-    if (code.length !== OTP_LENGTH) {
-      addToast('error', 'Incomplete OTP', 'Enter the full 6-digit verification code.');
-      return;
-    }
-
-    setBusy(true);
-    try {
-      const response = await verifyOtp({ email: registerForm.email, otp: code });
-      if (response?.token) {
-        saveToken(response.token);
-        if (response?.user) {
-          saveUser(response.user);
-        }
-        await loginWithToken(response.token);
-        addToast('success', 'Verification complete', 'Your account is now active. Redirecting...');
-        navigate('/', { replace: true });
-        return;
-      }
-      setVerified(true);
-      addToast('success', 'Verification complete', 'Your email has been verified successfully.');
-    } catch (error) {
-      let detail = 'OTP verification failed.';
-      if (!error?.response) {
-        detail = 'Cannot connect to server. Is backend running?';
-      } else if (error.response?.data?.detail) {
-        const d = error.response.data.detail;
-        if (typeof d === 'string' && d.includes('Invalid OTP')) {
-          detail = 'Invalid OTP. Try again.';
-        } else {
-          detail = d;
-        }
-      }
-      addToast('error', 'Verification failed', detail);
+      addToast('error', 'Registration failed', detail);
     } finally {
       setBusy(false);
     }
@@ -436,24 +266,7 @@ export default function AuthPage() {
 
             <div className="mt-5 min-h-[560px] rounded-[1.5rem] border border-[var(--card-border)] bg-[linear-gradient(180deg,rgba(18,18,26,0.88),rgba(10,10,15,0.95))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-6">
               <AnimatePresence mode="wait">
-                {verified ? (
-                  <motion.div
-                    key="verified-state"
-                    initial={{ opacity: 0, scale: 0.94 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    className="flex min-h-[420px] flex-col items-center justify-center text-center"
-                  >
-                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-emerald-300/20 bg-emerald-400/10 shadow-[0_0_50px_rgba(16,185,129,0.18)]">
-                      <div className="absolute inset-0 animate-ping rounded-full bg-emerald-300/10" />
-                      <div className="relative text-4xl text-emerald-200">✓</div>
-                    </div>
-                    <h3 className="mt-8 text-2xl font-semibold text-white">Verification successful</h3>
-                    <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">
-                      Your email has been verified. Switching you back to the login screen now.
-                    </p>
-                  </motion.div>
-                ) : mode === 'register' && step === 'form' ? (
+                {mode === 'register' ? (
                   <motion.form
                     key="register-form"
                     initial={{ opacity: 0, y: 18 }}
@@ -484,91 +297,9 @@ export default function AuthPage() {
                       className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[var(--primary)] to-[var(--accent-purple)] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_0_32px_rgba(255,45,120,0.25)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {busy ? <Spinner /> : null}
-                      Send Verification OTP
+                      Create Account
                     </button>
-
-                    <p className="text-center text-xs leading-5 text-slate-400">
-                      You will receive a 6-digit code valid for 5 minutes.
-                    </p>
                   </motion.form>
-                ) : mode === 'register' && step === 'otp' ? (
-                  <motion.div
-                    key="otp-step"
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.25 }}
-                    className="space-y-5"
-                  >
-                    <div className="rounded-3xl border border-[var(--primary)]/15 bg-[rgba(255,45,120,0.05)] p-5">
-                      <div className="text-sm font-semibold text-[color:var(--secondary)]">Verify your email</div>
-                      <p className="mt-2 text-sm leading-6 text-slate-300">
-                        We sent a 6-digit OTP to <span className="font-semibold text-white">{registerForm.email}</span>.
-                      </p>
-                    </div>
-
-                    <form onSubmit={submitOtp} className="space-y-5">
-                      <OtpBoxes
-                        value={otpDigits}
-                        onChange={handleOtpChange}
-                        onPaste={handleOtpPaste}
-                        inputRefs={otpRefs}
-                        onKeyDown={handleOtpKeyDown}
-                        disabled={busy}
-                      />
-
-                      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-slate-300">
-                        <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2">
-                          {countdown > 0 ? `Expires in ${formatTime(countdown)}` : 'OTP expired'}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={resendOtp}
-                          disabled={busy || countdown > 0}
-                          className="rounded-full border border-white/10 bg-white/5 px-4 py-2 font-semibold text-[color:var(--secondary)] transition hover:border-[var(--primary)]/30 hover:bg-[rgba(255,45,120,0.1)] disabled:cursor-not-allowed disabled:opacity-50"
-                        >
-                          Resend OTP
-                        </button>
-                      </div>
-
-                      {debugOtp && (
-                        <div style={{
-                            background: '#1a0a15',
-                            border: '2px solid #FF2D78',
-                            borderRadius: '12px',
-                            padding: '16px',
-                            marginTop: '12px',
-                            textAlign: 'center'
-                        }}>
-                            <p style={{
-                                color: '#94A3B8',
-                                fontSize: '12px',
-                                marginBottom: '4px'
-                            }}>
-                                Demo Mode - Your OTP:
-                            </p>
-                            <p style={{
-                                color: '#FF2D78',
-                                fontSize: '32px',
-                                fontWeight: 'bold',
-                                letterSpacing: '8px',
-                                margin: '0'
-                            }}>
-                                {debugOtp}
-                            </p>
-                        </div>
-                      )}
-
-                      <button
-                        type="submit"
-                        disabled={busy}
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[var(--accent-purple)] to-[var(--primary)] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_0_32px_rgba(255,45,120,0.22)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {busy ? <Spinner /> : null}
-                        Verify OTP
-                      </button>
-                    </form>
-                  </motion.div>
                 ) : (
                   <motion.form
                     key="login-form"
@@ -604,7 +335,7 @@ export default function AuthPage() {
                     </button>
 
                     <div className="rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300">
-                      Use your verified email and password to enter the dashboard.
+                      Use your email and password to enter the dashboard.
                     </div>
                   </motion.form>
                 )}
