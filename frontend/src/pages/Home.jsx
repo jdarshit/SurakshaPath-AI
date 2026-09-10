@@ -998,9 +998,9 @@ export default function Home() {
     <>
       <SmartAlertToast alerts={smartAlerts} onDismiss={dismissSmartAlert} />
 
-      {/* Keep route controls beside the map on larger screens so the map stays
-          fully visible. The rail becomes a compact overlay on small screens. */}
-      <div className="relative grid h-[calc(100vh-70px-64px)] min-h-[420px] w-full min-w-0 grid-cols-1 overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-[0_0_20px_rgba(255,45,120,0.08)] lg:min-h-[520px] lg:grid-cols-[minmax(280px,360px)_minmax(0,1fr)]">
+        {/* Keep route controls beside the map on larger screens so the map stays
+          fully visible, and stack them above the map on small screens. */}
+        <div className="relative flex min-h-[calc(100vh-70px-64px)] w-full min-w-0 flex-col overflow-y-auto rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] pb-2 shadow-[0_0_20px_rgba(255,45,120,0.08)] lg:grid lg:h-[calc(100vh-70px-64px)] lg:min-h-[520px] lg:grid-cols-[minmax(280px,360px)_minmax(0,1fr)] lg:overflow-hidden lg:pb-0">
         <aside className="relative z-[1200] hidden min-h-0 flex-col gap-3 overflow-hidden border-b border-[var(--card-border)] bg-[var(--card-bg)] p-3 lg:flex lg:border-b-0 lg:border-r lg:p-4">
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto custom-scrollbar">
             {/* Route input and results stay in the rail instead of covering the map. */}
@@ -1048,7 +1048,7 @@ export default function Home() {
           <button type="button" onClick={() => setIsIncidentModalOpen(true)} className="btn-danger mt-2 flex w-full shrink-0 items-center justify-center gap-2 px-4 py-3 shadow-lg"><AlertTriangle aria-hidden="true" className="h-4 w-4" />Report Incident</button>
         </aside>
 
-        <div className="relative min-h-0 min-w-0">
+        <div className="relative order-1 min-h-0 min-w-0 lg:order-none">
           <MapView
             source={source}
             destination={destination}
@@ -1073,9 +1073,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Keep the old compact overlay only for narrow screens. */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1200] flex justify-center p-2 sm:p-3 lg:hidden">
-          <div className="pointer-events-auto flex max-h-[calc(100vh-70px-64px-1.5rem)] w-full max-w-md flex-col gap-2 overflow-y-auto custom-scrollbar">
+        {/* Keep route controls in the document flow on narrow screens so they
+            cannot cover the map or be hidden behind it. */}
+        <div className="relative order-2 z-[1200] flex w-full justify-center p-2 sm:p-3 lg:hidden">
+          <div className="flex w-full max-w-md flex-col gap-2 custom-scrollbar">
             {/* Route Input (collapsible) */}
             <div className="glass-card flex flex-col gap-4">
               <button
@@ -1167,7 +1168,7 @@ export default function Home() {
         </div>
 
         {/* Safety Legend - compact badge, top-right corner */}
-        <div className="pointer-events-none absolute right-3 top-3 z-[1200]">
+        <div className="pointer-events-none relative z-[1200] flex w-full justify-end p-2 lg:absolute lg:right-3 lg:top-3 lg:w-auto lg:p-0">
           <div className="glass-card pointer-events-auto flex flex-col gap-2 !p-3 text-[11px]">
             <div className="flex items-center gap-2"><div className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--safe-green)] shadow-[0_0_6px_var(--safe-green)]" /><span className="text-[var(--text-secondary)] font-medium">Safe (70-100)</span></div>
             <div className="flex items-center gap-2"><div className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--medium-yellow)] shadow-[0_0_6px_var(--medium-yellow)]" /><span className="text-[var(--text-secondary)] font-medium">Medium (40-69)</span></div>
@@ -1182,7 +1183,7 @@ export default function Home() {
         <button
           type="button"
           onClick={() => setIsIncidentModalOpen(true)}
-          className="btn-danger pointer-events-auto absolute left-3 top-3 z-[1200] w-auto px-4 py-3 shadow-lg lg:hidden"
+          className="btn-danger pointer-events-auto relative z-[1200] mx-2 mt-2 w-auto px-4 py-3 shadow-lg lg:absolute lg:left-3 lg:top-3 lg:m-0 lg:hidden"
         >
           <><AlertTriangle aria-hidden="true" className="h-4 w-4" />Report Incident</>
         </button>

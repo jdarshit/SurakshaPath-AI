@@ -41,10 +41,8 @@ function classifySafety(label) {
 }
 
 /**
- * Compact overlay bar (Google Maps style) for live navigation, docked above
- * the bottom nav instead of a full-height card splitting the map. Tapping
- * the expand toggle reveals a capped-height bottom sheet with the rest of
- * the detail; it never grows to cover the whole map.
+ * Compact navigation bar for live navigation. It stays in the mobile flow so
+ * it cannot cover the map, while remaining a docked overlay on desktop.
  *
  * All navigation math/state (progress, ETA, alerts, GPS tracking) is
  * computed entirely in Home.jsx and passed in via props - this component
@@ -106,8 +104,7 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
           opened the panel. */}
       {!isExpanded && isRunning && hasWarning && !warningDismissed && (
         <div
-          className="pointer-events-auto absolute bottom-20 left-3 z-[1150] mx-auto max-w-[680px]"
-          style={{ right: '12px' }}
+          className="pointer-events-auto relative z-[1150] w-full lg:absolute lg:bottom-20 lg:left-3 lg:right-3 lg:mx-auto lg:max-w-[680px]"
         >
           <button
             type="button"
@@ -133,8 +130,7 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
       {/* Expanded bottom sheet - capped height, never covers the full map. */}
       {isExpanded && (
         <div
-          className="pointer-events-auto absolute bottom-16 left-3 z-[1150] mx-auto flex max-h-[45vh] max-w-[680px] flex-col gap-3 overflow-y-auto rounded-2xl border border-[var(--card-border)] bg-[#12121A]/95 p-4 shadow-2xl backdrop-blur-xl"
-          style={{ right: '12px' }}
+          className="pointer-events-auto relative z-[1150] flex max-h-[45vh] w-full flex-col gap-3 overflow-y-auto rounded-2xl border border-[var(--card-border)] bg-[#12121A]/95 p-4 shadow-2xl backdrop-blur-xl lg:absolute lg:bottom-16 lg:left-3 lg:right-3 lg:mx-auto lg:max-w-[680px]"
         >
           <div className="flex items-center justify-between gap-2">
             <h3 className="glass-card-header !mb-0">Live Navigation</h3>
@@ -208,8 +204,7 @@ export default function LiveNavigationPanel({ navigation, route, isLiveMode = tr
           alone doesn't reliably fit alongside everything else on a narrow
           phone once the SOS button's corner is reserved. */}
       <div
-        className="pointer-events-auto absolute bottom-4 left-3 z-[1150] mx-auto max-w-[680px] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[#12121A]/90 shadow-lg backdrop-blur-xl"
-        style={{ right: '12px' }}
+        className="pointer-events-auto relative z-[1150] w-full overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[#12121A]/90 shadow-lg backdrop-blur-xl lg:absolute lg:bottom-4 lg:left-3 lg:right-3 lg:mx-auto lg:max-w-[680px]"
       >
         <div className="flex items-center gap-1.5 px-2.5 py-2 sm:gap-2.5 sm:px-4">
           <div className="min-w-0 shrink-0">

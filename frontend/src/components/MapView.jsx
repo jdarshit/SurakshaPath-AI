@@ -313,7 +313,7 @@ function MapView({
   };
 
   return (
-    <div className="h-[32rem] overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-3 shadow-glow lg:h-[calc(100vh-12rem)]">
+    <div className="h-[45vh] min-h-[360px] max-h-[520px] overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-3 shadow-glow lg:h-[calc(100vh-12rem)] lg:max-h-none">
       <MapContainer center={center} zoom={12} scrollWheelZoom zoomControl className="h-full w-full">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
